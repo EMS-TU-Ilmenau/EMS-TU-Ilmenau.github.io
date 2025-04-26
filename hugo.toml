@@ -1,0 +1,41 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'EMS Hub'
+theme = 'mainroad'
+sectionPagesMenu = 'main'
+
+[Params]
+  description = "John Doe's Personal blog about everything" # Site description. Used in meta description
+  copyright = "John Doe" # Footer copyright holder, otherwise will use site title
+  readmore = true # Show "Read more" button in list if true
+  authorbox = false # Show authorbox at bottom of pages if true
+  toc = true # Enable Table of Contents
+  pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
+  post_meta = ["author", "date", "categories"] # Order of post meta information
+  mainSections = ["paper", "dataset"] # Specify section pages to show on home page and the "Recent articles" widget
+  dateformat = "2006-01-02" # Change the format of dates
+  mathjax = true # Enable MathJax
+  mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" # Specify MathJax path
+  mathjaxConfig = "TeX-AMS-MML_HTMLorMML" # Specify MathJax config
+  googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
+  comments = false # Enable Disqus comments for specific page
+
+[Params.logo]
+  image = "logo.png" # Logo image. Path relative to "static"
+  title = "EMS Hub" # Logo title, otherwise will use site title
+  subtitle = "Data, Documentation, Publications" # Logo subtitle
+
+[Params.style.vars]
+  highlightColor = "blue"
+
+[Params.sidebar]
+  home = "right" # Configure layout for home page
+  list = "right"  # Configure layout for list pages
+  single = true # Configure layout for single pages
+  widgets = ["search", "categories", "taglist", "social"]
+
+[Params.widgets.social]
+  cached = false
+  linkedin = "elektronische-messtechnik-ems"
+  github = "EMS-TU-Ilmenau"
+  email = "ems@tu-ilmenau.de"
