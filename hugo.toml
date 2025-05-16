@@ -1,24 +1,23 @@
-baseURL = '/'
+baseURL = 'https://ems-tu-ilmenau.github.io/'
 languageCode = 'en-us'
 title = 'EMS Hub'
 theme = 'mainroad'
 sectionPagesMenu = 'main'
 
 [Params]
-  description = "John Doe's Personal blog about everything" # Site description. Used in meta description
-  copyright = "John Doe" # Footer copyright holder, otherwise will use site title
+  description = "EMS Hub" # Site description. Used in meta description
+  copyright = "EMS Group TU Ilmenau, Ilmenau" # Footer copyright holder, otherwise will use site title
   readmore = true # Show "Read more" button in list if true
   authorbox = false # Show authorbox at bottom of pages if true
-  toc = true # Enable Table of Contents
-  pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
+  toc = false # Enable Table of Contents
+  pager = false # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories"] # Order of post meta information
   mainSections = ["paper", "dataset"] # Specify section pages to show on home page and the "Recent articles" widget
   dateformat = "2006-01-02" # Change the format of dates
-  mathjax = true # Enable MathJax
-  mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" # Specify MathJax path
-  mathjaxConfig = "TeX-AMS-MML_HTMLorMML" # Specify MathJax config
+  mathjax = false # Enable MathJax
   googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
   comments = false # Enable Disqus comments for specific page
+  math = true
 
 [Params.logo]
   image = "logo.png" # Logo image. Path relative to "static"
@@ -39,3 +38,12 @@ sectionPagesMenu = 'main'
   linkedin = "elektronische-messtechnik-ems"
   github = "EMS-TU-Ilmenau"
   email = "ems@tu-ilmenau.de"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
