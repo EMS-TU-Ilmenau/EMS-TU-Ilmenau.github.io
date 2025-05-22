@@ -1,3 +1,5 @@
+# EMS Hub Website
+
 This repository is ment to be the development place for our EMS-Hub webpage 
 hosted via github pages. When the content is ready to be released, the changes
 have to be pushed to the corresponding github repository.
@@ -22,3 +24,18 @@ generates a new markdown file *content/docs/mynewdoc/index.md*, where the
 content has to be added. In order to actually make the new page visible on
 the build website, you have to set the attribute ```draft=false``` at the top of 
 the index.md file.
+
+## Details
+
+After cloning, remember to pull the theme from the submodule
+```
+git submodule update --init --recursive
+```
+
+If you are working on `makalu69` the firewall blocks Github-SSH access.
+Change the path in the `.gitmodules` to the https-version, then run
+```
+git submodule sync
+```
+
+and then update the submodules again. 
