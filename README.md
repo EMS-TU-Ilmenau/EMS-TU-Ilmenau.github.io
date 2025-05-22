@@ -27,6 +27,7 @@ the index.md file.
 
 ## Details
 
+### Cloning
 After cloning, remember to pull the theme from the submodule
 ```
 git submodule update --init --recursive
@@ -39,3 +40,11 @@ git submodule sync
 ```
 
 and then update the submodules again. 
+
+### Running the server
+Run the server with 
+```
+hugo server -D
+```
+
+to include the pages marked as drafts.
