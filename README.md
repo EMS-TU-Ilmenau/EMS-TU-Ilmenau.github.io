@@ -10,7 +10,11 @@ This page is build with the hugo framework, which provides simple tools to
 generate and build the webpage. To contribute to the following steps:
 
 1. Clone this repository (including submodules)
+    * Requires you to be able to clone the emshub-theme repository from GitHub (https://github.com/EMS-TU-Ilmenau/emshub-theme).
+    * At minimum, if using SSH, configure your public key with a GitHub account. Alternatively, download a zip of the emshub-theme (should be possible).
+
 2. Clone and install or download a binary of hugo and place it somewhere in your PATH
+    * Instructions at https://gohugo.io/installation/
 
 Execute ```hugo server``` in the main directory of this repo to build the 
 webpage locally to be available at localhost.
