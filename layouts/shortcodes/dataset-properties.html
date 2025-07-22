@@ -1,0 +1,84 @@
+<style>
+.dataset-properties-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 2em 0;
+}
+.dataset-property-tile {
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 320px;
+  background: #fafbfc;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 1.2em;
+}
+.dataset-property-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+.dataset-property-label {
+  font-weight: bold;
+  color: #1a237e;
+  font-size: 1em;
+}
+.dataset-property-value {
+  color: #333;
+  font-size: 1.1em;
+}
+.dataset-property-logo {
+  margin-left: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dataset-property-logo img {
+  max-width: 40px;
+  max-height: 40px;
+}
+</style>
+<div class="dataset-properties-grid">
+  {{ $p := .Page.Params.properties }}
+  {{ $logos := dict
+    "bandwidth" "/images/icons/waves.svg"
+    "number_of_subcarriers" "/images/icons/waveform.svg"
+    "tx_waveform" "/images/icons/wave-square.svg"
+    "carrier_frequency" "/images/icons/wave-sine.svg"
+    "environment_type" "/images/icons/mountains.svg"
+    "symbol_length" "/images/icons/pulse.svg"
+    "antenna_type" "/images/icons/arrows-out-line-vertical.svg"
+    "geometry" "/images/icons/arrows-in.svg"
+    "size" "/images/icons/floppy-disk-back.svg"
+  }}
+  {{ $fields := slice
+    (dict "key" "bandwidth" "label" "Bandwidth")
+    (dict "key" "number_of_subcarriers" "label" "Number of Subcarriers")
+    (dict "key" "tx_waveform" "label" "TX Waveform")
+    (dict "key" "carrier_frequency" "label" "Carrier Frequency")
+    (dict "key" "environment_type" "label" "Environment Type")
+    (dict "key" "symbol_length" "label" "Symbol Length")
+    (dict "key" "antenna_type" "label" "Antenna Type")
+    (dict "key" "geometry" "label" "Geometry")
+    (dict "key" "size" "label" "Size")
+  }}
+  {{ range $fields }}
+    {{ $val := index $p .key }}
+    {{ if $val }}
+      <div class="dataset-property-tile">
+        <div class="dataset-property-info">
+          <span class="dataset-property-label">{{ .label }}</span>
+          <span class="dataset-property-value">{{ $val }}</span>
+        </div>
+        <div class="dataset-property-logo">
+          <img src="{{ index $logos .key | safeURL }}" alt="{{ .label }} logo" width="64" height="64">
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+</div>
