@@ -2,7 +2,7 @@
 date = '2025-05-21T16:38:55+02:00'
 draft = false
 title = 'Basic Data Specs'
-categories = ["Documentation"]
+categories = ["Docu"]
 +++
 
 ## Definition of the EMS HDF5-based file format
@@ -12,6 +12,8 @@ Additionally, it provides features to label and describe the data with dedicated
 
 This document describes the general structure elements of the data format.
 Furthermore, it contains some self-made definitions, which are not required by the file format, but improve the handling and understanding of the stored data.
+
+<!--more-->
 
 ### File
 A HDF5 file has a hierarchical structure comparable to a regular file explorer.

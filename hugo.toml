@@ -12,20 +12,22 @@ sectionPagesMenu = 'main'
   toc = false # Enable Table of Contents
   pager = false # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories"] # Order of post meta information
-  mainSections = ["paper", "dataset"] # Specify section pages to show on home page and the "Recent articles" widget
+  mainSections = ["papers", "datasets", "docus"] # Specify section pages to show on home page and the "Recent articles" widget
   dateformat = "2006-01-02" # Change the format of dates
   mathjax = false # Enable MathJax
   googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
   comments = false # Enable Disqus comments for specific page
+  customCSS = ["custom.css"]
   math = true
 
 [Params.logo]
   image = "logo.png" # Logo image. Path relative to "static"
-  title = "EMS Hub" # Logo title, otherwise will use site title
-  subtitle = "Data, Documentation, Publications" # Logo subtitle
+  title = "Data, Documentation, Papers" # Logo subtitle
+  subtitle = "" # Logo title, otherwise will use site title
 
 [Params.style.vars]
-  highlightColor = "blue"
+  highlightColor = "#720026" # other options: #691E06
+  # see https://coolors.co/691e06-ff5b00-007a7b-00355c-9c0d38
 
 [Params.sidebar]
   home = "right" # Configure layout for home page

@@ -1,18 +1,26 @@
 +++
 date = '2025-07-14T11:58:44+02:00'
 draft = false
-title = 'Multi-node UAV Sensing for ISAC'
+title = 'Capybara'
 categories = ["Dataset"]
 tags = ["ISAC", "Radar", "JCRS", "UAV"]
+featured_image = "static/image.png"
 +++
 
-## Measurement Setup
+![](static/image.png)
 
-## Pre-processing
+Abstract
 
-## Data Format
+<!--more-->
 
-## Measured Scenarios
+| Property             | Value        |
+|----------------------|--------------|
+
+## Introduction
+
+### Example Applications
+
+## Measurement
 
 #### UAV Side-link Sensing
 
@@ -20,5 +28,8 @@ tags = ["ISAC", "Radar", "JCRS", "UAV"]
 
 #### Infrastructure-based Sensing
 
-## Example Applications
+## Data Format
 
+## Data Processing
+
+## References˚
