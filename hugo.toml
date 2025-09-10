@@ -33,7 +33,7 @@ sectionPagesMenu = 'main'
   home = "right" # Configure layout for home page
   list = "right"  # Configure layout for list pages
   single = true # Configure layout for single pages
-  widgets = ["search", "categories", "taglist", "social"]
+  widgets = ["search", "taglist", "social"]
 
 [Params.widgets.social]
   cached = false
