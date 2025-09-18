@@ -12,7 +12,7 @@ sectionPagesMenu = 'main'
   toc = false # Enable Table of Contents
   pager = false # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories"] # Order of post meta information
-  mainSections = ["papers", "datasets", "docus"] # Specify section pages to show on home page and the "Recent articles" widget
+  #mainSections = ["papers", "dataset", "docu", "system"] # Specify section pages to show on home page and the "Recent articles" widget
   dateformat = "2006-01-02" # Change the format of dates
   mathjax = false # Enable MathJax
   googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
@@ -33,7 +33,7 @@ sectionPagesMenu = 'main'
   home = "right" # Configure layout for home page
   list = "right"  # Configure layout for list pages
   single = true # Configure layout for single pages
-  widgets = ["search", "categories", "taglist", "social"]
+  widgets = ["search", "taglist", "social"]
 
 [Params.widgets.social]
   cached = false
