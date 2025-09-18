@@ -2,7 +2,7 @@
 date = '2025-09-10T06:23:55+02:00'
 draft = false
 title = 'Modeling Micro-Doppler Signature of Multi-Propeller Drones in Distributed ISAC'
-categories = ["Papers"]
+categories = ["Paper"]
 tags = ["ISAC", "BIRA"]
 featured_image = "static/image.png"
 +++

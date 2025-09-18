@@ -1,6 +1,6 @@
 +++
 date = '2025-07-14T11:58:44+02:00'
-draft = false
+draft = true
 title = 'Capybara'
 categories = ["Dataset"]
 tags = ["ISAC", "Radar", "JCRS", "UAV"]
@@ -32,4 +32,13 @@ Abstract
 
 ## Data Processing
 
-## References˚
+## External References
+
+- [REFODAT]()
+- [doi](https://www.doi.org/doi)
+
+## Citation
+
+```
+bibtex entry
+```

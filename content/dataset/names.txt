@@ -16,7 +16,6 @@ x Zenthos
 - Vimble  
 - Orlan  
 - Pendra  
-- Saffo  
-- Elowen  
+- Saffo    
 - Tarela  
 

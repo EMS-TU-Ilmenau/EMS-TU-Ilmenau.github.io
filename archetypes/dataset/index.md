@@ -12,6 +12,8 @@ Abstract
 
 <!--more-->
 
+More Abstract
+
 | Property             | Value        |
 |----------------------|--------------|
 | Foo                  | Bar          |
@@ -24,4 +26,13 @@ Abstract
 
 ## Data Processing
 
-## References
+## External References
+
+- [REFODAT]()
+- [doi](https://www.doi.org/doi)
+
+## Citation
+
+```
+bibtex entry
+```
