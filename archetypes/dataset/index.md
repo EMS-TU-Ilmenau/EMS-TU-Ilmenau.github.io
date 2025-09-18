@@ -8,8 +8,6 @@ tags = []
 
 ![](static/image.png)
 
-[doi](https://www.doi.org/doi)
-
 Abstract
 
 <!--more-->
@@ -28,5 +26,13 @@ More Abstract
 
 ## Data Processing
 
-## References
+## External References
 
+- [REFODAT]()
+- [doi](https://www.doi.org/doi)
+
+## Citation
+
+```
+bibtex entry
+```
