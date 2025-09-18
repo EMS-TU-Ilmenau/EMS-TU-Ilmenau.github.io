@@ -2,7 +2,7 @@
 date = '2025-04-25T16:16:57+02:00'
 draft = false
 title = 'Time Variant Directional Multi-Link Channel Sounding and Estimation for V2X'
-categories = ["Papers"]
+categories = ["Paper"]
 tags = ["urban"]
 featured_image = "static/image.png"
 +++
