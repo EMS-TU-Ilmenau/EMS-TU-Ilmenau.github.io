@@ -34,4 +34,13 @@ More Abstract
 
 ## Data Processing
 
-## References
+## External References
+
+- [REFODAT]()
+- [doi](https://www.doi.org/doi)
+
+## Citation
+
+```
+bibtex entry
+```
