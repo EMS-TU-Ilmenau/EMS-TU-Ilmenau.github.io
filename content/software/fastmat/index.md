@@ -1,6 +1,6 @@
 +++
 date = '2022-06-18T09:20:41+02:00'
-draft = true
+draft = false
 title = 'Fastmat : Efficient linear transforms in Python'
 categories = ["Software"]
 tags = []

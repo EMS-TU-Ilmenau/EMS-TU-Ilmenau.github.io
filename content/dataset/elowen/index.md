@@ -8,8 +8,6 @@ tags = ["Sounding", "sub6", "Urban"]
 
 ![](static/image.png)
 
-[doi](https://www.doi.org/doi)
-
 Abstract
 
 <!--more-->
