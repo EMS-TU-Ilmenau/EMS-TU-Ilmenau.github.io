@@ -1,9 +1,11 @@
-# .gitlab-ci.yml — build Hugo from 'develop' branch and publish to /opt/website
+# .gitlab-ci.yml — build Hugo on each commit to 'develop' and publish to /opt/website
+
 stages: [deploy]
 
 variables:
   HUGO_VERSION: "0.148.2"
-  GIT_SUBMODULE_STRATEGY: recursive
+  # Don't let GitLab fetch submodules during "Get sources" (it would use SSH).
+  GIT_SUBMODULE_STRATEGY: none
   HUGO_ENVIRONMENT: "production"
   HUGO_CACHEDIR: ".hugo_cache"
 
@@ -22,19 +24,34 @@ deploy_hugo:
     - if: '$CI_COMMIT_BRANCH == "develop"'
   before_script:
     - apt-get update -y
-    - apt-get install -y wget ca-certificates dpkg npm git rsync openssh-client
+    - apt-get install -y wget ca-certificates dpkg npm git rsync
+    # Rewrite ALL GitHub submodules in .gitmodules from SSH to HTTPS (no auth needed for public repos)
+    - |
+      if [ -f .gitmodules ]; then
+        # List all submodule url entries
+        while IFS=$'\n' read -r line; do
+          key="${line%% *}"   # e.g., submodule.themes/mainroad.url
+          url="${line#* }"    # e.g., git@github.com:ORG/REPO.git
+          if echo "$url" | grep -q '^git@github.com:'; then
+            https_url="$(echo "$url" | sed -E 's#^git@github.com:#https://github.com/#')"
+            git config -f .gitmodules "$key" "$https_url"
+          fi
+        done < <(git config -f .gitmodules --get-regexp 'submodule\..*\.url' || true)
+        git submodule sync --recursive
+      fi
+    # Fetch submodules ourselves (shallow + recursive)
+    - git submodule update --init --recursive --depth 1
     # Install Hugo (extended)
     - wget -O /tmp/hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
     - dpkg -i /tmp/hugo.deb
-    # Dart Sass (embedded) for Hugo Pipes
+    # Dart Sass for Hugo Pipes (embedded binary)
     - npm install -g sass-embedded
-    # Optional Node deps if present
+    # Optional Node deps for your project if a lockfile exists
     - |
       if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
         npm ci
       fi
   script:
-    - git submodule update --init --recursive
     - hugo --minify --environment "$HUGO_ENVIRONMENT" ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
     - sudo install -d -m 0755 /opt/content
     - sudo rsync -a --delete public/ /opt/content/
