@@ -1,13 +1,9 @@
-# .gitlab-ci.yml — build Hugo on each commit to 'develop' and publish to /opt/website
-
 stages: [deploy]
 
 variables:
   HUGO_VERSION: "0.148.2"
-  # Don't let GitLab fetch submodules during "Get sources" (it would use SSH).
   GIT_SUBMODULE_STRATEGY: none
   HUGO_ENVIRONMENT: "production"
-  HUGO_CACHEDIR: ".hugo_cache"
 
 workflow:
   rules:
@@ -39,14 +35,10 @@ deploy_hugo:
         done < <(git config -f .gitmodules --get-regexp 'submodule\..*\.url' || true)
         git submodule sync --recursive
       fi
-    # Fetch submodules ourselves (shallow + recursive)
     - git submodule update --init --recursive --depth 1
-    # Install Hugo (extended)
     - wget -O /tmp/hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
     - dpkg -i /tmp/hugo.deb
-    # Dart Sass for Hugo Pipes (embedded binary)
     - npm install -g sass-embedded
-    # Optional Node deps for your project if a lockfile exists
     - |
       if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
         npm ci
@@ -55,8 +47,3 @@ deploy_hugo:
     - hugo --minify --environment "$HUGO_ENVIRONMENT" ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
     - sudo install -d -m 0755 /opt/content
     - sudo rsync -a --delete public/ /opt/content/
-  cache:
-    key: ${CI_COMMIT_REF_SLUG}
-    paths:
-      - .hugo_cache/
-      - resources/_gen/
