@@ -45,5 +45,5 @@ deploy_hugo:
       fi
   script:
     - hugo --minify --environment "$HUGO_ENVIRONMENT" ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
-    - sudo install -d -m 0755 /opt/content
-    - sudo rsync -a --delete public/ /opt/content/
+    - install -d -m 0755 /opt/content
+    - rsync -a --delete public/ /opt/content/
