@@ -1,5 +1,4 @@
-# .gitlab-ci.yml — build Hugo on each commit to 'develop' and publish to /opt/website
-
+# .gitlab-ci.yml — build Hugo from 'develop' branch and publish to /opt/website
 stages: [deploy]
 
 variables:
@@ -29,12 +28,13 @@ deploy_hugo:
     - dpkg -i /tmp/hugo.deb
     # Dart Sass (embedded) for Hugo Pipes
     - npm install -g sass-embedded
-    # Optional: project Node deps if present
+    # Optional Node deps if present
     - |
       if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
         npm ci
       fi
   script:
+    - git submodule update --init --recursive
     - hugo --minify --environment "$HUGO_ENVIRONMENT" ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
     - sudo install -d -m 0755 /opt/website
     - sudo rsync -a --delete public/ /opt/website/
