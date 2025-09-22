@@ -44,6 +44,6 @@ deploy_hugo:
         npm ci
       fi
   script:
-    - hugo --minify --environment "$HUGO_ENVIRONMENT" ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
+    - hugo --minify --environment "$HUGO_ENVIRONMENT" -D ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
     - install -d -m 0755 /opt/content
     - rsync -a --delete public/ /opt/content/
