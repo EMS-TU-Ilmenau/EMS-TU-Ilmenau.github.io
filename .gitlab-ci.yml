@@ -1,0 +1,45 @@
+# .gitlab-ci.yml — build Hugo on each commit to 'develop' and publish to /opt/website
+
+stages: [deploy]
+
+variables:
+  HUGO_VERSION: "0.148.2"
+  GIT_SUBMODULE_STRATEGY: recursive
+  HUGO_ENVIRONMENT: "production"
+  HUGO_CACHEDIR: ".hugo_cache"
+
+workflow:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      when: always
+    - when: never
+
+default:
+  image: ubuntu:24.04
+
+deploy_hugo:
+  stage: deploy
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+  before_script:
+    - apt-get update -y
+    - apt-get install -y wget ca-certificates dpkg npm git rsync
+    # Install Hugo (extended)
+    - wget -O /tmp/hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+    - dpkg -i /tmp/hugo.deb
+    # Dart Sass (embedded) for Hugo Pipes
+    - npm install -g sass-embedded
+    # Optional: project Node deps if present
+    - |
+      if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+        npm ci
+      fi
+  script:
+    - hugo --minify --environment "$HUGO_ENVIRONMENT" ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
+    - sudo install -d -m 0755 /opt/website
+    - sudo rsync -a --delete public/ /opt/website/
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .hugo_cache/
+      - resources/_gen/
