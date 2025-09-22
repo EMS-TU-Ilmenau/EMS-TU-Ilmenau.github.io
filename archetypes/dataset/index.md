@@ -4,6 +4,7 @@ draft = true
 title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 categories = ["Datasets"]
 tags = []
+featured_image = "static/image.png"
 +++
 
 ![](static/image.png)
