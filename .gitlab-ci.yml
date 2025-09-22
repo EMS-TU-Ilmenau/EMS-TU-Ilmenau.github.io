@@ -36,8 +36,8 @@ deploy_hugo:
   script:
     - git submodule update --init --recursive
     - hugo --minify --environment "$HUGO_ENVIRONMENT" ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
-    - sudo install -d -m 0755 /opt/website
-    - sudo rsync -a --delete public/ /opt/website/
+    - sudo install -d -m 0755 /opt/content
+    - sudo rsync -a --delete public/ /opt/content/
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
