@@ -1,6 +1,6 @@
 +++
 date = '2025-09-16T16:23:21+02:00'
-draft = true
+draft = false
 title = 'Elowen : MIMO Channel Sounding and Characterization in an Urban Macro Cell'
 categories = ["Dataset"]
 tags = ["Sounding", "sub6", "Urban"]
@@ -22,6 +22,8 @@ In order to render the data self contained, we have also added suitable calibrat
 In addition to the measurements and calibration data, we also supply four different sets of high resolution parameter estimates that are derived form the data based on RIMAX where different strategies for model-order selection and over-equalization were employed. Since these different settings impose different objective functions and parametric models onto the data, the resulting parameter estimations have signficantly different statistics, which sparks the need for further analysis that is facilitated by this dataset.
 
 ## Introduction
+
+The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receive/refodat_mods_00000055).
 
 ## Measurement
 
@@ -140,12 +142,34 @@ Similarly, one can plot other parameter domains and would get something like
 
 ![](static/drop_MCRB_tx_0_rx_0_error_1_elevation_tx.png)
 
+### Antenna Calibration Data
+
+In order to access the calibration data of the first port for both excitation polarizations, we can do something like:
+
+```python
+# shape: elevation x azimuth x frequency x polarisation x port
+antenna = h5py.File(f"{datasetPath}/TUI_SPUCA2x8_II_20MHz.h5")["BeampatternData/Data"]
+
+plt.figure()
+plt.subplot(121)
+plt.imshow(20 * np.log10(np.abs(asComplex(antenna[:, :, 0, 0, 0]))), cmap="bone")
+plt.colorbar()
+plt.subplot(122)
+plt.imshow(20 * np.log10(np.abs(asComplex(antenna[:, :, 0, 1, 0]))), cmap="bone")
+plt.colorbar()
+plt.savefig("antenna.png")
+```
+
+and we would end up with
+
+![](static/antenna.png)
 
 ## External References
 
-- [Download at ReFoDaT]()
+- [Download at ReFoDaT](https://refodat.de/receive/refodat_mods_00000055)
 - [DOI of the dataset](https://www.doi.org/doi)
 - [Associated Publication](https://ieeexplore.ieee.org/document/6929298)
+
 ## Citation
 
 ```
