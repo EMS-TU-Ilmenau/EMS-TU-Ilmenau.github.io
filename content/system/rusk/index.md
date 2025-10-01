@@ -1,6 +1,6 @@
 +++
 date = '2025-09-18T07:55:38+02:00'
-draft = true
+draft = false
 title = 'RUSK HyEff Channel Sounder'
 categories = ["Measurement Systems"]
 tags = ["Sounding", "MIMO"]
@@ -24,6 +24,8 @@ estimation techniques makes it a key tool for the development of next‑generati
 - Wideband capability: Provides accurate delay‑domain measurements needed for resolving multipath components.
 - Calibration and stability: Includes robust calibration procedures to ensure antenna array accuracy and repeatable measurements over time.
 - Compatibility with advanced algorithms: Designed for use with high‑resolution parameter estimation algorithms such as RIMAX, enabling extraction of path‑based channel models (directions of arrival/departure, delays, Doppler shifts, and polarimetric path weights).
+
+![](static/campaigns.png)
 
 ## Applications
 
