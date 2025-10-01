@@ -1,11 +1,9 @@
 +++
 date = '2025-05-21T16:38:55+02:00'
 draft = false
-title = 'Basic Data Specs'
+title = 'Abstract Specification'
 categories = ["Docu"]
 +++
-
-## Definition of the EMS HDF5-based file format
 
 The hierarchical data format version 5 (HDF5) is a powerful dataformat to organize and store large amounts of data.
 Additionally, it provides features to label and describe the data with dedicated information.
