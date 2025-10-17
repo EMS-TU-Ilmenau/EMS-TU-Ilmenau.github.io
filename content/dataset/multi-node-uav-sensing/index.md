@@ -1,15 +1,15 @@
 +++
 date = '2025-07-14T11:58:44+02:00'
 draft = false
-title = 'Capybara: UAV-to-X Channel Sounding at 3.75 GHz'
+title = 'MCHUG: Multi-node Channel Sounding for UAVs and Ground-stations'
 categories = ["Dataset"]
 tags = ["ISAC", "Radar", "JCRS", "UAV"]
-featured_image = "static/image.png"
+featured_image = "static/capybara_cover_pic.png"
 [params]
     math = true
 +++
 
-![](static/image.png)
+![](static/capybara_cover_pic.png)
 
 This dataset contains radio channel measurements between stationary (ground- and rooftop-mounted) and mobile (UAV- and vehicle-mounted) transceivers in a multi-static setup. A variety of dynamic passive objects were present in the measured scenarios, allowing for verification of radar detection, estimation and tracking algorithms. In addition to the measured channel frequency responses, the position of all radio nodes and passive objects were recorded using high-accuracy RTK devices. 
 
@@ -148,6 +148,10 @@ $h5ls -r Location.h5
 /PoseData/MetaData/Snapshot/Index Dataset {375}
 /PoseData/MetaData/Snapshot/TimeStamp Dataset {375}
 ```
+
+## Data Preprocessing
+
+
 
 ## Useful Information
 
