@@ -13,7 +13,7 @@ sectionPagesMenu = 'main'
   pager = false # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories"] # Order of post meta information
   dateformat = "2006-01-02" # Change the format of dates
-  mathjax = false # Enable MathJax
+  mathjax = true # Enable MathJax
   googleFontsLink = "https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" # Load Google Fonts
   comments = false # Enable Disqus comments for specific page
   customCSS = ["custom.css"]
