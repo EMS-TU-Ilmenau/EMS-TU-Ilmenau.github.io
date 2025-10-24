@@ -42,7 +42,7 @@ x Capybara
 - Falyra
 - Fendrix
 - Fynric
-- Fyoris
+x Fyoris
 - Fyrion
 - Galvorn
 - Galvryn
