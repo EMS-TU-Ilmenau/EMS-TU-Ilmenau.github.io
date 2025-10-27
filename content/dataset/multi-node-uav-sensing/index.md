@@ -1,15 +1,15 @@
 +++
 date = '2025-07-14T11:58:44+02:00'
 draft = false
-title = 'MCHUG: Multi-node Channel Sounding for UAVs and Ground-stations'
+title = 'Oryx: Multi-node Radio Channel Sounding for UAVs and Ground-stations'
 categories = ["Dataset"]
 tags = ["ISAC", "Radar", "JCRS", "UAV"]
-featured_image = "static/capybara_cover_pic.png"
+featured_image = "static/oryx_title_crop.jpg"
 [params]
     math = true
 +++
 
-![](static/capybara_cover_pic.png)
+![](static/oryx_title_crop.jpg)
 
 This dataset contains radio channel measurements between stationary (ground- and rooftop-mounted) and mobile (UAV- and vehicle-mounted) transceivers in a multi-static setup. A variety of dynamic passive objects were present in the measured scenarios, allowing for verification of radar detection, estimation and tracking algorithms. In addition to the measured channel frequency responses, the position of all radio nodes and passive objects were recorded using high-accuracy RTK devices. 
 
@@ -37,7 +37,6 @@ The datasets exported and described here contain the complex time-varying channe
 
 ### Location
 The measurements took place at the parking lot behind Ernst-Abbe-Zentrum building at the campus of Technical University of Ilmenau, located at Ehrenbergstraße 29, 98693 Ilmenau. 
-<iframe width="325" height="250" src="https://www.openstreetmap.org/export/embed.html?bbox=10.929481387138368%2C50.683733885218395%2C10.933021903038027%2C50.68520218624622&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?#map=19/50.684468/10.931252">Show large map</a></small>
 
 ## Applications
 This dataset has a number of possible applications, for e.g.
@@ -63,23 +62,21 @@ This dataset has a number of possible applications, for e.g.
 | uav4       | UAV    | Quasi-stationary (hovering)    | Radio: RX        |
 | uav_evtol       | UAV    | Dynamic    | Passive       |
 
-#### Node Positions
+#### Scenario Overview
+
 
 The following figures visualize the 3-D and 2-D position of the radio and passive nodes:
-![](static/combined_run1_env.png)
+![](static/run1A1_refodat_2d_3d_pos.webp)
 
-#### Exemplary Plots
-
+#### Exemplary Radargram Plots
 The following figure depicts the range-velocity spectrum for all 7 receiver links.
-
 ![](static/run1_radargram.png)
-
 
 ## Data Format
 
 ### Directory Structure
 
-The dataset is organized into direectories corresponding to the different measurement nodes:
+The dataset is organized into directories corresponding to the different measurement nodes:
 
 ```
 run1/
@@ -151,7 +148,7 @@ $h5ls -r Location.h5
 
 ## Data Preprocessing
 
-
+-- Coming Soon --
 
 ## Useful Information
 
@@ -191,10 +188,100 @@ for i in range(5):
     print(f"{lat_interp[i]:.6f}, {lon_interp[i]:.6f}, {hgt_interp[i]:.2f}")
 ```
 
+### Loading Channel Data
+
+The complex channel transfer function is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts, respectively, of the complex values. This is illustrated with the following Python function:
+
+```python
+import h5py
+import numpy as np
+
+def load_complex_channel_data(file_path, sample_indices):
+    """
+    Loads complex channel data and associated axes.
+    Arguments:
+        file_path: str: Path to FrequencyResponses.h5 file
+        sample_indices: Tuple[int, int]: A slice (start, stop) defining the
+            slow-time (snapshot) samples to load from file.
+    Returns:
+        complex_data: np.ndarray: 2-D array (slow-time, frequency)
+        ts: np.ndarray: array of timestamps corresponding to the loaded samples
+        ff: np.ndarray: array of frequency values
+    """
+    sample_indices_slice = slice(sample_indices[0], sample_indices[1])
+    timestamp_path = "/FrequencyResponses/MetaData/Snapshot/TimeStamp"
+    frequencies_path = "/FrequencyResponses/MetaData/Frequency/Frequency"
+
+    with h5py.File(file_path, "r") as f:
+        # Read timestamp, frequency axes and compound dataset
+        ts = f[timestamp_path][sample_indices_slice]
+        ts_unitscaler = f[timestamp_path].attrs["UnitScaler"]
+
+        ff = f[frequencies_path][:]
+        ff_scaler = f[frequencies_path].attrs["UnitScaler"]
+
+        data = f["/FrequencyResponses/Data"][sample_indices_slice]
+
+    complex_data = data["real"] + 1j * data["imag"]
+
+    return (
+        complex_data,
+        ts * ts_unitscaler,
+        ff * ff_scaler,
+    )
+```
+
+### Plotting Delay-Doppler Representation
+
+A common step in radar-like applications is the caluclation of the delay-Doppler spreading function. The following Python script plots the magnitude of the delay-Doppler spreading function in dB:
+
+```python
+import matplotlib.pyplot as plt
+
+# load 50->562 slow-time samples
+# complex_data has dims (slow-time, sub-carriers)
+complex_data, ts, ff = load_complex_channel_data(
+    ".../uav1_to_Rx1/Data/FrequencyResponses.h5",
+    (50, 562),
+)
+
+# transform slow-time to Doppler frequency
+dd_map = np.fft.fftshift(np.fft.fft(complex_data, axis=0))
+
+# trasnform sub-carriers to delay
+dd_map = np.fft.ifft(np.fft.ifftshift(dd_map, axes=1), axis=1)
+
+# create axes for plotting
+doppler_axis = np.fft.fftshift(np.fft.fftfreq(len(ts), d=(ts[1] - ts[0])))
+
+delay_axis = np.fft.ifftshift(np.fft.fftfreq(len(ff), d=(ff[1] - ff[0])))
+delay_axis = delay_axis - delay_axis.min()
+
+plt.figure(figsize=(8, 6))
+plt.imshow(
+    10 * np.log10(np.abs(dd_map) ** 2),
+    extent=[delay_axis[0], delay_axis[-1], doppler_axis[0], doppler_axis[-1]],
+    aspect="auto",
+    origin="lower",
+)
+plt.xlabel("Delay (s)")
+plt.ylabel("Doppler Frequency (Hz)")
+plt.title("Delay-Doppler Map")
+plt.colorbar(label="Power (dB)")
+plt.show()
+```
+
+![](static/snippet_dd_map.webp)
+
 ## External References
 
-- [REFODAT]()
+- REFODAT: available soon!
 - [doi](https://www.doi.org/doi)
+
+## Related Publications
+
+- [J. Beuster et al., "Enhancing Situational Awareness in ISAC Networks via Drone Swarms: A Real-World Channel Sounding Data Set," 2025 28th International Workshop on Smart Antennas (WSA), Erlangen, Germany, 2025, pp. 170-173, doi: 10.1109/WSA65299.2025.11202836](https://ieeexplore.ieee.org/document/11202836)
+- [J. Beuster et al., "Real-Time Sounding in ISAC Networks: Design and Implementation of a Multi-Node Testbed with Synchronized Airborne and Ground-Based Sensors," 2025 28th International Workshop on Smart Antennas (WSA), Erlangen, Germany, 2025, pp. 1-7, doi: 10.1109/WSA65299.2025.11202781](https://ieeexplore.ieee.org/document/11202781)
 
 ## Citation
 
