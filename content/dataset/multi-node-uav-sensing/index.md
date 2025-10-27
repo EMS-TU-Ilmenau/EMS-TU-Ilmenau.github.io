@@ -3,7 +3,7 @@ date = '2025-07-14T11:58:44+02:00'
 draft = false
 title = 'Oryx: Multi-node Radio Channel Sounding for UAVs and Ground-stations'
 categories = ["Dataset"]
-tags = ["ISAC", "Radar", "JCRS", "UAV"]
+tags = ["ISAC", "Radar", "UAV", "Sounding"]
 featured_image = "static/oryx_title_crop.jpg"
 [params]
     math = true
