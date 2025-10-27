@@ -35,6 +35,8 @@ The datasets exported and described here contain the complex time-varying channe
 
 ## Measurement Setup
 
+A detailed description of the hardware setup and measurement procedure was published in the articles that can be found [here](https://ieeexplore.ieee.org/document/11202836) and [here](https://ieeexplore.ieee.org/document/11202781).
+
 ### Location
 The measurements took place at the parking lot behind Ernst-Abbe-Zentrum building at the campus of Technical University of Ilmenau, located at Ehrenbergstraße 29, 98693 Ilmenau. 
 
