@@ -21,3 +21,5 @@ categories = ["Docu"]
 
 \(Ax = b\)
 
+\[ax = b\]
+
