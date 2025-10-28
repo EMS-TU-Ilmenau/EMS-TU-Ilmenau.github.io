@@ -25,7 +25,7 @@
 - Bryndra
 - Caelo
 - Calvion
-x Capybara
+- Capybara
 - Ceryth
 - Cylora
 - Daryon
@@ -86,6 +86,7 @@ x Fyoris
 - Orvyn
 - Olyric
 - Oryth
+x Oryx
 - Pendra
 - Pyralis
 - Pyrion

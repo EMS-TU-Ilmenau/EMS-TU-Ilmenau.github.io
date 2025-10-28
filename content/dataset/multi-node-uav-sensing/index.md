@@ -13,6 +13,8 @@ featured_image = "static/oryx_title_crop.jpg"
 
 This dataset contains radio channel measurements between stationary (ground- and rooftop-mounted) and mobile (UAV- and vehicle-mounted) transceivers in a multi-static setup. A variety of dynamic passive objects were present in the measured scenarios, allowing for verification of radar detection, estimation and tracking algorithms. In addition to the measured channel frequency responses, the position of all radio nodes and passive objects were recorded using high-accuracy RTK devices. 
 
+<!--more-->
+
 | Property             | Value        |
 |----------------------|--------------|
 | Center Frequency | 3.75 GHz |

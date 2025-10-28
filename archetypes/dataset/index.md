@@ -2,7 +2,7 @@
 date = '{{ .Date }}'
 draft = true
 title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
-categories = ["Datasets"]
+categories = ["Dataset"]
 tags = []
 featured_image = "static/image.png"
 +++
