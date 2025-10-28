@@ -16,16 +16,17 @@ For easy access of relevant quantities, data and meta data are stored in HDF5 fo
 For aiding interpretation of the data, full Tx and Rx array characteristics are included.
 
 ```mermaid
-graph TD
-    A[Start] --> B{Frage?}
-    B -->|Ja| C[Mach weiter]
-    B -->|Nein| D[Stop]
+sequenceDiagram
+    participant User
+    participant Server
+    participant DB
+
+    User->>Server: Anfrage senden
+    Server->>DB: Daten abrufen
+    DB-->>Server: Daten zurückgeben
+    Server-->>User: Antwort anzeigen
 ```mermaid
 
-
-
-
-<!--more-->
 
 
 | Property             | Value        |
