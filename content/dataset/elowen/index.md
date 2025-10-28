@@ -1,7 +1,7 @@
 +++
 date = '2025-09-16T16:23:21+02:00'
 draft = false
-title = 'Elowen : MIMO Channel Sounding and Characterization in an Urban Macro Cell'
+title = 'Elowen: MIMO Channel Sounding and Characterization in an Urban Macro Cell'
 categories = ["Dataset"]
 tags = ["Sounding", "sub6", "Urban"]
 featured_image = "static/image.png"
