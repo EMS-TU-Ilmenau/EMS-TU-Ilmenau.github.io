@@ -15,6 +15,11 @@ The frequency is 2,53GHz, the bandwidth 20MHz.
 For easy access of relevant quantities, data and meta data are stored in HDF5 format.
 For aiding interpretation of the data, full Tx and Rx array characteristics are included.
 
+
+Test
+
+<!--more-->
+
 ```mermaid
 sequenceDiagram
     participant User
@@ -27,7 +32,7 @@ sequenceDiagram
     Server-->>User: Antwort anzeigen
 ```
 
-
+<!--more-->
 
 | Property             | Value        |
 |----------------------|--------------|
