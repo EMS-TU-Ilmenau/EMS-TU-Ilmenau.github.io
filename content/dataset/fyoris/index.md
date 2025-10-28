@@ -25,7 +25,7 @@ sequenceDiagram
     Server->>DB: Daten abrufen
     DB-->>Server: Daten zurückgeben
     Server-->>User: Antwort anzeigen
-```mermaid
+```
 
 
 
