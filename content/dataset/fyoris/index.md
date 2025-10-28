@@ -15,6 +15,12 @@ The frequency is 2,53GHz, the bandwidth 20MHz.
 For easy access of relevant quantities, data and meta data are stored in HDF5 format.
 For aiding interpretation of the data, full Tx and Rx array characteristics are included.
 
+```mermaid
+graph TD
+    A[Start] --> B{Frage?}
+    B -->|Ja| C[Mach weiter]
+    B -->|Nein| D[Stop]
+
 <!--more-->
 
 
