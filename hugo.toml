@@ -36,7 +36,7 @@ sectionPagesMenu = 'main'
 
 [Params.widgets.social]
   cached = false
-  linkedin = "elektronische-messtechnik-ems"
+  linkedin = "company/elektronische-messtechnik-ems"
   github = "EMS-TU-Ilmenau"
   email = "ems@tu-ilmenau.de"
 
