@@ -11,7 +11,8 @@ featured_image = "static/oryx_title_crop.jpg"
 
 ![](static/oryx_title_crop.jpg)
 
-This dataset contains radio channel measurements between stationary (ground- and rooftop-mounted) and mobile (UAV- and vehicle-mounted) transceivers in a multi-static setup. A variety of dynamic passive objects were present in the measured scenarios, allowing for verification of radar detection, estimation and tracking algorithms. In addition to the measured channel frequency responses, the position of all radio nodes and passive objects were recorded using high-accuracy RTK devices. 
+The Oryx dataset contains radio channel measurements between stationary (ground- and rooftop-mounted) and mobile (UAV- and vehicle-mounted) transceivers in a multi-static setup. A variety of dynamic passive objects were present in the measured scenarios, allowing for verification of radar detection, estimation and tracking algorithms. In addition to the measured channel frequency responses, the position of all radio nodes and passive objects were recorded using high-accuracy GNSS RTK devices. 
+<!--more-->
 
 | Property             | Value        |
 |----------------------|--------------|
@@ -23,22 +24,25 @@ This dataset contains radio channel measurements between stationary (ground- and
 | Number of RXs | 7 |
 
 ## Introduction
-This page provides the user with documentation for datasets from an outdoor measurement campaign that took place in Ilmenau, Germany in 2024. The goal of the campaign was the provisioning of datasets that enable the study of SISO radio channels between stationary and mobile multi-static transceivers relevant to UAV scenarios. A specific focus is the recording of UAV-to-UAV "side-link" channels measured in the multiple passive targets with varying trajectories are present. Additional scenarios recorded infrastructure-to-infrastructure channels in the presence of passive vehicular and UAV objects with well-defined movement trajectories.
+Oryx is a part of an outdoor measurement campaign that took place in Ilmenau, Germany in August 2024. The goal of the campaign was the provisioning of datasets that enable the study of SISO radio channels between stationary and mobile multi-static transceivers relevant to UAV scenarios. A specific focus is the recording of UAV-to-UAV "side-link" channels measured in the multiple passive targets with varying trajectories are present. Additional scenarios recorded infrastructure-to-infrastructure channels in the presence of passive vehicular and UAV objects with well-defined movement trajectories.
+
+## Getting Started
+This dataset will soon be published at a [data repository](https://refodat.de/receive/refodat_mods_00000060). Once downloaded, use the Python snippets [provided](#loading-channel-data) to load the data.
 
 ## Recorded Data
 The datasets exported and described here contain the complex time-varying channel frequency response (channel transfer function). Relevant meta-data such as the values of time and frequency at which the response is measured are available. Additionally, position information (latitude, longitude and height above sea level) for all participating nodes measured via a RTK-device are exported.
 
 ## Terminology
 * Node: An object participating in the measurement for which positions are logged
-* Radio Node:  Node equipped with radio receiver and/or transmitter
-* Passive Node: Node without radio equipment
+    * Radio Node:  Node equipped with radio receiver and/or transmitter
+    * Passive Node: Node without radio equipment
 
 ## Measurement Setup
 
 A detailed description of the hardware setup and measurement procedure was published in the articles that can be found [here](https://ieeexplore.ieee.org/document/11202836) and [here](https://ieeexplore.ieee.org/document/11202781).
 
 ### Location
-The measurements took place at the parking lot behind Ernst-Abbe-Zentrum building at the campus of Technical University of Ilmenau, located at Ehrenbergstraße 29, 98693 Ilmenau. 
+The measurements took place at the [parking lot behind the Ernst-Abbe-Zentrum building](https://www.openstreetmap.org/#map=19/50.684352/10.931571) at the campus of Technical University of Ilmenau, located at Ehrenbergstraße 29, 98693 Ilmenau. 
 
 ## Applications
 This dataset has a number of possible applications, for e.g.
@@ -180,9 +184,9 @@ with h5py.File("Location.h5", "r") as f:
 target_ts = np.linspace(ts.min(), ts.max(), 1000)
 
 # Perform cubic spline interpolation for each coordinate
-lat_interp = CubicSpline(ts, lat)(target_ts)
-lon_interp = CubicSpline(ts, lon)(target_ts)
-hgt_interp = CubicSpline(ts, hgt)(target_ts)
+lat_interp = CubicSpline(ts, lat, extrapolate=None)(target_ts)
+lon_interp = CubicSpline(ts, lon, extrapolate=None)(target_ts)
+hgt_interp = CubicSpline(ts, hgt, extrapolate=None)(target_ts)
 
 # Example usage: print first few interpolated points
 print("Interpolated positions (lat, lon, height):")
@@ -275,18 +279,18 @@ plt.show()
 
 ![](static/snippet_dd_map.webp)
 
-## External References
-
-- REFODAT: available soon!
-- [doi](https://www.doi.org/doi)
-
 ## Related Publications
 
 - [J. Beuster et al., "Enhancing Situational Awareness in ISAC Networks via Drone Swarms: A Real-World Channel Sounding Data Set," 2025 28th International Workshop on Smart Antennas (WSA), Erlangen, Germany, 2025, pp. 170-173, doi: 10.1109/WSA65299.2025.11202836](https://ieeexplore.ieee.org/document/11202836)
 - [J. Beuster et al., "Real-Time Sounding in ISAC Networks: Design and Implementation of a Multi-Node Testbed with Synchronized Airborne and Ground-Based Sensors," 2025 28th International Workshop on Smart Antennas (WSA), Erlangen, Germany, 2025, pp. 1-7, doi: 10.1109/WSA65299.2025.11202781](https://ieeexplore.ieee.org/document/11202781)
 
-## Citation
+## External References
+
+- [REFODAT](https://refodat.de/receive/refodat_mods_00000060)
+
+
+<!-- ## Citation
 
 ```
 bibtex entry
-```
+``` -->
