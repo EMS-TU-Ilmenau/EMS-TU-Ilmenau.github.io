@@ -3,6 +3,7 @@ date = '2025-10-27T14:53:27+01:00'
 draft = true
 title = 'Differentiable Raytracing for Modeling of Complex Radio Environments'
 categories = ["Career"]
+tags = ["Ray Tracing", "Job", "Thesis"]
 +++
 
 At EMS we wish to first measure, then estimate, and finally model radio channels as accurately as possible.
@@ -20,7 +21,7 @@ With their differentiability these ray tracing tools can be neatly integrated in
 This in turn immediately equips the resulting machine learning architectures with an understanding of the physical processes that underpin radio wave propagation.
 Potentially, this alleviates us a little from the burden of doing **overly excessive** measurements.
 Instead we let the simulation do the heavy lifting, while we provide accurate **calibration data** with our channel sounder.
-Ultimately this offers us a plethora of new and exciting (at least for us) research directions that have applications in future communication, radar and hybrid systems.
+Ultimately this offers us exciting (at least for us) research directions that have applications in future communication, radar and hybrid systems.
 
 #### Problems we want to solve with you
 

@@ -23,3 +23,10 @@ categories = ["Docu"]
 
 \[ax = b\]
 
+```mermaid
+graph TD
+  A[Start] --> B{Is it Hugo?}
+  B -->|Yes| C[Use Mermaid!]
+  B -->|No| D[Try Hugo anyway]
+```
+
