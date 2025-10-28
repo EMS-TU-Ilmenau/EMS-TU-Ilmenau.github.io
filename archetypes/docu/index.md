@@ -1,6 +1,6 @@
 +++
 date = '{{ .Date }}'
-draft = false
+draft = true
 title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 categories = ["Docu"]
 +++
