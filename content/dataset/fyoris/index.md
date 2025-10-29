@@ -93,8 +93,8 @@ This snippet should yield something like the plot below:
   year =  {2025},
   keywords =  {channel sounding; MIMO; antenna arrays; propagation measurements},
   url =  {<https://refodat.de/receive/refodat_mods_00000061}>,
-  language =  {en}
-  copyright = {Creative Commons Attribution 4.0 International}
+  language =  {en},
+  copyright = {Creative Commons Attribution 4.0 International},
   publisher = {refodat - Repositorium f\"{u}r Forschungsdaten in Th\"{u}ringen},
 }
 ```
