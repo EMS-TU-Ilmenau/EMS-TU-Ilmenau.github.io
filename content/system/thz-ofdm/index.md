@@ -4,7 +4,7 @@ draft = true
 title = 'Flexible Sounding Platform with Sub-Thz Frequency Extensions (Rohde & Schwarz)'
 categories = ["Measurement System"]
 tags = ["THz", "AWG", "Sounding"]
-featured_image = "static/image.png"
+featured_image = "static/measSetup.png"
 +++
 
 ![](static/measSetup.png)
