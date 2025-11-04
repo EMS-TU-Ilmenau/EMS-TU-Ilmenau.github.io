@@ -1,9 +1,9 @@
 +++
-date = '2025-09-10T06:23:55+02:00'
+date = '2025-05-02T06:23:55+02:00'
 draft = true
 title = 'Metrology of Multicarrier-based Delay-Doppler Channel Sounding for sub-THz Frequencies'
 categories = ["Paper"]
-tags = ["Metrology", "Estimation"]
+tags = ["Metrology", "Estimation", "THz"]
 featured_image = "static/image.png"
 +++
 
