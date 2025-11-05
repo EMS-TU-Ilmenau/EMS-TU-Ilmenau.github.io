@@ -41,6 +41,9 @@ sectionPagesMenu = 'main'
   email = "ems@tu-ilmenau.de"
 
 [markup]
+  [goldmark]
+    [Extensions]
+      footnote = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
