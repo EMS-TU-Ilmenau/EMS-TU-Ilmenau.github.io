@@ -16,9 +16,9 @@ be created. This allows comparing the measurement and processing results against
 
 Possible problems that could be explored are:
 
-- Verification of full-polarimetric channel sounders: We want to use artifacts with a known impact on the polarization of an electromagnetic waves to build test channels for full-polarimetric channel sounders. This allows comparing the expected scattering matrix of the test channel against the measurement and processing results. Additionally, we can use polarimetric decompositions to detect such canonical objects/shapes in more complex channel measurements allowing to build more precise channel models. 
+- Verification of full-polarimetric channel sounders: We want to use artifacts (e.g. edge/corner reflectors) with a known impact on the polarization of an electromagnetic waves to build test channels for full-polarimetric channel sounders. Additionally, we can use polarimetric decompositions to detect such canonical objects/shapes in more complex channel measurements allowing to build more precise channel models. 
 
-- Dense scattering artifacts: Channel models typically make use of two modeling approaches; a deterministic approach describing highly resolvable and specular propagation paths, and a stochastic approach accounting for dense scattering in the environment that cannot be resolved into specular paths. However, test artifacts for dense scattering are still not explored. Hence, we want to build a reverberation box (comparable to reverberation chambers in acoustics) and combine it with artifacts for specular paths allowing to test the trade-off between deterministic and stochastic model components.
+- Dense scattering artifacts: Channel models typically make use of two modeling approaches; a deterministic approach describing highly resolvable and specular propagation paths, and a stochastic approach accounting for dense scattering in the environment that cannot be resolved into specular paths. Hence, we want to build a reverberation box (comparable to reverberation chambers in acoustics) and combine it with artifacts for specular paths allowing to test the trade-off between deterministic and stochastic model components.
 
 Due to the experimental character, these topics are most suited for a bachelor or master thesis.
 
