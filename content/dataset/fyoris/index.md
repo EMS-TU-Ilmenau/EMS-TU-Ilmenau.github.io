@@ -27,7 +27,7 @@ config:
   look: neo
   themeVariables:
     lineColor: red
-  layout: elk
+  layout: tidy-tree
 ---
 flowchart LR
 FrequencyResponses@{label: "FrequencyResponses", shape: procs}
