@@ -16,9 +16,10 @@ For easy access of relevant quantities, data and meta data are stored in HDF5 fo
 For aiding interpretation of the data, full Tx and Rx array characteristics are included.
 
 
-Test
-
 <!--more-->
+
+
+<img src="./res/FrequencyResponses.png" alt="Beschreibung" width="50%" />
 
 ![Diagramm-Illustration](./res/FrequencyResponses.png)
 
