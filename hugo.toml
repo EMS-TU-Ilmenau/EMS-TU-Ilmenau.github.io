@@ -25,7 +25,8 @@ sectionPagesMenu = 'main'
   subtitle = "" # Logo title, otherwise will use site title
 
 [Params.style.vars]
-  highlightColor = "#720026" # other options: #691E06
+  highlightColor = "#1a1a1a" # other options: #691E06
+  uiColor = "#4a4a4a" # other options: #691E06
   # see https://coolors.co/691e06-ff5b00-007a7b-00355c-9c0d38
 
 [Params.sidebar]
