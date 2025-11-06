@@ -20,8 +20,7 @@ Test
 
 <!--more-->
 
-
-<embed src="./res/FrequencyResponses.pdf" width="100%" height="600px" type="application/pdf">
+![Diagramm-Illustration](./res/FrequencyResponses.png)
 
 <!--more-->
 
