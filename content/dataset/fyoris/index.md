@@ -19,7 +19,7 @@ For aiding interpretation of the data, full Tx and Rx array characteristics are 
 <!--more-->
 
 
-<img src="./res/FrequencyResponses.png" alt="Beschreibung" width="50%" />
+<!-- <img src="./res/FrequencyResponses.png" alt="Beschreibung" width="50%" /> -->
 
 ![Diagramm-Illustration](./res/FrequencyResponses.png)
 
