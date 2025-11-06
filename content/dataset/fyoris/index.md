@@ -31,7 +31,7 @@ config:
 ---
 
 flowchart LR
-root@{label: "/", shape: procs}
+root["/"]
 root:::colorGroup
 ```
 
