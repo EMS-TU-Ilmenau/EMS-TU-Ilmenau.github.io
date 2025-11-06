@@ -20,20 +20,8 @@ Test
 
 <!--more-->
 
-```mermaid
----
-config:
-  theme: neutral
-  look: neo
-  themeVariables:
-    lineColor: red
-  layout: tidy-tree
----
 
-flowchart LR
-root["/"]
-root:::colorGroup
-```
+<embed src="./res/FrequencyResponses.pdf" width="100%" height="600px" type="application/pdf">
 
 <!--more-->
 
