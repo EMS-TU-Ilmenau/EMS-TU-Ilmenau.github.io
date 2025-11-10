@@ -167,11 +167,21 @@ and we would end up with
 ## External References
 
 - [Download at ReFoDaT](https://refodat.de/receive/refodat_mods_00000055)
-- [DOI of the dataset](https://www.doi.org/doi)
+- [DOI of the dataset](https://www.doi.org/10.71758/refodat.55)
 - [Associated Publication](https://ieeexplore.ieee.org/document/6929298)
 
 ## Citation
 
 ```
-bibtex entry
+@misc{semper2025elowen,
+  doi = {10.71758/REFODAT.55},
+  url = {https://refodat.de/receive/refodat_mods_00000055},
+  author = {Semper,  Sebastian and Sommerkorn,  Gerd and D\"{o}bereiner,  Michael and Thom\"{a},  Reiner},
+  keywords = {Mobile Communications,  Parameter Estimation,  Channel Sounding,  621.3},
+  language = {en},
+  title = {Elowen: MIMO Channel Sounding and Characterization in an Urban Macro Cell},
+  publisher = {refodat - Repositorium f\"{u}r Forschungsdaten in Th\"{u}ringen},
+  year = {2025},
+  copyright = {Creative Commons Attribution 4.0 International}
+}
 ```
