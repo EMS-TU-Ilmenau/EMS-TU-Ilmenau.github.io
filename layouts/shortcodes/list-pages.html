@@ -1,5 +1,9 @@
 <ul>
-  {{ range .Page.Pages }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-  {{ end }}
+{{ range .Page.Pages }}
+  <li>
+    <a href="{{ .RelPermalink }}">
+      {{ .Title | truncate 60 }}
+    </a>
+  </li>
+{{ end }}
 </ul>
