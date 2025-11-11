@@ -2,6 +2,4 @@
 title: Datasets
 ---
 
-{{ range .Pages }}
-- [{{ .Title }}]({{ .RelPermalink }})
-{{ end }}
+{{< list-pages >}}
