@@ -3,7 +3,7 @@ date = '2025-10-27T10:17:37+01:00'
 draft = true
 title = 'Fyoris'
 categories = ["Dataset"]
-tags = []
+tags = ["SUB6" "SOUNDING" "RUSK"]
 featured_image = "static/image.png"
 +++
 
