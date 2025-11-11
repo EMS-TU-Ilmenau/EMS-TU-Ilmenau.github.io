@@ -7,6 +7,9 @@ tags = ["SUB6","SOUNDING","RUSK"]
 featured_image = "static/image.png"
 +++
 
+<!--img src="static/image.png" alt="Hugo Bild" width="50%"-->
+![](static/image.png)
+
 Seven measurement runs, selected from a measurement campaign in Bonn, Germany, are provided.
 The environment is urban, the context is V2I from an elevated base station, the set-up is fully polarimetric MIMO with two 16 dual-pol element stacked circular arrays, configured as two circular rings of 8 elements each.
 The frequency is 2,53GHz, the bandwidth 20MHz.
