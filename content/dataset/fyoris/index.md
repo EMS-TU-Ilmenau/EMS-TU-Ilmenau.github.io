@@ -1,7 +1,7 @@
 +++
 date = '2025-10-27T10:17:37+01:00'
 draft = true
-title = 'Fyoris'
+title = 'Fyoris: Full-polarimetric V2I MIMO channel sounding data sets @2.53GHz in urban environment, together with pertinent antenna array characteristics'
 categories = ["Dataset"]
 tags = ["SUB6","SOUNDING","RUSK"]
 featured_image = "static/image.png"
