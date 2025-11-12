@@ -173,7 +173,7 @@ and we would end up with
 ## Citation
 
 ```
-@misc{semper2025elowen,
+@dataset{semper2025elowen,
   doi = {10.71758/REFODAT.55},
   url = {https://refodat.de/receive/refodat_mods_00000055},
   author = {Semper,  Sebastian and Sommerkorn,  Gerd and D\"{o}bereiner,  Michael and Thom\"{a},  Reiner},
