@@ -291,11 +291,7 @@ plt.show()
 <!-- ## Citation
 
 ```
-<<<<<<< HEAD
-bibtex entry
-=======
 @dataset{
 
 }
->>>>>>> develop
 ``` -->

@@ -165,11 +165,7 @@ and we would end up with
 ## External References
 
 - [Download at ReFoDaT](https://refodat.de/receive/refodat_mods_00000055)
-<<<<<<< HEAD
-- [DOI of the dataset](https://www.doi.org/doi)
-=======
 - [DOI of the dataset](https://www.doi.org/10.71758/refodat.55)
->>>>>>> develop
 - [Associated Publication](https://ieeexplore.ieee.org/document/6929298)
 
 ## Citation
