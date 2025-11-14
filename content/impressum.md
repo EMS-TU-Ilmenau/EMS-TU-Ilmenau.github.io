@@ -4,12 +4,12 @@ url: "/impressum"
 ---
 
 Dr.-Ing. Thomas Dallmann  
-Fachgebietsleiter  
+Group Leader  
 Telefon: +49 (0) 3677 69-2833  
 E-Mail: thomas.dallmann@tu-ilmenau.de  
 E-Mail: ems@tu-ilmenau.de  
  
-#### Besucheranschrift
+#### Visitor Address
 
 Technische Universität Ilmenau  
 Fakultät für Elektrotechnik und Informationstechnik  
@@ -18,7 +18,7 @@ Helmholtzplatz 2
 Helmholtzbau, Raum 2503  
 98693 Ilmenau
  
-#### Postanschrift
+#### Mailing Address
 
 Technische Universität Ilmenau  
 Fakultät für Elektrotechnik und Informationstechnik  
