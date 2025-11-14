@@ -7,7 +7,7 @@ tags = ["Metrology", "Estimation", "THz"]
 featured_image = "static/image.png"
 +++
 
-Authors: *Jonas Gedschold; Diego Dupleich; Sebastian Semper; Michael Döbereiner; Alexander Ebert; Giovanni Del Galdo*
+**Jonas Gedschold; Diego Dupleich; Sebastian Semper; Michael Döbereiner; Alexander Ebert; Giovanni Del Galdo**
 
 Developing channel models typically requires aggregating channel measurements and the corresponding extracted propagation parameters from different research institutions to form a sufficiently large data basis. However, uncertainties arising from limitations of the sounding hardware and algorithms may greatly impact the comparability between sounding results. Especially, (sub-)THz channel sounders do not allow simultaneous spatially and timely resolved measurements as known from sub-6 GHz and mm-wave applications (right now), limiting the possibilities of a hardware-independent channel characterization. At the same time, a high Doppler bandwidth may occur due to the high carrier frequencies, limiting the time spans for coherent or incoherent data processing. Hence, assessing the sounder's performance and limits is important before interpreting the measurement results. 
 

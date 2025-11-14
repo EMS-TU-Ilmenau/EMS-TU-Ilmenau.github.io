@@ -7,7 +7,7 @@ tags = ["urban"]
 featured_image = "static/image.png"
 +++
 
-Authors: **Stanko, Daniel and Döbereiner, Michael and Sommerkorn, Gerd and Czaniera, Daniel and Andrich, Carsten and Schneider, Christian and Semper, Sebastian and Ihlow, Alexander and Landmann, Markus**
+**Stanko, Daniel and Döbereiner, Michael and Sommerkorn, Gerd and Czaniera, Daniel and Andrich, Carsten and Schneider, Christian and Semper, Sebastian and Ihlow, Alexander and Landmann, Markus**
 
 We present our new scalable multi-channel and multi-node sounder, the ILMSound G3. 
 It is configurable in terms of the number of switched Tx and parallel Rx nodes. 

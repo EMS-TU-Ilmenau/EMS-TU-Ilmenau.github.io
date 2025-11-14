@@ -7,7 +7,7 @@ tags = ["ISAC", "BIRA"]
 featured_image = "static/image.png"
 +++
 
-Authors: *Costa, Heraldo C. A. and Myint, Saw J. and Andrich, Carsten and Giehl, Sebastian W. and Engelhardt, Maximilian and Schneider, Christian and Thomä, Reiner S.*
+**Costa, Heraldo C. A. and Myint, Saw J. and Andrich, Carsten and Giehl, Sebastian W. and Engelhardt, Maximilian and Schneider, Christian and Thomä, Reiner S.**
 
 Integrated Sensing and Communication (ISAC) will be one key feature of future 6G networks, enabling simultaneous communication and radar sensing. The radar sensing geometry of ISAC will be multistatic since that corresponds to the common distributed structure of a mobile communication network. Within this framework, micro-Doppler analysis plays a vital role in classifying targets based on their micromotions, such as rotating propellers, vibration, or moving limbs. However, research on bistatic micro-Doppler effects, particularly in ISAC systems utilizing OFDM waveforms, remains limited.
 
