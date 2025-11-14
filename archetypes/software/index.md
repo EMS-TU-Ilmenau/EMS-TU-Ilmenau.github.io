@@ -7,8 +7,6 @@ tags = []
 featured_image = "static/image.png"
 +++
 
-![](static/image.png)
-
 Authors: *...*
 
 abstract first part

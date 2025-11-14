@@ -2,12 +2,10 @@
 date = '{{ .Date }}'
 draft = true
 title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
-categories = ["Datasets"]
+categories = ["Dataset"]
 tags = []
 featured_image = "static/image.png"
 +++
-
-![](static/image.png)
 
 Abstract
 
@@ -35,5 +33,7 @@ More Abstract
 ## Citation
 
 ```
-bibtex entry
+@dataset{
+    
+}
 ```

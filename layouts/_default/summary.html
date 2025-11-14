@@ -19,13 +19,13 @@
 	{{ with .Params.featured_image }}
 		{{ $img := $.Resources.GetMatch . }}
 		{{ if $img }}
-			<img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}">
+			<img class="summary__list__featureimage" src="{{ $img.RelPermalink }}" alt="{{ $.Title }}">
 		{{ else }}
 			FEATURE IMAGE BROKEN!
 		{{ end }}
 	{{ end }}
 
-	<div class="content list__excerpt post__content clearfix">
+	<div class="content list__excerpt post__content clearfix" style="margin-top: 0;">
 		{{ .Summary | safeHTML }}
 	</div>
 	{{- if .Site.Params.readmore }}

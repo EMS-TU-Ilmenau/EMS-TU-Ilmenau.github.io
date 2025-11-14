@@ -7,8 +7,6 @@ tags = []
 featured_image = "static/image.png"
 +++
 
-![](static/image.png)
-
 Authors: *Christoph Wagner, Sebastian Semper*
 
 Scientific computing requires handling large linear models, which are often composed of structured matrices. With increasing model size, dense representations quickly become infeasible to compute or store. Matrix-free implementations are suited to mitigate this problem at the expense of additional implementation overhead, which complicates research and development effort by months, when applied to practical research problems. Fastmat is a framework for handling large structured matrices by offering an easy-to-use abstraction model. 
@@ -21,7 +19,7 @@ It allows for the expression of matrix-free linear operators in a mathematically
 
 - [documentation](https://fastmat.readthedocs.io/) 
 - [code](https://github.com/EMS-TU-Ilmenau/fastmat)
-- [doi](https://www.doi.org/10.1016/j.softx.2022.101013)
+- [10.1016/j.softx.2022.101013](https://www.doi.org/10.1016/j.softx.2022.101013)
 
 ## Citation
 
