@@ -6,8 +6,9 @@ title = 'Home'
 
 ![](groupphoto.jpg)
 
-The Electronic Measurement and Signal Processing EMS Research Group at the Institute for Information Technology at the Technical University of Ilmenau forms a joint research group with the same-named department within the Communication Systems Division at the Fraunhofer Institute for Integrated Circuits IIS.
+The Department of Electronic Measurement and Signal Processing (EMS) at the [Institute for Information Technology](https://www.tu-ilmenau.de/en/ei-init) of Technische Universität Ilmenau forms a joint research group with the department of the same name at the [Fraunhofer Institute for Integrated Circuits](https://www.iis.fraunhofer.de/en.html) (IIS).
 
-A group of 60 researchers led by Prof. Giovanni Del Galdo works in the field of mobile communications and signal processing. With this, the group carries out fundamental research with the aim of transferring its results into application-oriented projects funded by public institutions and industrial partners.
+Under the acting leadership of Jun.-Prof. Dr.-Ing. Thomas Dallmann, around 40 researchers are currently working in the field of mobile communications and signal processing. 
+The group conducts basic research with the aim of transferring research results into application-oriented projects. It is funded by public institutions as well as by contracts from industry.
 
-In a joint research activity with the Dependable Machine-to-Machine Communication Research Group, we conduct research on robust transmission processes for dependable communication. 
+The group closely cooperates with the [Department of Radio Technologies for Automated and Connected Vehicles](https://www.tu-ilmenau.de/en/university/departments/department-of-electrical-engineering-and-information-technology/profile/institutes-and-groups/fachgebiet-funktechnologien-fuer-automatisierte-und-vernetzte-fahrzeuge) (FAVF) and the [Department of Signal Processing for Intelligent Sensor Systems](https://www.tu-ilmenau.de/en/university/departments/department-of-electrical-engineering-and-information-technology/profile/institutes-and-groups/signal-processing-for-intelligent-sensor-systems) (SIS).

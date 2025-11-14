@@ -26,7 +26,9 @@ theme = 'mainroad'
 
 [Params.style.vars]
   highlightColor = "#1a1a1a" # other options: #691E06
-  uiColor = "#4a4a4a" # other options: #691E06
+  uiColor = "#013350" # other options: #691E06, #024975, #01263C, #4a4a4a, #013350
+  uiColorAlt1 = "#0f838b" # other options: #691E06
+  headingColor = "#024975"
   # see https://coolors.co/691e06-ff5b00-007a7b-00355c-9c0d38
 
 [Params.sidebar]
@@ -86,13 +88,8 @@ theme = 'mainroad'
 
   [[menu.main]]
       name = "Career"
-      url = "/carrer/"
+      url = "/career/"
       weight = 8
-
-  
-
-
-  
 
   [[menu.footer]]
       name = "Impressum"
@@ -100,12 +97,12 @@ theme = 'mainroad'
       weight = 1
 
   [[menu.footer]]
-      name = "Datenschutz"
-      url = "https://www.tu-ilmenau.de/datenschutz"
+      name = "Privacy"
+      url = "https://www.tu-ilmenau.de/en/privacy"
       weight = 2
 
   [[menu.footer]]
-      name = "Haftungsausschluss"
+      name = "Disclaimer"
       url = "/haftung"
       weight = 3
 
