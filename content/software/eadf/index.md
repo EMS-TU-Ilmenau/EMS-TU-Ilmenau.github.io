@@ -7,9 +7,7 @@ tags = []
 featured_image = "static/image.png"
 +++
 
-![](static/image.png)
-
-Authors: *Sebastian Semper, Michael Döbereiner*
+Authors: **Sebastian Semper, Michael Döbereiner**
 
 Understanding and analysis of antennas is crucial for the development of modern telecommunication technologies, like 5G or massive MIMO. Research in this area has the need for software to measure, analyze and test antenna systems. For instance, one needs a convenient way to transform large amounts of antenna measurement data into a concise representation. The herein described eadf package aims at providing this functionality. 
 
@@ -21,7 +19,7 @@ On top of that, it offers routines to interpolate the beam-pattern of an antenna
 
 - [documentation](https://eadf.readthedocs.io/) 
 - [code](https://github.com/EMS-TU-Ilmenau/EADF)
-- [doi](https://doi.org/10.1016/j.softx.2020.100583)
+- [j.softx.2020.100583](https://doi.org/10.1016/j.softx.2020.100583)
 
 ## Citation
 

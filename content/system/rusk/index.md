@@ -1,13 +1,11 @@
 +++
 date = '2025-09-18T07:55:38+02:00'
 draft = false
-title = 'RUSK HyEff Channel Sounder'
+title = 'RUSK HyEff Channel Sounder (legacy)'
 categories = ["Measurement Systems"]
 tags = ["Sounding", "MIMO"]
 featured_image = "static/image.png"
 +++
-
-![](static/image.png)
 
 The HyEff channel sounder is a high‑performance measurement system developed for characterizing complex radio propagation environments, particularly for MIMO (multiple‑input-multiple‑output) wireless channels. 
 It enables precise measurement of the time‑, frequency‑, and spatial characteristics of multipath propagation.

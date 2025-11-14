@@ -5,8 +5,6 @@ title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 categories = ["Career"]
 +++
 
-![](static/image.png)
-
 introduction part
 
 <!--more-->

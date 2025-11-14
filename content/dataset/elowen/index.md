@@ -7,8 +7,6 @@ tags = ["Sounding", "sub6", "Urban"]
 featured_image = "static/image.png"
 +++
 
-![](static/image.png)
-
 The measurement campaign was performed in Cologne (Germany) using a RUSK MIMO channel sounder operating at 2.53 GHz. The fixed transmitter has been mounted on a roof top of an approx. 30m high building whereas the mobile receiver has been set up in a car.
 
 The application of high resolution parameter estimation algorithms requires adequate antenna arrays. Therefore the measurements have been done using a stacked uniform circular array at the base station side (Tx) as well as at the mobile station side (Rx). Both arrays are linear dual polarized.
