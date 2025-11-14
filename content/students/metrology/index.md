@@ -1,6 +1,6 @@
 +++
 date = '2025-11-05'
-draft = true
+draft = false
 title = 'Quantifying the Performance of Multidimensional Channel Sounding and Parameter Estimation'
 categories = ["Student Topics"]
 tags = ["Metrology", "Estimation", "Sounding", "Thesis"]
