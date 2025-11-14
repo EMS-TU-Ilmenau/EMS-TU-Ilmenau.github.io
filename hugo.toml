@@ -2,14 +2,14 @@ baseURL = '/'
 languageCode = 'en-us'
 title = 'EMS Hub'
 theme = 'mainroad'
-sectionPagesMenu = 'main'
+
 
 [Params]
   description = "EMS Hub" # Site description. Used in meta description
   copyright = "EMS Group TU Ilmenau, Ilmenau" # Footer copyright holder, otherwise will use site title
   readmore = true # Show "Read more" button in list if true
   authorbox = false # Show authorbox at bottom of pages if true
-  toc = false # Enable Tab˜˜˜le of Contents
+  toc = false # Enable Table of Contents
   pager = false # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories"] # Order of post meta information
   dateformat = "2006-01-02" # Change the format of dates
@@ -40,6 +40,74 @@ sectionPagesMenu = 'main'
   linkedin = "company/elektronische-messtechnik-ems"
   github = "EMS-TU-Ilmenau"
   email = "ems@tu-ilmenau.de"
+
+# Custom social links
+[[Params.widgets.social.custom]]
+  title = "EMS TU Ilmenau Website"
+  url = "https://www.tu-ilmenau.de/en/ems"
+  icon = "svg/tag.svg" # Optional. Path relative to "layouts/partials"
+  rel = "noopener noreferrer" # Set to false to remove the rel attribute
+
+[menu]
+  [[menu.main]]
+      name = "Home"
+      url = "/"
+      weight = 1
+
+  [[menu.main]]
+      name = "Datasets"
+      url = "/dataset/"
+      weight=2
+
+  [[menu.main]]
+      name = "Publications"
+      url = "/papers/"
+      weight = 3
+
+  [[menu.main]]
+      name = "Measurement Systems"
+      url = "/system/"
+      weight = 4
+
+  [[menu.main]]
+      name = "Software"
+      url = "/software/"
+      weight = 5
+
+  [[menu.main]]
+      name = "Docu"
+      url = "/docu/"
+      weight = 6
+
+  [[menu.main]]
+      name = "Student Topics"
+      url = "/students/"
+      weight = 7
+
+  [[menu.main]]
+      name = "Career"
+      url = "/carrer/"
+      weight = 8
+
+  
+
+
+  
+
+  [[menu.footer]]
+      name = "Impressum"
+      url = "/impressum/"
+      weight = 1
+
+  [[menu.footer]]
+      name = "Datenschutz"
+      url = "https://www.tu-ilmenau.de/datenschutz"
+      weight = 2
+
+  [[menu.footer]]
+      name = "Haftungsausschluss"
+      url = "/haftung"
+      weight = 3
 
 [markup]
   [goldmark]

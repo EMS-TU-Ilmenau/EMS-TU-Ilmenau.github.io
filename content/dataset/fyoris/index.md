@@ -85,8 +85,8 @@ This snippet should yield something like the plot below:
 
 ## Citation
 
-´´´
-@Misc{som2025fyoris,
+```
+@dataset{som2025fyoris,
   doi = {10.71758/REFODAT.61},
   author =  {Sommerkorn, Gerd
   and Schneider, Christian
