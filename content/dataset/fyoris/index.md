@@ -1,7 +1,7 @@
 +++
 date = '2025-10-27T10:17:37+01:00'
 draft = false
-title = 'Fyoris: Full-polarimetric V2I MIMO channel sounding data sets @2.53GHz in urban environment, together with pertinent antenna array characteristics'
+title = 'Fyoris: Full-polarimetric V2I MIMO channel sounding data sets @2.53GHz in urban environment'
 categories = ["Dataset"]
 tags = ["SUB6","SOUNDING","RUSK"]
 featured_image = "static/image.png"
@@ -11,7 +11,7 @@ Seven measurement runs, selected from a measurement campaign in Bonn, Germany, a
 The environment is urban, the context is V2I from an elevated base station, the set-up is fully polarimetric MIMO with two 16 dual-pol element stacked circular arrays, configured as two circular rings of 8 elements each.
 The frequency is 2,53GHz, the bandwidth 20MHz.
 For easy access of relevant quantities, data and meta data are stored in HDF5 format.
-For aiding interpretation of the data, full Tx and Rx array characteristics are included.
+For aiding interpretation of the data, **full Tx and Rx array characteristics** are included.
 
 ## Introduction
 
