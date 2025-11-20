@@ -82,7 +82,7 @@ This snippet should yield something like the plot below:
 
 ## Citation
 
-´´´
+```bibtex
 @dataset{som2025fyoris,
   doi = {10.71758/REFODAT.61},
   author =  {Sommerkorn, Gerd
@@ -97,4 +97,4 @@ This snippet should yield something like the plot below:
   copyright = {Creative Commons Attribution 4.0 International}
   publisher = {refodat - Repositorium f\"{u}r Forschungsdaten in Th\"{u}ringen},
 }
-´´´
+```
