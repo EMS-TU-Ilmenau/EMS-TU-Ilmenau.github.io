@@ -5,19 +5,15 @@ variables:
   GIT_SUBMODULE_STRATEGY: none
   HUGO_ENVIRONMENT: "production"
 
-workflow:
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'
-      when: always
-    - when: never
+
 
 default:
   image: ubuntu:24.04
 
 deploy_hugo:
   stage: deploy
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'
+  only:
+    - develop
   before_script:
     - apt-get update -y
     - apt-get install -y wget ca-certificates dpkg npm git rsync
