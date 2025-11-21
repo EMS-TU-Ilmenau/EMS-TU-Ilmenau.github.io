@@ -43,8 +43,6 @@ Eigen Unterverezichnisse? Back-Button?
 -->
 
 The format of the data is described in the respective entries in [Documentation](/docu/).
-
-
 We provide the measurement data in sampled frequency domain in `FrequencyResponses.h5` and the associated antenna array calibration data as `ArrayTx.h5` (TX) and `ArrayRx.h5` (RX) respectively.
 
 ## Applied Processing
