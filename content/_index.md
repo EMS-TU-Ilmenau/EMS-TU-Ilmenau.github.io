@@ -5,11 +5,6 @@ title = 'Home'
 +++
 
 ![](groupphoto.jpg)
-<<<<<<< HEAD
-=======
-
-The Electronic Measurement and Signal Processing EMS Research Group at the Institute for Information Technology at the Technical University of Ilmenau forms a joint research group with the same-named department within the Communication Systems Division at the Fraunhofer Institute for Integrated Circuits IIS.
->>>>>>> f65b84c (oryx dataset, other cleanups)
 
 The Department of Electronic Measurement and Signal Processing (EMS) at the [Institute for Information Technology](https://www.tu-ilmenau.de/en/ei-init) of Technische Universität Ilmenau forms a joint research group with the department of the same name at the [Fraunhofer Institute for Integrated Circuits](https://www.iis.fraunhofer.de/en.html) (IIS).
 

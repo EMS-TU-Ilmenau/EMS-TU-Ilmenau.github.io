@@ -1,7 +1,7 @@
 +++
 date = '2025-10-27T14:53:27+01:00'
 draft = false
-title = 'Differentiable Raytracing for Modeling of Complex Radio Environments'
+title = 'Differentiable Ray Tracing for Modeling of Complex Radio Environments'
 categories = ["Career"]
 tags = ["Ray Tracing", "Job", "Thesis"]
 toc = false
