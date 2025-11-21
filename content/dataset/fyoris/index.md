@@ -18,11 +18,11 @@ For aiding interpretation of the data, **full Tx and Rx array characteristics** 
 The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receive/refodat_mods_00000061).
 
 ## Measurement
-
-<iframe src="static/Data.pdf" width="100%" height="600px">
+<!-- iframe src="static/Data.pdf" width="100%" height="600px">
   Ihr Browser unterstützt keine eingebetteten PDFs. <a href="pfad/zur/datei.pdf">PDF hier öffnen</a>.
-</iframe>
+</iframe-->
 
+<embed src="static/Data.pdf" type="application/pdf" width="100%" height="600px" />
 
 <!--The measurement process is described in [here](https://ieeexplore.ieee.org/document/6929298).-->
 
