@@ -47,10 +47,14 @@ deploy_hugo:
 mirror_main_to_github:
   stage: deploy
   image: alpine:latest
+  variables:
+    GIT_DEPTH: 0
+    GIT_STRATEGY: fetch
   script:
     - apk add --no-cache git
     - git config --global user.name "GitLab CI"
     - git config --global user.email "ems@tu-ilmenau.com"
+    - git checkout main
     - git remote add github "https://${GITHUBTOKEN}@github.com/EMS-TU-Ilmenau/EMS-TU-Ilmenau.github.io.git" || true
     - git push github main:main
   only:
