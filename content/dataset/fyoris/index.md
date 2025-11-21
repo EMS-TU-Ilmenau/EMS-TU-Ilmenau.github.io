@@ -19,6 +19,11 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
 
 ## Measurement
 
+<iframe src="static/Data.pdf" width="100%" height="600px">
+  Ihr Browser unterstützt keine eingebetteten PDFs. <a href="pfad/zur/datei.pdf">PDF hier öffnen</a>.
+</iframe>
+
+
 <!--The measurement process is described in [here](https://ieeexplore.ieee.org/document/6929298).-->
 
 | Property              | Value           |
