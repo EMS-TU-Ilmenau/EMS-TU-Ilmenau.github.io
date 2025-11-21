@@ -32,9 +32,20 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
 
 ## Content and Format
 
+<!--
+Mermaid Liste der Unter "/Data auf refodat mit Direkt-Links?"
+Erläuterung der 3 File-Strukturen mit Mermaid
+https://refodat.de/servlets/MCRFileNodeServlet/refodat_derivate_00000050/Data/Runs/Bonn_MT10-11/FrequencyResponses.h5
+
+https://refodat.de/servlets/MCRFileNodeServlet/refodat_derivate_00000050/Data/Runs/Bonn_MT10-11/LocationRx.h5
+
+Eigen Unterverezichnisse? Back-Button?
+-->
+
 The format of the data is described in the respective entries in [Documentation](/docu/).
 
-We provide the measurement data in sampled frequency domain in `FrequencyResponses.h5` and the associated antenna array calibration data as `TUI_SPUCA2x8_I_20MHz.h5` (TX) and `TUI_SPUCA2x8_II_20MHz.h5` (RX) respectively.
+
+We provide the measurement data in sampled frequency domain in `FrequencyResponses.h5` and the associated antenna array calibration data as `ArrayTx.h5` (TX) and `ArrayRx.h5` (RX) respectively.
 
 ## Applied Processing
 
