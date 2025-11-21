@@ -47,3 +47,15 @@ deploy_hugo:
     - hugo --minify --environment "$HUGO_ENVIRONMENT" -D ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
     - install -d -m 0755 /opt/content
     - rsync -a --delete public/ /opt/content/
+
+mirror_main_to_github:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - apk add --no-cache git
+    - git config --global user.name "GitLab CI"
+    - git config --global user.email "ems@tu-ilmenau.com"
+    - git remote add github "https://${GITHUBTOKEN}@github.com/EMS-TU-Ilmenau/EMS-TU-Ilmenau.github.io.git" || true
+    - git push github main:main
+  only:
+    - main
