@@ -12,6 +12,8 @@ A step direction and a suitable stepsize to allow rapid convergence.
 Usually one employs a condition in the form of [^wolfe-cond] or uses a so-called Trust-region[^trust-region] to limit the stepsize during the iteration.
 If we look at it from another standpoint, we can consider for example a set of various different step directions and we want to find a suitable weighting of those in order to minimize the cost-function as rapidly as possible. Finding these weighting factors is the job of a step direction selection method.
 
+<!--more-->
+
 To this end, we want to employ a recurrent neural network which has as input the candidate step directions [^momentum] [^wiki-newtonalg] [^wiki-graddesc] and then finds suitable weightings of these directions. 
 Then these weightings are used to calculate the next iteration in the actual gradient iteration and at this location the new step directions are calculated and fed into the neural net together with the weights of the last step. 
 This way we exploit the recurrent structure of the net. Similar approaches have been taken in [^alg-unrolling] but these methods cannot be applied in our case.
