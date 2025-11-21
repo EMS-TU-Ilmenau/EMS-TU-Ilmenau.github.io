@@ -5,6 +5,7 @@ title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 categories = ["Papers"]
 tags = []
 featured_image = "static/image.png"
+toc = false
 +++
 
 **Author1, Author2**

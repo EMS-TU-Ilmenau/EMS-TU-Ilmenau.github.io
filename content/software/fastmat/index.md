@@ -5,6 +5,7 @@ title = 'Fastmat : Efficient linear transforms in Python'
 categories = ["Software"]
 tags = []
 featured_image = "static/image.png"
+toc = false
 +++
 
 Authors: *Christoph Wagner, Sebastian Semper*

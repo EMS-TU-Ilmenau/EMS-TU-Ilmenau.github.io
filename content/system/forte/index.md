@@ -5,5 +5,6 @@ title = 'FORTE : Facility for Over-the-Air Research and Testing'
 categories = ["Measurement Systems"]
 tags = []
 featured_image = "static/image.png"
+toc = false
 +++
 

@@ -4,16 +4,17 @@ draft = false
 title = 'Realtime Parameter Estimation for Wifi-based Sensing Applications'
 categories = ["Student Topics"]
 tags = ["Wifi", "MIMO", "Estimation"]
+toc = false
 +++
 
-The ESPARGOS development board [^espargos] allows easy access to IQ data obtained from Wifi communications. 
+The ESPARGOS development board[^espargos] allows easy access to IQ data obtained from Wifi communications. 
 As such, it efficiently sniffes an environment while providing realtime access to pilot symbols and respective channel state information.
-This allows to use of parameter estimation techniques based on maximum likelihood like [^richter-diss].
+This allows to use of parameter estimation techniques based on maximum likelihood like[^richter-diss].
 
 <!--more-->
 
 However, these usually iterative approaches are not directly suitable for execution under realtime constraints and need to be adapted and trimmed down, to suit these tighter runtime conditions.
-During this project, a first draft on how such an algorithm pipeline that is integrated with [^espargos] should be conceptualized, developed and verified.
+During this project, a first draft on how such an algorithm pipeline that is integrated with[^espargos] should be conceptualized, developed and verified.
 
 To this end, one can tackle the following problems:
 

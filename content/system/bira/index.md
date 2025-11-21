@@ -5,5 +5,6 @@ title = 'BIRA : Bistatic Measurements of Radar Reflectivity'
 categories = ["Measurement Systems"]
 tags = []
 featured_image = "static/image.png"
+toc = false
 +++
 

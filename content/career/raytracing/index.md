@@ -4,6 +4,7 @@ draft = false
 title = 'Differentiable Raytracing for Modeling of Complex Radio Environments'
 categories = ["Career"]
 tags = ["Ray Tracing", "Job", "Thesis"]
+toc = false
 +++
 
 At EMS we wish to first measure, then estimate, and finally model radio channels as accurately as possible.

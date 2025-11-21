@@ -3,6 +3,7 @@ date = '{{ .Date }}'
 draft = true
 title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 categories = ["Career"]
+toc = false
 +++
 
 introduction part

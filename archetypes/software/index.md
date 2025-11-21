@@ -5,6 +5,7 @@ title = '{{ replace .File.ContentBaseName `-` ` ` | title }}'
 categories = ["Software"]
 tags = []
 featured_image = "static/image.png"
+toc = false
 +++
 
 Authors: *...*

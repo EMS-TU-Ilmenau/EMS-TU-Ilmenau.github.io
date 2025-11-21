@@ -5,6 +5,7 @@ title = 'EADF : Representation of far-field antenna responses in Python'
 categories = ["Software"]
 tags = []
 featured_image = "static/image.png"
+toc = false
 +++
 
 Authors: **Sebastian Semper, Michael Döbereiner**
