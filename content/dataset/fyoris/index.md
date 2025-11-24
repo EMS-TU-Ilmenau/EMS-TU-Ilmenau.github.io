@@ -37,6 +37,17 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
 
 ## md
 ```mermaid
+---
+title: Test
+displayMode: compact
+layout: elk
+config:
+  theme: neutral
+  look: neo
+  themeVariables:
+    lineColor: green
+---
+
 flowchart LR
 _scratch_som_ReFoDat_Fyoris_Data@{label: "Data", shape: procs}
 _scratch_som_ReFoDat_Fyoris_Data:::colorGroup
