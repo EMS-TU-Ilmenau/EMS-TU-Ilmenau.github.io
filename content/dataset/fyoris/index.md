@@ -19,7 +19,7 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
 
 ## Measurement
 <!-- markdown-disable MD033 -->
-<div style="position: relative; width: 100%; padding-top: 231.2%;">
+<div style="position: relative; width: 100%; padding-top: 231.2%;border: none;">
     <embed src="static/Data.pdf#toolbar=0&navpanes=0&scrollbar=0"
            type="application/pdf"
            style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;">
