@@ -25,6 +25,9 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
     </iframe>
 </div -->
 
+<iframe src="static/Data.md" style="width:100%; height:600px; border:0;"></iframe>
+
+
 ```mermaid
 ---
 config:
