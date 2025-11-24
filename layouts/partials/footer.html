@@ -1,0 +1,28 @@
+<footer class="footer">
+  <div class="container footer__container flex">
+    {{ partial "footer_links.html" . }}
+    <div class="footer__copyright">
+      &copy; {{ now.Format "2006" }} {{ .Site.Params.copyright | default .Site.Title }}.
+    </div>
+  </div>
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs';
+    import mermaidJslayoutElk from 'https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.2.0/+esm';
+
+    const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Plugin registrieren
+    mermaid.mermaidAPI.registerExternalLayout('elk', mermaidJslayoutElk);
+
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: isDark ? 'dark' : 'default',
+      securityLevel: 'loose',
+      flowchart: {
+        // ELK als Layout verwenden
+        layout: 'elk'
+      }
+    });
+  </script>
+</footer>
