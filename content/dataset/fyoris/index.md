@@ -30,12 +30,7 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
 ## md
 <iframe src="/fyoris/Data.md" style="width:100%; height:600px; border:0;"></iframe>
 
-</div -->
 
-## svg
-<iframe src="static/Data.svg" style="width:100%; height:600px; border:0;"></iframe>
-
-## md
 ```mermaid
 ---
 title: Test
@@ -48,6 +43,13 @@ config:
   layout: elk
 ---
 
+</div -->
+
+## svg
+<iframe src="static/Data.svg" style="width:100%; height:600px; border:0;"></iframe>
+
+## md
+{{< mermaid theme="neutral" lineColor="gray" layout="elk" >}}
 flowchart LR
 _scratch_som_ReFoDat_Fyoris_Data@{label: "Data", shape: procs}
 _scratch_som_ReFoDat_Fyoris_Data:::colorGroup
@@ -184,9 +186,7 @@ classDef TUIl-orange-bright fill:#FFB066,stroke:#FF7900,color:#000000
 classDef TUIl-blue-bright   fill:#99BBD4,stroke:#003359,color:#000000
 classDef TUIl-green-bright  fill:#7AC6CC,stroke:#00747A,color:#000000
 classDef TUIl-grey-bright   fill:#D5D5D5,stroke:#A5A5A5,color:#000000
-
-
-```
+{{< /mermaid >}}
 
 <!--The measurement process is described in [here](https://ieeexplore.ieee.org/document/6929298).-->
 

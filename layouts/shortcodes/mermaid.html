@@ -1,0 +1,28 @@
+<div id="{{ .Get "id" | default (printf "mermaid-%d" (now.UnixNano)) }}"></div>
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: '{{ .Get "theme" | default "neutral" }}',
+    themeVariables: {
+      lineColor: '{{ .Get "lineColor" | default "gray" }}'
+    },
+    flowchart: {
+      layout: '{{ .Get "layout" | default "dagre" }}'
+    }
+  });
+
+  const diagramDefinition = `
+{{ .Inner | safeJS }}
+  `;
+
+  mermaid.render(
+    '{{ .Get "id" | default (printf "mermaid-%d" (now.UnixNano)) }}',
+    diagramDefinition,
+    (svgCode) => {
+      document.getElementById('{{ .Get "id" | default (printf "mermaid-%d" (now.UnixNano)) }}').innerHTML = svgCode;
+    }
+  );
+</script>
