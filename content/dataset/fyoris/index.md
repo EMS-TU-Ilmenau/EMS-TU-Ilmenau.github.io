@@ -188,6 +188,7 @@ classDef TUIl-green-bright  fill:#7AC6CC,stroke:#00747A,color:#000000
 classDef TUIl-grey-bright   fill:#D5D5D5,stroke:#A5A5A5,color:#000000
 {{< /mermaid >}}
 
+
 <!--The measurement process is described in [here](https://ieeexplore.ieee.org/document/6929298).-->
 
 | Property              | Value           |

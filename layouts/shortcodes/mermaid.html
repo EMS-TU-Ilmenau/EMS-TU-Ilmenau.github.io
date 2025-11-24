@@ -1,28 +1,28 @@
 <div id="{{ .Get "id" | default (printf "mermaid-%d" (now.UnixNano)) }}"></div>
 
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.min.js"></script>
+<script>
+  (function() {
+    const id = "{{ .Get "id" | default (printf "mermaid-%d" (now.UnixNano)) }}";
+    const version = mermaid.version;
+    const diagramDefinition = `{{ .Inner | safeJS }}
 
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: '{{ .Get "theme" | default "neutral" }}',
-    themeVariables: {
-      lineColor: '{{ .Get "lineColor" | default "gray" }}'
-    },
-    flowchart: {
-      layout: '{{ .Get "layout" | default "dagre" }}'
-    }
-  });
+%% Mermaid Version: ${version}
+`;
 
-  const diagramDefinition = `
-{{ .Inner | safeJS }}
-  `;
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: '{{ .Get "theme" | default "neutral" }}',
+      themeVariables: {
+        lineColor: '{{ .Get "lineColor" | default "gray" }}'
+      },
+      flowchart: {
+        layout: '{{ .Get "layout" | default "dagre" }}'
+      }
+    });
 
-  mermaid.render(
-    '{{ .Get "id" | default (printf "mermaid-%d" (now.UnixNano)) }}',
-    diagramDefinition,
-    (svgCode) => {
-      document.getElementById('{{ .Get "id" | default (printf "mermaid-%d" (now.UnixNano)) }}').innerHTML = svgCode;
-    }
-  );
+    mermaid.render(id, diagramDefinition, function(svgCode) {
+      document.getElementById(id).innerHTML = svgCode;
+    });
+  })();
 </script>
