@@ -25,11 +25,14 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
     </iframe>
 </div -->
 
+
+## html
+<iframe src="static/Data.html" style="width:100%; height:600px; border:0;"></iframe>
+
 ## md
 <iframe src="static/Data.md" style="width:100%; height:600px; border:0;"></iframe>
 
 ## svg
-
 <iframe src="static/Data.svg" style="width:100%; height:600px; border:0;"></iframe>
 
 ## md
