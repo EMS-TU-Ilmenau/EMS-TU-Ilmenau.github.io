@@ -40,12 +40,12 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
 ---
 title: Test
 displayMode: compact
-layout: elk
 config:
   theme: neutral
   look: neo
   themeVariables:
-    lineColor: green
+    lineColor: gray
+  layout: elk
 ---
 
 flowchart LR
