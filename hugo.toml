@@ -50,6 +50,9 @@ theme = 'mainroad'
   icon = "svg/tag.svg" # Optional. Path relative to "layouts/partials"
   rel = "noopener noreferrer" # Set to false to remove the rel attribute
 
+[Params.mermaid]
+  enable = true
+
 [menu]
   [[menu.main]]
       name = "Home"
