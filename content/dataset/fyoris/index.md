@@ -22,7 +22,7 @@ The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receiv
   Ihr Browser unterstützt keine eingebetteten PDFs. <a href="pfad/zur/datei.pdf">PDF hier öffnen</a>.
 </iframe-->
 
-<embed src="static/Data.pdf" type="application/pdf" width="100%" height="600px" />
+<embed src="static/Data.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="1000px" />
 
 <!--The measurement process is described in [here](https://ieeexplore.ieee.org/document/6929298).-->
 
