@@ -49,7 +49,7 @@ config:
 <iframe src="static/Data.svg" style="width:100%; height:600px; border:0;"></iframe>
 
 ## md
-{{< mermaid theme="neutral" lineColor="gray" layout="elk" >}}
+{{< mermaid theme="neutral" lineColor="green" layout="dagre" >}}
 flowchart LR
 _scratch_som_ReFoDat_Fyoris_Data@{label: "Data", shape: procs}
 _scratch_som_ReFoDat_Fyoris_Data:::colorGroup
