@@ -16,17 +16,10 @@ For aiding interpretation of the data, **full Tx and Rx array characteristics** 
 ## Introduction
 
 The data can be accessed and [downloaded from ReFoDaT](https://refodat.de/receive/refodat_mods_00000061).
+<embed src="/fyoris/Data.svg" style="width:100%; height:auto;">
 
 ## Measurement
-<!-- div style="position: relative; width: 100%; padding-top: 231.2%;border: 0;">
-    <iframe src="static/Data.pdf#toolbar=0&navpanes=0&scrollbar=0"
-           type="application/pdf"
-           style="position:absolute; top:0; left:0; width:100%; height:100%;border: no; background:white;">
-    </iframe>
-</div -->
 
-## svg
-<embed src="/fyoris/Data.svg" style="width:100%; height:auto;">
 
 
 <!--The measurement process is described in [here](https://ieeexplore.ieee.org/document/6929298).-->
