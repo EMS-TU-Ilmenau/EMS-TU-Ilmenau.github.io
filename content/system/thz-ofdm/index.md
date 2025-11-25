@@ -7,8 +7,6 @@ tags = ["THz", "AWG", "Sounding"]
 featured_image = "static/measSetup.png"
 +++
 
-![](static/measSetup.png)
-
 The THz measurement solution from [Rohde & Schwarz](https://www.rohde-schwarz.com/us/solutions/wireless-communications-testing/wireless-standards/6g/thz-communication/thz-communication_257042.html) combines high-quality measurement equipment operating in D-band (110-170 GHz) together with flexible signal generation and acquisition.
 Hence, this lab equipment can act as a configurable sounding platform to develop and explore new channel sounding concepts for the upcoming THz frequency bands. 
 
