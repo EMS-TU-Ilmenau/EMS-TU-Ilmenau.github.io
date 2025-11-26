@@ -35,7 +35,7 @@ theme = 'mainroad'
   home = "right" # Configure layout for home page
   list = "right"  # Configure layout for list pages
   single = true # Configure layout for single pages
-  widgets = ["taglist", "social"]
+  widgets = ["social","taglist"]
 
 [Params.widgets.social]
   cached = false
@@ -49,6 +49,9 @@ theme = 'mainroad'
   url = "https://www.tu-ilmenau.de/en/ems"
   icon = "svg/tag.svg" # Optional. Path relative to "layouts/partials"
   rel = "noopener noreferrer" # Set to false to remove the rel attribute
+
+[Params.mermaid]
+  enable = true
 
 [menu]
   [[menu.main]]
