@@ -3,7 +3,7 @@ date = '2025-11-24'
 draft = false
 title = 'Design and Implementation of a Configurable 15 GHz Local Oscillator Generator module for THz Sensing Units'
 categories = ["Student Topics"]
-tags = ["THz", "UWB", "Circuitry", "PCB", "Prototyping", "SPI"]
+tags = ["THz", "UWB", "Hardware"]
 toc = false
 +++
 

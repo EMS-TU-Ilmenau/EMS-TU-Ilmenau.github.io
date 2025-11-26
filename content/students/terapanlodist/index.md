@@ -3,7 +3,7 @@ date = '2025-11-24'
 draft = false
 title = 'Design and Characterization of a 15 GHz 4-Channel Local Oscillator distribution module for THz Sensing Units'
 categories = ["Student Topics"]
-tags = ["THz", "UWB", "Circuitry", "PCB", "RF-Simulation", "Prototyping"]
+tags = ["THz", "UWB", "Hardware"]
 toc = false
 +++
 
