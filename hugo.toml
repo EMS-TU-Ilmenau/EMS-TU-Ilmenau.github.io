@@ -35,7 +35,7 @@ theme = 'mainroad'
   home = "right" # Configure layout for home page
   list = "right"  # Configure layout for list pages
   single = true # Configure layout for single pages
-  widgets = ["taglist", "social"]
+  widgets = ["social","taglist"]
 
 [Params.widgets.social]
   cached = false
