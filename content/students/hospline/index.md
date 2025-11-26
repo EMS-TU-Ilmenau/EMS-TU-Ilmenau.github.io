@@ -3,7 +3,7 @@ date = '2025-11-05'
 draft = false
 title = 'Higher Order B-Splines for Accurate and Efficient Interpolation'
 categories = ["Student Topics"]
-tags = ["b-splines", "interpolation", "digital-filter"]
+tags = ["b-splines"]
 toc = false
 +++
 

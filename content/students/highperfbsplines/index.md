@@ -3,7 +3,7 @@ date = '2025-11-21T12:33:22+01:00'
 draft = false
 title = 'High-Performance Vectorized Cubic B-Spline Interpolation Algorithms'
 categories = ["Student Topics"]
-tags = ["b-splines", "interpolation", "vectorization", "optimization"]
+tags = ["b-splines"]
 toc = false
 +++
 

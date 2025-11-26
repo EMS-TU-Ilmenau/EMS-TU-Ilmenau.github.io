@@ -3,7 +3,7 @@ date = '2025-11-05'
 draft = false
 title = 'Influence of Low Precision Datatypes on Interpolation Algorithms'
 categories = ["Student Topics"]
-tags = ["b-splines", "interpolation", "precision", "optimization"]
+tags = ["b-splines"]
 toc = false
 +++
 The department of electronics measurements and signal processing (EMS) conducts extensive radio measurement campaigns, which are the basis for future radio standards.
