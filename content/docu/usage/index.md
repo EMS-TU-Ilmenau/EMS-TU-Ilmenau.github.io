@@ -19,3 +19,11 @@ categories = ["Docu"]
 - `[()] oder [:]`
 - how to convert timestamp to real time
 
+```mermaid
+graph LR
+A[Google] --> B[OpenAI]
+A --> C[Docs]
+click A "https://www.google.com" "Go to Google"
+click B "https://www.openai.com" "Visit OpenAI"
+click C "https://mermaid.live" "Mermaid Live"
+```
