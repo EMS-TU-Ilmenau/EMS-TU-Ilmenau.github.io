@@ -1,11 +1,11 @@
 ---
-title: "Impressum"
+title: "Imprint"
 url: "/impressum"
 ---
 
-Dr.-Ing. Thomas Dallmann  
-Group Leader  
-Telefon: +49 (0) 3677 69-2833  
+Jun.-Prof. Dr.-Ing. Thomas Dallmann  
+Acting Group Leader  
+Phone: +49 (0) 3677 69-2833  
 E-Mail: thomas.dallmann@tu-ilmenau.de  
 E-Mail: ems@tu-ilmenau.de  
  

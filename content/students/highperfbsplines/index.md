@@ -7,7 +7,7 @@ tags = ["b-splines"]
 toc = false
 +++
 
-The department of electronics measurements and signal processing (EMS) conducts extensive radio measurement campaigns, which are the basis for future radio standards.
+At EMS we conduct extensive radio measurement campaigns, which are the basis for future radio standards.
 This measurement data boils down to gigabytes per second of raw data collected over hours of measurement campaigns [^datasets].
 Afterwards, we can compute the estimated radio channel parameters from those measurements.
 A major bottleneck is the interpolation of the measured antenna characteristic [^eadf-landmann].
