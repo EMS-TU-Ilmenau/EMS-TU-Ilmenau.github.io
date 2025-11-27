@@ -3,7 +3,7 @@ date = '2025-11-25'
 draft = false
 title = 'Hardware Architecture for Ultra-Wideband Channel Impulse Response Measurements Using Compressed Sensing'
 categories = ["Paper"]
-tags = ["UWB", "PN-Sequences", "Compressed Sensing", "XG1", "XF1", "Hardware"]
+tags = ["UWB", "PN-Sequences", "Compressed Sensing", "XG1", "XF1"]
 featured_image = "static/image.png"
 +++
 
