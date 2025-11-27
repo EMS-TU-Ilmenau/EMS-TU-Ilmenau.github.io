@@ -95,7 +95,7 @@ theme = 'mainroad'
       weight = 8
 
   [[menu.footer]]
-      name = "Impressum"
+      name = "Imprint"
       url = "/impressum/"
       weight = 1
 

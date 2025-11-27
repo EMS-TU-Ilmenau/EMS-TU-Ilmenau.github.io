@@ -3,11 +3,11 @@ date = '2025-11-21T12:33:22+01:00'
 draft = false
 title = 'High-Performance Vectorized Cubic B-Spline Interpolation Algorithms'
 categories = ["Student Topics"]
-tags = ["b-splines", "interpolation", "vectorization", "optimization"]
+tags = ["b-splines"]
 toc = false
 +++
 
-The department of electronics measurements and signal processing (EMS) conducts extensive radio measurement campaigns, which are the basis for future radio standards.
+At EMS we conduct extensive radio measurement campaigns, which are the basis for future radio standards.
 This measurement data boils down to gigabytes per second of raw data collected over hours of measurement campaigns [^datasets].
 Afterwards, we can compute the estimated radio channel parameters from those measurements.
 A major bottleneck is the interpolation of the measured antenna characteristic [^eadf-landmann].

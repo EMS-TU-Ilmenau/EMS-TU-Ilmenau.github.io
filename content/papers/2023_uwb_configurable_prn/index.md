@@ -3,7 +3,7 @@ date = '2025-11-25'
 draft = false
 title = 'Configurable Pseudo Noise Radar Imaging System Enabling Synchronous MIMO Channel Extension'
 categories = ["Paper"]
-tags = ["UWB", "PN-Sequences", "Measurement System", "Radar", "XG1"]
+tags = ["UWB", "PN-Sequences", "Measurement System", "Radar", "XG1", "Hardware"]
 featured_image = "static/image.png"
 +++
 
