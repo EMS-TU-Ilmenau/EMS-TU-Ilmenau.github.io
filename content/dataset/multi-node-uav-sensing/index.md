@@ -26,7 +26,7 @@ The Oryx dataset contains radio channel measurements between stationary (ground-
 Oryx is a part of an outdoor measurement campaign that took place in Ilmenau, Germany in August 2024. The goal of the campaign was the provisioning of datasets that enable the study of SISO radio channels between stationary and mobile multi-static transceivers relevant to UAV scenarios. A specific focus is the recording of UAV-to-UAV "side-link" channels measured in the multiple passive targets with varying trajectories are present. Additional scenarios recorded infrastructure-to-infrastructure channels in the presence of passive vehicular and UAV objects with well-defined movement trajectories.
 
 ## Getting Started
-This dataset will soon be published at a [data repository](https://refodat.de/receive/refodat_mods_00000060). Once downloaded, use the Python snippets [provided](#loading-channel-data) to load the data.
+This dataset is published and available for download at the [following data repository](https://refodat.de/receive/refodat_mods_00000060). Once downloaded, use the Python snippets [provided](#loading-channel-data) to load the data.
 
 ## Recorded Data
 The datasets exported and described here contain the complex time-varying channel frequency response (channel transfer function). Relevant meta-data such as the values of time and frequency at which the response is measured are available. Additionally, position information (latitude, longitude and height above sea level) for all participating nodes measured via a RTK-device are exported.
@@ -51,7 +51,7 @@ This dataset has a number of possible applications, for e.g.
 
 ## Measurement Runs
 
-### run1
+### A1
 
 #### Participating Nodes
 
@@ -71,10 +71,12 @@ This dataset has a number of possible applications, for e.g.
 
 
 The following figures visualize the 3-D and 2-D position of the radio and passive nodes:
-![](static/run1A1_refodat_2d_3d_pos.webp)
+
+![](static/run1A1_refodat_2d_3d_pos.png)
 
 #### Exemplary Radargram Plots
 The following figure depicts the range-velocity spectrum for all 7 receiver links.
+
 ![](static/run1_radargram.png)
 
 ## Data Format
@@ -84,23 +86,23 @@ The following figure depicts the range-velocity spectrum for all 7 receiver link
 The dataset is organized into directories corresponding to the different measurement nodes:
 
 ```
-run1/
-├── uav_evtol/                          <=== Passive Node
-│   └── Data/
-│       └── Location.h5
-│
-├── uav1_to_Rx1/                        <=== Stationary Radio Receiver
-│   └── Data/
-│       ├── FrequencyResponses.h5
-│       ├── LocationRx.h5
-│       └── LocationTx.h5
-│
-├── uav1_to_Rx2/
-├── uav1_to_Rx3/
-├── uav1_to_Rx4/
-├── uav1_to_uav2/                       <=== UAV-mounted Radio Receiver
-├── uav1_to_uav3/
-└── uav1_to_uav4/
+oryx_a1/
+|--- uav_evtol/                          <=== Passive Node
+|   `--- Data/
+|       `--- Location.h5
+|
+|--- uav1_to_Rx1/                        <=== Stationary Radio Receiver
+|   `--- Data/
+|       |--- FrequencyResponses.h5
+|       |--- LocationRx.h5
+|       `--- LocationTx.h5
+|
+|--- uav1_to_Rx2/
+|--- uav1_to_Rx3/
+|--- uav1_to_Rx4/
+|--- uav1_to_uav2/                       <=== UAV-mounted Radio Receiver
+|--- uav1_to_uav3/
+`--- uav1_to_uav4/
 ```
 
 Every radio node directory contains a `FrequencyResponses.h5`, `LocationRx.h5` and `LocationTx.h5` file while a passive node directory contains a `Location.h5` file.
@@ -276,7 +278,7 @@ plt.colorbar(label="Power (dB)")
 plt.show()
 ```
 
-![](static/snippet_dd_map.webp)
+![](static/snippet_dd_map.png)
 
 ## Related Publications
 
@@ -285,13 +287,31 @@ plt.show()
 
 ## External References
 
-- [REFODAT](https://refodat.de/receive/refodat_mods_00000060)
+- Dataset publication at REFODAT: [https://doi.org/10.71758/refodat.60](https://doi.org/10.71758/refodat.60)
 
 
-<!-- ## Citation
+## Citation
+
+If you use this dataset, please cite the following data record:
 
 ```
-@dataset{
-
+@Misc{refodat_mods_00000060,
+  author = 	{Miranda, Marc
+		and Beuster, Julia
+		and Mohr, Lorenz
+		and Andrich, Carsten
+		and Giehl, Sebastian
+		and Schneider, Christian
+		and Thom{\"a}, Reiner},
+  title = 	{Oryx: Multi-node Radio Channel Sounding for UAVs and Ground-stations},
+  year = 	{2025},
+  month = 	{Oct},
+  day = 	{01},
+  keywords = 	{Radio Sensing; Wireless Communication; Channel Sounding; UAV Swarm},
+  doi = 	{10.71758/refodat.60},
+  url = 	{https://refodat.de/receive/refodat_mods_00000060},
+  url = 	{https://doi.org/10.71758/refodat.60},
+  file = 	{:https://refodat.de/servlets/MCRZipServlet/refodat_derivate_00000058:TYPE},
+  language = 	{en}
 }
-``` -->
+```
