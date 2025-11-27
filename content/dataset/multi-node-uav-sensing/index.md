@@ -22,6 +22,10 @@ The Oryx dataset contains radio channel measurements between stationary (ground-
 | Number of TXs | 1 |
 | Number of RXs | 7 |
 
+{{< embed-video "https://refodat.de/servlets/MCRFileNodeServlet/refodat_derivate_00000058/video_preview.mp4" >}}
+
+A full resolution version of the video can be found [here](https://refodat.de/servlets/MCRFileNodeServlet/refodat_derivate_00000058/oryx_a1/video.mp4).
+
 ## Introduction
 Oryx is a part of an outdoor measurement campaign that took place in Ilmenau, Germany in August 2024. The goal of the campaign was the provisioning of datasets that enable the study of SISO radio channels between stationary and mobile multi-static transceivers relevant to UAV scenarios. A specific focus is the recording of UAV-to-UAV "side-link" channels measured in the multiple passive targets with varying trajectories are present. Additional scenarios recorded infrastructure-to-infrastructure channels in the presence of passive vehicular and UAV objects with well-defined movement trajectories.
 
