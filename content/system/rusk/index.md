@@ -2,7 +2,7 @@
 date = '2025-09-18T07:55:38+02:00'
 draft = false
 title = 'RUSK HyEff Channel Sounder (legacy)'
-categories = ["Measurement Systems"]
+categories = ["Measurement System"]
 tags = ["Sounding", "MIMO"]
 featured_image = "static/image.png"
 toc = false

@@ -1,5 +1,6 @@
 +++
 title = 'Disclaimer'
+toc = false
 +++
 
 The contents of our pages were created with the greatest care. 
