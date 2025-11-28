@@ -60,5 +60,8 @@ mirror_main_to_github:
     - git remote add github "https://${GITHUBTOKEN}@github.com/EMS-TU-Ilmenau/EMS-TU-Ilmenau.github.io.git" || true
     - git pull origin main
     - git push github main:main
+    - git checkout develop 
+    - git merge main
+    - git push origin develop:develop
   only:
     - main
