@@ -14,7 +14,7 @@ The modular ultra-wideband (UWB) pseudo noise (PN)-sequence sensor was introduce
 Thanks to its modular design, the system allows for a wide variety of setups, complemented by a broad range of configurable settings.
 This adaptability extends to both the frontend, where multiple synchronous TRx channels with different architectures are provided, and the back end, which offers various synchronization strategies and an enormous range of stimulus clock frequencies.
 
-# Frontend
+## Frontend
 The front end has up to four fully synchronous “slots” that can be configured as transmitters, receivers, or both simultaneously, depending on the selected architecture. In all intended modes, Compressed Sensing (CS) UWB and standard subsampling UWB, the XG1 is used as a transmitter with an optional amplifier module. Since CS mode requires mixing sequences for reception, a CS receiver consists of both Xampling chips, XG1 and XF1, which means that slots used as receivers cannot transmit simultaneously. In subsampling mode, however, all slots can be used for transmission and reception, as the track-and-hold (T&H) receivers only require the divided clock signal from the XG1 transmitter.
 
 ![](static/fe_composition2.png)
@@ -44,7 +44,7 @@ Further information about the XG1 IC:
 
 ***Content available soon!***
 
-# Backend
+## Backend
 
 In addition to data acquisition and improving the signal-to-noise ratio (SNR) through synchronous averaging on the digital side, the system's sampling backend takes over overall control of the measurement timing and sequence. It consists mainly of a Red Pitaya® SDR platform, which houses the necessary analog-to-digital converters (ADCs) and the ZYNQ7020® System on Chip (SoC), as well as a clock, control, and synchronization module. Since synchronous operation is essential for coherent multi-channel data acquisition and PN-based UWB systems in general, special attention was paid to the development of a reliable synchronization circuit. Therefore, two synchronization concepts were tested: pulsed synchronization using the *SYNC* input of the XG1 and gated clock synchronization, in which the *f_0* path to the XG1 is halted and then restarted within one clock cycle. Common to both concepts is that all front-end and back-end clock signals are derived from only one stable *f_0* clock, which can be set in the range of *1...19 GHz* using a configurable RF synthesizer. The system's complete synchronization timing scheme, wiring, and some performance metrics (pulsed case) can be found in [^ref2].
 
@@ -62,7 +62,7 @@ In addition to data acquisition and improving the signal-to-noise ratio (SNR) th
 
 ![](static/module_oem_be.png)
 
-# Envisioned Applications
+## Envisioned Applications
 
 - Ground penetrating radar (GPR)
 - medical imaging
