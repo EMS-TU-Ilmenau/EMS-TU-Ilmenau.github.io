@@ -1,3 +1,3 @@
 [submodule "themes/mainroad"]
 	path = themes/mainroad
-	url = git@github.com:EMS-TU-Ilmenau/emshub-theme.git
+	url = git@gitlab.tu-ilmenau.de:FakEI/InIT/it-ems/ems-bazaar/ems-tu-ilmenau.github.io-theme.git

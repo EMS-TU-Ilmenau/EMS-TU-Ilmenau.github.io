@@ -16,29 +16,31 @@ deploy_hugo:
     - develop
   before_script:
     - apt-get update -y
-    - apt-get install -y wget ca-certificates dpkg npm git rsync
+    - apt-get install -y wget ca-certificates dpkg git rsync
+    # # - apt-get install npm
     # Rewrite ALL GitHub submodules in .gitmodules from SSH to HTTPS (no auth needed for public repos)
     - |
       if [ -f .gitmodules ]; then
-        # List all submodule url entries
-        while IFS=$'\n' read -r line; do
-          key="${line%% *}"   # e.g., submodule.themes/mainroad.url
-          url="${line#* }"    # e.g., git@github.com:ORG/REPO.git
-          if echo "$url" | grep -q '^git@github.com:'; then
-            https_url="$(echo "$url" | sed -E 's#^git@github.com:#https://github.com/#')"
+        git config -f .gitmodules --get-regexp 'submodule\..*\.url' | while read -r key url; do
+          if [[ "$url" =~ ^git@gitlab\.tu-ilmenau\.de: ]]; then
+            https_url="${url/git@gitlab.tu-ilmenau.de:/https://oauth2:${THEMEACCESS}@gitlab.tu-ilmenau.de/}"
             git config -f .gitmodules "$key" "$https_url"
           fi
-        done < <(git config -f .gitmodules --get-regexp 'submodule\..*\.url' || true)
+        done
+
         git submodule sync --recursive
       fi
+    # - cd themes/mainroad
+    # - git remote set-url origin https://${THEMEACCESS}@gitlab.tu-ilmenau.de/FakEI/InIT/it-ems/ems-bazaar/ems-tu-ilmenau.github.io-theme.git
+    # - cd ../..
     - git submodule update --init --recursive --depth 1
     - wget -O /tmp/hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
     - dpkg -i /tmp/hugo.deb
-    - npm install -g sass-embedded
-    - |
-      if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
-        npm ci
-      fi
+    # - npm install -g sass-embedded
+    # - |
+    #   if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
+    #     npm ci
+    #   fi
   script:
     - hugo --minify --environment "$HUGO_ENVIRONMENT" -D ${HUGO_BASEURL:+--baseURL "$HUGO_BASEURL"}
     - install -d -m 0755 /opt/content
