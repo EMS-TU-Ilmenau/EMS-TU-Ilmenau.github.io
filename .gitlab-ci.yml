@@ -21,15 +21,13 @@ deploy_hugo:
     # Rewrite ALL GitHub submodules in .gitmodules from SSH to HTTPS (no auth needed for public repos)
     - |
       if [ -f .gitmodules ]; then
-        # List all submodule url entries
-        while IFS=$'\n' read -r line; do
-          key="${line%% *}"   # e.g., submodule.themes/mainroad.url
-          url="${line#* }"    # e.g., git@github.com:ORG/REPO.git
-          if echo "$url" | grep -q '^git@gitlab.tu-ilmenau.de:'; then
-            https_url="$(echo "$url" | sed -E 's#^git@gitlab.tu-ilmenau.de:#https://${THEMEACCESS}gitlab.tu-ilmenau.de/#')"
+        git config -f .gitmodules --get-regexp 'submodule\..*\.url' | while read -r key url; do
+          if [[ "$url" =~ ^git@gitlab\.tu-ilmenau\.de: ]]; then
+            https_url="${url/git@gitlab.tu-ilmenau.de:/https://${THEMEACCESS}@gitlab.tu-ilmenau.de/}"
             git config -f .gitmodules "$key" "$https_url"
           fi
-        done < <(git config -f .gitmodules --get-regexp 'submodule\..*\.url' || true)
+        done
+
         git submodule sync --recursive
       fi
     # - cd themes/mainroad
