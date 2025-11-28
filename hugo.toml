@@ -11,6 +11,7 @@ theme = 'mainroad'
   authorbox = false # Show authorbox at bottom of pages if true
   toc = true # Enable Table of Contents
   pager = false # Show pager navigation (prev/next links) at the bottom of pages if true
+  tags = true
   post_meta = ["author", "date", "categories"] # Order of post meta information
   dateformat = "2006-01-02" # Change the format of dates
   mathjax = true # Enable MathJax
@@ -34,8 +35,8 @@ theme = 'mainroad'
 [Params.sidebar]
   home = "right" # Configure layout for home page
   list = "right"  # Configure layout for list pages
-  single = true # Configure layout for single pages
-  widgets = ["social","taglist"]
+  single = "right" # Configure layout for single pages
+  widgets = ["toc", "recent", "taglist"]
 
 [Params.widgets.social]
   cached = false

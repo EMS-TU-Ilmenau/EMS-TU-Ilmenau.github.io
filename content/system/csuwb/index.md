@@ -19,7 +19,7 @@ The front end has up to four fully synchronous “slots” that can be configure
 
 ![](static/fe_composition2.png)
 
-#### Key Features
+### Key Features
 
 - subsampling and CS hardware architectures feasible (modular design)
 - up to four slots configured as receiver, transmiter or both simultaneously
@@ -28,7 +28,7 @@ The front end has up to four fully synchronous “slots” that can be configure
 
 ![](static/modules.png)
 
-#### XG1 - Xampling Generator 1
+### XG1 - Xampling Generator 1
 
 >The device offers one fully configurable LFSR of arbitrary sequence order up to 24 and a configurable integer-S clock divider for arbitrary *S = 8⋯1048583*, which operates at a clock rate of up to *f_0 = 30⁢GHz*. With a size of only 0.8 mm2 and a power consumption of  <1 W, the device outperforms any FPGA-based solution in terms of power and area consumption, as well as economic viability.
 Both output signals are generated as strictly synchronous to the provided CLK signal and can be reliably synchronized to the falling edge event of the external SYNC input. [...] The reconfigurable LFSR is well suited to generate orthogonal transmit sequences with good cross-correlation properties, such as Gold codes, which is particularly needed [for parallel "snapshot" measurements]. Further, choosing the clock divider ratio arbitrarily offers greater flexibility in better matching *f_0* and *f_S* to the ADC capabilities, as the equivalent-time subsampling principle works with any divider ratio *S*, as long as *S* does not divide [the length of a sequence] *N*. [...]
@@ -40,7 +40,7 @@ Further information about the XG1 IC:
 - [Every Clock Counts – 41 GHz Wide-Range Integer-N Clock Divider](https://www.researchgate.net/publication/355843966_Every_Clock_Counts_-_41_GHz_Wide-Range_Integer-N_Clock_Divider)
 - [Shut Off! – Hybrid BICMOS Logic for Power-Efficient High Speed Circuits](https://doi.org/10.1109/SMACD58065.2023.10192217)
 
-#### XF1 - Xampling Frontend 1
+### XF1 - Xampling Frontend 1
 
 ***Content available soon!***
 
@@ -51,7 +51,7 @@ In addition to data acquisition and improving the signal-to-noise ratio (SNR) th
 ![](static/be1.png)
 
 
-#### Key Features
+### Key Features
 
 - configurable *f_0* clock in range *1...19 GHz*
 - fixed divided clock divider (ADC and programmable logic of SoC) *S = 512* at standard pulsed and gated synchronizer modules in standalone backend system (image above)

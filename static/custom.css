@@ -2,3 +2,7 @@
 	max-width: 256px;
 	max-height: 256px;
 }
+
+.colorDataset a{
+	text-decoration: none;
+}
