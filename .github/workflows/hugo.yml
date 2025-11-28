@@ -33,6 +33,11 @@ jobs:
     env:
       HUGO_VERSION: 0.148.2
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: false   # prevent auto-init
+          fetch-depth: 0      # submodules need full history
       - name: Rewrite submodule URLs to HTTPS with token
         run: |
           if [ -f .gitmodules ]; then
@@ -44,12 +49,6 @@ jobs:
               fi
             done
           fi
-
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          submodules: false   # prevent auto-init
-          fetch-depth: 0      # submodules need full history
       - name: Initialize submodules
         run: |
           git submodule sync --recursive
