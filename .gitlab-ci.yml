@@ -23,7 +23,7 @@ deploy_hugo:
       if [ -f .gitmodules ]; then
         git config -f .gitmodules --get-regexp 'submodule\..*\.url' | while read -r key url; do
           if [[ "$url" =~ ^git@gitlab\.tu-ilmenau\.de: ]]; then
-            https_url="${url/git@gitlab.tu-ilmenau.de:/https://${THEMEACCESS}@gitlab.tu-ilmenau.de/}"
+            https_url="${url/git@gitlab.tu-ilmenau.de:/https://oauth2:${THEMEACCESS}@gitlab.tu-ilmenau.de/}"
             git config -f .gitmodules "$key" "$https_url"
           fi
         done
