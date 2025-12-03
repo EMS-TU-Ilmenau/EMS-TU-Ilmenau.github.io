@@ -84,9 +84,9 @@ To use this dataset and/or scripts or any modified part of them, cite:
 
 ## External References
 
-- [REFODAT]()
+- [REFODAT](https://refodat.de/content/index.xml)
 - [doi](https://www.doi.org/doi)
 
-**Acknowledgement**
+# Acknowledgement
 
 We want to thank Henning Schwanbeck from the Technische Universität Ilmenau Rechenzentrum for his continuous support with the provisioning of the measurement files.
