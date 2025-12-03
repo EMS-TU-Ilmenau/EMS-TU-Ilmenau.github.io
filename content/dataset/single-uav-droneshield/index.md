@@ -9,7 +9,6 @@ featured_image = "static/image.png"
 
 ![](static/banner.jpg)
 
-Abstract
 
 <!--more-->
 
@@ -30,7 +29,7 @@ The Zenthos investigates the problem of detecting and localizing a single drone 
 The meausrements were carried at a rooftop of a building in Ilmenau, Germany, were the measurement setup was installed, and the drone flied over a pre-determined route marked by waypoints at a given height and speed.
 Both the Channel Impulse Response (CIR) and groundtruth position of the drones are provided in this dataset.
 The Zenthos dataset enables evaluation and development of ISAC algorithms for drone detection and tracking in municipal areas, in presence of background clutter.
-The data from this can has been proven effective for training and evaluation of machine learning algorithms [see this paper](https://arxiv.org/abs/2507.01799).
+The data from this can has been proven effective for training and evaluation of machine learning algorithms ([see this paper](https://arxiv.org/abs/2507.01799)).
 
 
 # Measurement Setup
@@ -66,11 +65,12 @@ Both file types include timestamps as metadata.
 
 # Citation
 
-{: .note}
+{{< note >}}
 Please make sure to give proper references when you use the dataset in your own work.
+{{< /note >}}
 
 
-The provided dataset, consisting of the measurement files and metadata, and all of the contents of the Github repository are licensed under the [**CC BY-NC-ND 4.0**](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
+The Zenthos dataset, consisting of the measurement files and metadata, and all of the contents of the Github repository are licensed under the [**CC BY-NC-ND 4.0**](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
 
 To use this dataset and/or scripts or any modified part of them, cite:
 ```tex
@@ -90,8 +90,6 @@ To use this dataset and/or scripts or any modified part of them, cite:
 - [REFODAT]()
 - [doi](https://www.doi.org/doi)
 
-{: .fs-3}  
-**Footnote**
+**Acknowledgement**
 
-{: .fs-2}
-[1] - We want to thank Henning Schwanbeck from the Technische Universität Ilmenau Rechenzentrum for his continuous support with the provisioning of the measurement files.
+We want to thank Henning Schwanbeck from the Technische Universität Ilmenau Rechenzentrum for his continuous support with the provisioning of the measurement files.
