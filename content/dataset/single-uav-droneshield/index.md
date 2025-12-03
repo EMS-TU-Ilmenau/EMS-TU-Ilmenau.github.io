@@ -9,6 +9,7 @@ featured_image = "static/image.png"
 
 ![](static/banner.jpg)
 
+The Zenthos dataset provides measurements for detecting and localizing a single UAV using a distributed Multi-Sensor Integrated Sensing and Communication (MS-ISAC) system. Data were collected on a rooftop in Ilmenau, Germany, using one transmitter and three receivers that recorded a continuous OFDM-like signal while a drone followed predefined waypoint routes. Each run includes synchronized channel impulse responses (CIRs) for all links and precise groundtruth UAV positions. The 28 flight runs cover different paths, heights, and speeds, making the dataset well suited for developing and evaluating ISAC algorithms for UAV detection and tracking in urban environments using distributed settings. Zenthos has also proven effective for machine-learning-based approaches to drone localization.
 
 <!--more-->
 
@@ -64,11 +65,7 @@ Both file types include timestamps as metadata.
 
 
 # Citation
-
-{{< note >}}
 Please make sure to give proper references when you use the dataset in your own work.
-{{< /note >}}
-
 
 The Zenthos dataset, consisting of the measurement files and metadata, and all of the contents of the Github repository are licensed under the [**CC BY-NC-ND 4.0**](https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode).
 
