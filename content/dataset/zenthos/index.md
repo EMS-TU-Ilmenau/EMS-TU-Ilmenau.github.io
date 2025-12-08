@@ -31,7 +31,7 @@ The dataset includes 27 flight runs cover different trajectories and distance fr
 | Geometry             | Multistatic  |
 | Size                 | ~ 125 GB     |
 
-# Introduction
+## Introduction
 
 Zenthos was recorded as part of an outdoor measurement campaign in the DroneShield project, carried out in May 2021.
 Both the Channel Impulse Response (CIR) and groundtruth position of the drones are provided in this dataset.
@@ -41,14 +41,14 @@ Its data has been proven effective for training and evaluation of machine learni
 > Zenthos is a subset of the `ISAC-UAV-Dataset` published on [GitHub](https://ems-tu-ilmenau.github.io/isac-uav-dataset-docs/).
 > To ensure compatability with our other datasets and their file format, Zenthos re-publishes its most insightful scenarios here.
 
-# Getting Started
+## Getting Started
 
 This dataset is published and available for download at the [following data repository]().
 Once downloaded, use the Python snippets [provided](#loading-channel-data) to load the data.
 
-# Recorded Data
+## Recorded Data
 
-# Measurement Setup
+## Measurement Setup
 
 The multistatic links consist of 1 transmitter and 3 receivers, all of them loacated at a rooftop.
 The transmitter sent continuous OFDM-like signal that is captured by the receivers.
@@ -60,7 +60,7 @@ The UAV was flying over pre-determined waypoints, as show as in th map below.
 
 The details of the distributed channel sounder system used for the measurement can be found [here](https://arxiv.org/abs/2210.07168).
 
-# Dataset organization
+## Dataset organization
 
 > TODO: We are not publishing different heights/speeds, so they should be eliminated from the descriptions. Lets stick with just waypoints.
 
@@ -80,14 +80,14 @@ and the groundtruth position as:
 
 Both file types include timestamps as metadata.  
 
-# Related Publications
+## Related Publications
 
 - [S. Schieler, S. Semper, C. Schneider and R. Thomä, "Measurement-Based Evaluation of CNN-Based Detection and Estimation for ISAC Systems," 2025 IEEE International Radar Conference (RADAR), Atlanta, GA, USA, 2025, pp. 1-6, doi: 10.1109/RADAR52380.2025.11031730.](https://ieeexplore.ieee.org/document/11031730), or on [Arxiv](https://arxiv.org/abs/2507.01799)
 - [J. Beuster et al., "Measurement Testbed for Radar and Emitter Localization of UAV at 3.75 GHz," 2023 17th European Conference on Antennas and Propagation (EuCAP), Florence, Italy, 2023, pp. 1-5, doi: 10.23919/EuCAP57121.2023.10133118.](https://ieeexplore.ieee.org/document/10133118), or on [Arxiv](https://arxiv.org/abs/2210.07168v1)
 
 Is your publication missing? Reach out and we will add it!
 
-# External References
+## External References
 
 - [REFODAT](https://refodat.de/content/index.xml)
 - [doi](https://www.doi.org/doi)
@@ -102,6 +102,6 @@ If you use this dataset, please cite the following data record:
 }
 ```
 
-# Acknowledgement
+## Acknowledgement
 
 We want to thank Henning Schwanbeck from the Technische Universität Ilmenau Rechenzentrum for his continuous support with the provisioning of the measurement files.
