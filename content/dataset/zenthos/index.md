@@ -39,7 +39,7 @@ Zenthos enables evaluation and development of ISAC algorithms for drone detectio
 Its data has been proven effective for training and evaluation of machine learning algorithms ([Schieler et al., 2025](https://ieeexplore.ieee.org/document/11031730)).
 
 > Zenthos is a subset of the `ISAC-UAV-Dataset` published on [GitHub](https://ems-tu-ilmenau.github.io/isac-uav-dataset-docs/).
-> To ensure compatability with out other datasets and their file format, Zenthos re-publishes its most insightful scenarios here.
+> To ensure compatability with our other datasets and their file format, Zenthos re-publishes its most insightful scenarios here.
 
 # Getting Started
 
@@ -62,7 +62,7 @@ The details of the distributed channel sounder system used for the measurement c
 
 # Dataset organization
 
-> TODO: We are not publishign different heights/speeds, so they should be eliminated from the descriptions. Lets stick with just waypoints.
+> TODO: We are not publishing different heights/speeds, so they should be eliminated from the descriptions. Lets stick with just waypoints.
 
 The dataset is structured into 28 __runs__, determined by the flying path between the waypoints, referred to as tracks.
 The track name can be found in the 'Info.json' file, in each run path and follows the format:
