@@ -87,7 +87,7 @@ Both file types include timestamps as metadata.
 
 ## Code Samples and Further Notes
 ### Interpolating Position Information
-While the data in each HDF5 file corresponds to the same time span, the data sampling rate is naturally different for the recorded frequency responses (60 MHz) and position data (~10 Hz). Furthermore, position information sampling rates could differ between nodes. If position information is required at the same rate as the frequency responses (for e.g. for the purpose of calculating ground-truth passive object parameters and comparing with the observed channel response), it is recommended to perform cubic spline interpolation on the `/PoseData/Height`, `/PoseData/Latitude` and `/PoseData/Longitude` datasets. A minimal snippet using Python and SciPy is provided below:
+While the data in each HDF5 file corresponds to the same time span, the data sampling rate is naturally different for the recorded frequency responses (80 MHz) and position data (~10 Hz). Furthermore, position information sampling rates could differ between nodes. If position information is required at the same rate as the frequency responses (for e.g. for the purpose of calculating ground-truth passive object parameters and comparing with the observed channel response), it is recommended to perform cubic spline interpolation on the `/PoseData/Height`, `/PoseData/Latitude` and `/PoseData/Longitude` datasets. A minimal snippet using Python and SciPy is provided below:
 
 ```python
 import h5py
@@ -162,7 +162,7 @@ def load_complex_channel_data(file_path, sample_indices):
 ```
 
 ### Note on Position of the Receivers
-The `Location*.h5` files for static nodes (`RX1`, `RX2`, `RX3`, `RX4`) were measured before the start of the measurement period. Hence, the timestamps do not correspond to the measurement time interval. When using the positions of the static nodes, simply average the positions values in each dataset.
+The `Location*.h5` files for the transmitter and the receivers (`RX1`, `RX2`, `RX3`) were measured before the start of the measurement period. Hence, the timestamps do not correspond to the measurement time interval. When using the positions of the static nodes, simply average the positions values in each dataset.
 
 ## Related Publications
 
