@@ -3,8 +3,8 @@ date = '2025-04-25T16:19:46+02:00'
 draft = true
 title = 'Zenthos: Multi-static Radio Channel Sounding for UAV Sensing at 3.75 GHz'
 categories = ["Dataset"]
-tags = ["ISAC", "UAV"]
-featured_image = "static/banner.jpg"
+tags = ["ISAC", "UAV", "RADAR", "SOUNDING"]
+featured_image = "static/zenthos.webp"
 +++
 
 __Zenthos__ provides measurements for detecting and localizing a single UAV using a distributed Multi-Sensor Integrated Sensing and Communication (MS-ISAC) system.
@@ -66,7 +66,7 @@ The details of the distributed channel sounder system used for the measurement c
 > TODO: We are not publishing different heights/speeds, so they should be eliminated from the descriptions. Lets stick with just waypoints.
 
 The dataset is structured into 28 __runs__, determined by the flying path between the waypoints, referred to as tracks.
-The track name can be found in the 'Info.json' file, in each run path and follows the format:
+The track name can be found in the `Info.json` file, in each run path and follows the format:
 
 `<Start Point>_to_<End Point>`
 
