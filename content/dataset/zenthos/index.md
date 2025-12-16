@@ -47,6 +47,7 @@ This dataset is published and available for download at the [following data repo
 Once downloaded, use the Python snippets [provided](#loading-channel-data) to load the data.
 
 ## Recorded Data
+The dataset contains the complex, time-varying channel frequency response (channel transfer function) and the ground-truth position of the target UAV in a latitude/longitude/height (Lat/Lon/H) coordinate frame referenced to WGS-84, measured using high-precision RTK devices. Each channel frequency response is associated with a Unix timestamp.
 
 ## Measurement Setup
 
@@ -79,6 +80,89 @@ and the groundtruth position as:
 `UAV_<Start Waypoint>-<End Waypoint>`
 
 Both file types include timestamps as metadata.  
+
+### Directory Structure
+
+### HDF5 File Structure
+
+## Code Samples and Further Notes
+### Interpolating Position Information
+While the data in each HDF5 file corresponds to the same time span, the data sampling rate is naturally different for the recorded frequency responses (60 MHz) and position data (~10 Hz). Furthermore, position information sampling rates could differ between nodes. If position information is required at the same rate as the frequency responses (for e.g. for the purpose of calculating ground-truth passive object parameters and comparing with the observed channel response), it is recommended to perform cubic spline interpolation on the `/PoseData/Height`, `/PoseData/Latitude` and `/PoseData/Longitude` datasets. A minimal snippet using Python and SciPy is provided below:
+
+```python
+import h5py
+import numpy as np
+from scipy.interpolate import CubicSpline
+
+# Open the HDF5 file
+with h5py.File("Location.h5", "r") as f:
+    # Read timestamps and position datasets
+    ts = f["/PoseData/MetaData/Snapshot/TimeStamp"][:]
+    lat = f["/PoseData/Latitude"][:]
+    lon = f["/PoseData/Longitude"][:]
+    hgt = f["/PoseData/Height"][:]
+
+# Example: target timestamps where we want interpolated positions
+# (e.g., section of timestamps of 
+# FrequencyResponses.h5:/FrequencyResponses/MetaData/Snapshot/TimeStamp)
+target_ts = np.linspace(ts.min(), ts.max(), 1000)
+
+# Perform cubic spline interpolation for each coordinate
+lat_interp = CubicSpline(ts, lat, extrapolate=None)(target_ts)
+lon_interp = CubicSpline(ts, lon, extrapolate=None)(target_ts)
+hgt_interp = CubicSpline(ts, hgt, extrapolate=None)(target_ts)
+
+# Example usage: print first few interpolated points
+print("Interpolated positions (lat, lon, height):")
+for i in range(5):
+    print(f"{lat_interp[i]:.6f}, {lon_interp[i]:.6f}, {hgt_interp[i]:.2f}")
+```
+
+### Loading Channel Data
+
+The complex channel transfer function is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts, respectively, of the complex values. This is illustrated with the following Python function:
+
+```python
+import h5py
+import numpy as np
+
+def load_complex_channel_data(file_path, sample_indices):
+    """
+    Loads complex channel data and associated axes.
+    Arguments:
+        file_path: str: Path to FrequencyResponses.h5 file
+        sample_indices: Tuple[int, int]: A slice (start, stop) defining the
+            slow-time (snapshot) samples to load from file.
+    Returns:
+        complex_data: np.ndarray: 2-D array (slow-time, frequency)
+        ts: np.ndarray: array of timestamps corresponding to the loaded samples
+        ff: np.ndarray: array of frequency values
+    """
+    sample_indices_slice = slice(sample_indices[0], sample_indices[1])
+    timestamp_path = "/FrequencyResponses/MetaData/Snapshot/TimeStamp"
+    frequencies_path = "/FrequencyResponses/MetaData/Frequency/Frequency"
+
+    with h5py.File(file_path, "r") as f:
+        # Read timestamp, frequency axes and compound dataset
+        ts = f[timestamp_path][sample_indices_slice]
+        ts_unitscaler = f[timestamp_path].attrs["UnitScaler"]
+
+        ff = f[frequencies_path][:]
+        ff_scaler = f[frequencies_path].attrs["UnitScaler"]
+
+        data = f["/FrequencyResponses/Data"][sample_indices_slice]
+
+    complex_data = data["real"] + 1j * data["imag"]
+
+    return (
+        complex_data,
+        ts * ts_unitscaler,
+        ff * ff_scaler,
+    )
+```
+
+### Note on Position of the Receivers
+The `Location*.h5` files for static nodes (`RX1`, `RX2`, `RX3`, `RX4`) were measured before the start of the measurement period. Hence, the timestamps do not correspond to the measurement time interval. When using the positions of the static nodes, simply average the positions values in each dataset.
 
 ## Related Publications
 
