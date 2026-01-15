@@ -25,3 +25,24 @@ The "Rhino" dataset comprises multiple bistatic radio channel measurements betwe
 | Number of RXs | 1 |
 
 {{< embed-video "static/rhino_preview.mp4" >}}
+
+## Introduction
+
+## Measurement
+
+## Data Format
+
+## Data Processing
+
+## External References
+
+- [REFODAT]()
+- [doi](https://www.doi.org/doi)
+
+## Citation
+
+```
+@dataset{
+    
+}
+```
