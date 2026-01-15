@@ -97,6 +97,7 @@ x Oryx
 - Ralvorn
 - Ralyth
 - Ravon
+x Rhino
 - Ryloth
 - Rynora
 - Saffo
