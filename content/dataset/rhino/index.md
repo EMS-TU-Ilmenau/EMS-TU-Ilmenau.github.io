@@ -184,9 +184,267 @@ h5ls -r Results_delta0.h5
 /Results/PowGamma        Dataset {156}
 /Results/dBGamma         Dataset {156}
 ```
-The 'Snapshot' group includes the index and timestamp of the first snapshot of each frame. For each frame, the results include a varying number of propagation paths, where each path has a propagation delay, doppler shift, and path power. Loading one of these parameters yields a nested `np.ndarray` of one-dimensional `np.ndarray`'s.
+The `Snapshot` group includes the index and timestamp of the first snapshot of each frame. For each frame, the results include a varying number of propagation paths, where each path has a propagation delay, doppler shift, and path power. Loading one of these parameters yields a nested `np.ndarray` of one-dimensional `np.ndarray`'s.
 
 ## Data Processing
+
+The following sections provide several introductory code snippets that should demonstrate the interaction with the dataset.
+
+### Loading Channel Data
+
+The complex channel frequency response is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts of the complex values, respectively. The following Python function loads the snapshots at the bistatic measurement angle `delta` within the interval `[start, stop)`.
+
+```python
+import h5py
+import numpy as np
+
+def load_complex_channel_data(file_path, sample_indices, bistatic_angle):
+    """
+    Loads complex channel data and associated axes.
+    Arguments:
+        file_path: str: Path to FrequencyResponses.h5 file
+        sample_indices: Tuple[int, int]: A slice (start, stop) defining the
+            slow-time (snapshot) samples to load from file.
+        bistatic_angle: int: An integer in the range [0,35] defining the bistatic
+            measurement angle $\delta$ between transmitter and receiver.
+    Returns:
+        complex_data: np.ndarray: 2-D array (slow-time, frequency)
+        ts: np.ndarray: array of timestamps [s] corresponding to the loaded samples
+        ff: np.ndarray: array of subcarrier frequency values [Hz]
+        aa: int: bistatic measurement angle $\delta$ [deg]
+    """
+    sample_indices_slice = slice(sample_indices[0], sample_indices[1])
+    timestamp_path = "/FrequencyResponses/MetaData/Snapshot/TimeStamp"
+    frequencies_path = "/FrequencyResponses/MetaData/Frequency/Frequency"
+    bistatic_angle_path = "FrequencyResponses/MetaData/Angle/BistaticAngle"
+
+    with h5py.File(file_path, "r") as f:
+        # Read timestamp, frequency axes and compound dataset
+        ts = f[timestamp_path][sample_indices_slice]
+        ts_unitscaler = f[timestamp_path].attrs["UnitScaler"]
+
+        ff = f[frequencies_path][:]
+        ff_scaler = f[frequencies_path].attrs["UnitScaler"]
+
+        aa = f[bistatic_angle_path][bistatic_angle]
+        aa_scaler = f[bistatic_angle_path].attrs["UnitScaler"]
+
+        data = f["/FrequencyResponses/Data"][sample_indices_slice,:,bistatic_angle]
+
+    complex_data = data["real"] + 1j * data["imag"]
+
+    return (
+        complex_data,
+        ts * ts_unitscaler,
+        ff * ff_scaler,
+        aa * aa_scaler,
+    )
+```
+
+### Loading Position Data
+
+The following snippet loads position information of TX, RX, or a sphere.
+
+```python
+import h5py as h5
+import numpy as np
+
+def load_position(file_path, sample_indices=None, bistatic_angle=None)
+    """
+    Loads position information of TX, RX, or target.
+    Arguments:
+        file_path: str: Path to the *.h5 file
+        sample_indices: Tuple[int, int]: A slice (start, stop) defining the
+            slow-time (snapshot) samples to load from file.
+        bistatic_angle: int: An integer in the range [0,35] defining the bistatic
+            measurement angle $\delta$ between transmitter and receiver.
+    Returns:
+        pos_arr: np.ndarray: 2-D array (slow_time, [x,y,z])
+    """
+    with h5.File(file_path, "r") as ff:
+        # no time and angle given = TX Pos
+        if sample_indices is None and bistatic_angle is None:
+            x_pos = ff["PoseData/PosX"][:]
+            y_pos = ff["PoseData/PosY"][:]
+            z_pos = ff["PoseData/PosZ"][:]
+        # no time given = RX Pos
+        elif sample_indices is None:
+            x_pos = ff["PoseData/PosX"][bistatic_angle]
+            y_pos = ff["PoseData/PosY"][bistatic_angle]
+            z_pos = ff["PoseData/PosZ"][bistatic_angle]
+        # no angle given = Target Pos
+        elif bistatic_angle is None:
+            sample_indices_slice = slice(sample_indices[0], sample_indices[1])
+            x_pos = ff["PoseData/PosX"][bistatic_angle]
+            y_pos = ff["PoseData/PosY"][bistatic_angle]
+            z_pos = ff["PoseData/PosZ"][bistatic_angle]
+        else:
+            Exception("Unable to load position information!")
+    # combine into position array (slow_)
+    pos_arr = np.array([x_pos, y_pos, z_pos], dtype="np.float64").reshape((1, 3))
+    return pos_arr
+
+```
+
+### Calculating Ground Truth Parameters
+
+Calculating the bistatic delay and Doppler of a sphere requires the position of TX, RX, and the sphere. The following Python scripts demonstrates one approach to carry out this calculation. Information about the underlying formula can be found here [here](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991).
+
+```python
+import h5py as h5
+import numpy as np
+import scipy as sc
+
+def position_vector(tx_pos, tar_pos, rx_pos):
+    """
+    Calculates the position vector between TX-target and target-RX.
+    Arguments:
+        tx_pos: np.ndarray: array of the TX position (fixed)
+        tar_pos: np.ndarray: array of the target position
+        rx_pos: np.ndarray: array of the RX position
+    Returns:
+        tx_vec: np.ndarray: array of the position vector TX-target
+        rx_vec: np.ndarray: array of the position vector target-RX
+    """
+    tx_vec = tar_pos - tx_pos
+    rx_vec = rx_pos - tar_pos
+    return tx_vec, rx_vec
+
+def get_delay(tx_vec, rx_vec):
+    """
+    Calculates the bistatic delay given TX-target and target-RX vectors. Returns
+    the delay in the middle of the frame.
+    Arguments:
+        tx_vec: np.ndarray: array of position vector TX-target
+        rx_vec: np.ndarray: array of position vector target-RX
+    Returns:
+        delay: float: Bistatic ground truth delay of the target
+    """
+    total_len = np.linalg.norm(tx_vec) + np.linalg.norm(rx_vec)
+    delay = total_len / sc.constants.c
+    delay = delay[delay.shape[0]//2]
+    return delay
+
+def get_doppler(tar_pos, tx_vec, rx_vec):
+    """
+    Calculates the bistatic Doppler given TX-target and target-RX vectors. Returns
+    the Doppler in the middle of the frame.
+    Arguments:
+        tar_pos: np.ndarray: array of target position
+        tx_vec: np.ndarray: array of position vector TX-target
+        rx_vec: np.ndarray: array of position vector target-RX
+        t_delta: symbol duration [s]
+        lambda_c: carrier wavelength [m]
+    Returns:
+        doppler: float: Bistatic ground truth Doppler of the target
+    """
+    # finite differences to approximate velocity in (x,y,z)
+    d_tar_pos = np.diff(tar_pos, n=1, axis=0)
+    d_tar = d_tar_pos[d_tar_pos.shape[0]//2]
+    v_tar = d_tar / t_delta
+    # normalize vectors for projection
+    tx_vec_norm = tx_vec / np.linalg.norm(tx_vec)
+    rx_vec_norm = rx_vec / np.linalg.norm(rx_vec)
+    # project v_tar onto the tx-tar and tar-rx vectors
+    v_proj_tx = np.inner(v_tar, tx_vec_norm)
+    v_proj_rx = np.inner(v_tar, rx_vec_norm)
+    # total relative velocity
+    v_tot = v_proj_tx + v_proj_rx
+    # doppler
+    doppler = v_tot / lambda_c
+    return doppler
+```
+
+### Plotting Delay-Doppler Spectra
+
+A common step in radar-like applications is the caluclation of the delay-Doppler spectra. The following Python script plots the magnitude of the delay-Doppler spectra in dB and overlays ground truth delay-Doppler parameters of both spheres.
+
+```python
+import matplotlib.pyplot as plt
+# bistatic angle
+delta = 6
+# frame time index
+frame_indices = (3600, 3700)
+# oversampling factor (zero padding for fft interpolation)
+osf=10
+
+# load one frame of 100 symbols [3600, 3700)
+# loaded complex_data has dims (slow-time, sub-carriers)
+complex_data, ts, ff, aa = load_complex_channel_data(
+    "Tx_0_to_Rx_0-350/Data/FrequencyResponses.h5",
+    frame_indices,
+    delta,
+)
+
+ts_size = ts.shape[0]
+ff_size = ff.shape[0]
+
+# symbol duration
+t_delta = ts[1] - ts[0]
+# carrier wavelength
+f_c = ff[-1] - ff[0]
+lambda_c = sc.constants.c / f_c
+
+# transform slow-time to Doppler frequency
+dd_map = np.fft.fftshift(np.fft.fft(complex_data, axis=0, n=osf*ts_size))
+# trasnform sub-carriers to delay
+dd_map = np.fft.ifft(np.fft.ifftshift(dd_map, axes=1), axis=1, n=osf*ff_size)
+# create axes for plotting
+doppler_axis = np.fft.fftshift(np.fft.fftfreq(len(ts), d=(ts[1] - ts[0])))
+delay_axis = np.fft.ifftshift(np.fft.fftfreq(len(ff), d=(ff[1] - ff[0])))
+delay_axis = delay_axis - delay_axis.min()
+# dd_map to abs^2
+dd_map = np.abs(dd_map)**2
+# normalize dd_map
+dd_map = dd_map / np.max(dd_map)
+# dd_map to dB
+dd_map_db = 10*np.log10(dd_map)
+
+# ground truth section
+tx_path = "Tx_0_to_Rx_0-350/Data/LocationTx.h5"
+rx_path = "Tx_0_to_Rx_0-350/Data/LocationRx.h5"
+tar1_path = "Sphere_1/Data/Location.h5"
+tar2_path = "Sphere_2/Data/Location.h5"
+
+# load tx and rx pos (same for both spheres!)
+tx_pos = load_position(tx_path)
+rx_pos = load_position(rx_path, bistatic_angle=delta)
+# sphere 1 ground truth
+tar1_pos = load_position(tar1_path, frame_indices)
+tx1_vec, rx1_vec = position_vector(tx_pos, tar1_pos, rx_pos)
+tar1_delay = get_delay(tx1_vec, rx1_vec)
+tar1_doppler = get_doppler(tar1_pos, tx1_vec, rx1_vec, t_delta, lambda_c)
+# sphere 1 ground truth
+tar2_pos = load_position(tar2_path, frame_indices)
+tx2_vec, rx2_vec = position_vector(tx_pos, tar2_pos, rx_pos)
+tar2_delay = get_delay(tx2_vec, rx2_vec)
+tar2_doppler = get_doppler(tar2_pos, tx2_vec, rx2_vec, t_delta, lambda_c)
+
+# plotting section
+plt.figure(figsize=(8, 6))
+# plot dd spectrum
+plt.imshow(
+    dd_map_db.T, # .T so that Doppler is the horizontal axis
+    extent=[delay_axis[0], delay_axis[-1], doppler_axis[0], doppler_axis[-1]],
+    #aspect="auto",
+    vmax=0,
+    vmin=-60,
+    origin="lower",
+)
+# plot ground truth
+plt.scatter(tar1_delay, tar1_doppler)
+plt.scatter(tar2_delay, tar2_doppler)
+
+plt.xlabel("Delay (s)")
+plt.ylabel("Doppler Frequency (Hz)")
+plt.title("Delay-Doppler Map")
+plt.colorbar(label="Normalized Power (dB)")
+# limit for better visibility
+plt.xlim([-2000, 2000])
+plt.ylim([0, 200e-9])
+
+plt.show()
+```
 
 ## External References
 
