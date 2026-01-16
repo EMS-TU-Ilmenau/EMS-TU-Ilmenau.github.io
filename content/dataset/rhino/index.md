@@ -4,7 +4,7 @@ draft = false
 title = 'Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications'
 categories = ["Dataset"]
 tags = ["Radar", "Reference Dataset", "Delay-Doppler Estimation", "ISAC"]
-featured_image = "static/rhino_full.jpg"
+featured_image = "static/rhino_peak.jpg"
 [params]
     math=true
 +++
