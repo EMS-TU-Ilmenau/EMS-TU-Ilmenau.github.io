@@ -192,7 +192,7 @@ The following sections provide several introductory code snippets that should de
 
 ### Loading Channel Data
 
-The complex channel frequency response is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts of the complex values, respectively. The following Python function loads the snapshots at the bistatic measurement angle `delta` within the interval `[start, stop)`.
+The complex channel frequency response is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts of the complex values, respectively. The following Python function loads the snapshots at one specific bistatic measurement angle within the interval `[start, stop)`.
 
 ```python
 import h5py
