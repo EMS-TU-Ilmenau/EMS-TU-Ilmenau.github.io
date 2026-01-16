@@ -42,7 +42,7 @@ This dataset is published and available for download at the [following data repo
 
 ## Measurement Setup
 
-The [following article](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991) includes a detailed description of the measurement setup and some initial delay-Doppler parameter estimation results. Two metallic spheres are mounted on a metal rod attached to a motor. The bistatic measurement angle $\delta$ spans between the transmitter (TX), the motor, and the receiver (RX). Within the data, this angle varies in steps of ten degrees. As a result, the channel measurements include forward $(\delta \approx 180^\circ)$, backward $(\delta \approx 0^\circ)$, and bistatis scattering scenarios. Below you can find a schematic drawing of the setup.
+The [following article](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991) includes a detailed description of the measurement setup and some initial delay-Doppler parameter estimation results. Two metallic spheres are mounted on a metal rod attached to a motor. The bistatic measurement angle \(\delta\) spans between the transmitter (TX), the motor, and the receiver (RX). Within the data, this angle varies in steps of ten degrees. As a result, the channel measurements include forward \((\delta \approx 180^\circ)\), backward \((\delta \approx 0^\circ)\), and bistatis scattering scenarios. Below you can find a schematic drawing of the setup.
 
 ![](static/rhino_measurement_setup.png)
 
@@ -86,7 +86,7 @@ rhino/
 ```
 The subdirectory 'Tx_0_to_Rx_0-350/' comprises the measured channel frequency responses 'FrequencyResponses.h5' and the corresponding positions of TX 'LocationTx.h5' and RX 'LocationRx.h5'.
 Furthermore, 'Sphere_1/' and 'Sphere_2/' store the location information of the two passive targets in within the 'Location.h5' files and some additional target-related meta information in the 'Info.json' files.
-In addition to the measurements, we provide our delay-Doppler parameter estimation results of the data within the 'results/' directory utilizing three different algorithms, namely PyMax, DeepEst, and CFAR. These results are part of a measurement-based performance comparison of delay-Doppler parameter estimation algorithms. More information about the three algorithms and the utilization of their results for comparison can be found [here](https://www.db-thueringen.de/receive/dbt_mods_00063482) and [here](https://arxiv.org/abs/2510.16200). The subdirectory for each algorithm comprises one file 'Results_delta{delta}.h5' for every bistatic measurement angle $\delta$. 
+In addition to the measurements, we provide our delay-Doppler parameter estimation results of the data within the 'results/' directory utilizing three different algorithms, namely PyMax, DeepEst, and CFAR. These results are part of a measurement-based performance comparison of delay-Doppler parameter estimation algorithms. More information about the three algorithms and the utilization of their results for comparison can be found [here](https://www.db-thueringen.de/receive/dbt_mods_00063482) and [here](https://arxiv.org/abs/2510.16200). The subdirectory for each algorithm comprises one file 'Results_delta{delta}.h5' for every bistatic measurement angle \(\delta\). 
 
 ### File Format
 
@@ -114,7 +114,7 @@ h5ls -r FrequencyResponses.h5
 /FrequencyResponses/MetaData/Snapshot/Index Dataset {15600}
 /FrequencyResponses/MetaData/Snapshot/TimeStamp Dataset {15600}
 ```
-The 'FrequencyResponses' group comprises the actual channel frequency responses within the dataset 'Data'. This data is of shape $(15600 \times 1024 \times 36)$, that is $\text{Symbol Timestamp} \times \text{Subcarrier Frequency} \times \text{Bistatic Measurement Angle}$. In addition, the 'MetaData' group comprises the actual physical values of these measurement dimensions.
+The 'FrequencyResponses' group comprises the actual channel frequency responses within the dataset 'Data'. This data is of shape \((15600 \times 1024 \times 36)\), that is \(\text{Symbol Timestamp} \times \text{Subcarrier Frequency} \times \text{Bistatic Measurement Angle}\). In addition, the 'MetaData' group comprises the actual physical values of these measurement dimensions.
 
 #### Location Files
 
@@ -135,7 +135,7 @@ h5ls -r LocationTx.h5
 /PoseData/RotZ           Dataset {1}
 ```
 
-The location of the RX did not change during one measurement. However, it was varies between the measurement to create different bistatic measuremnt angles $\delta$. Consequently, all HDF5 datasets have one entry for each $\delta$.
+The location of the RX did not change during one measurement. However, it was varies between the measurement to create different bistatic measuremnt angles \(\delta\). Consequently, all HDF5 datasets have one entry for each \(\delta\).
 ```bash
 h5ls -r LocationRx.h5
 /                        Group
@@ -151,7 +151,7 @@ h5ls -r LocationRx.h5
 /PoseData/RotZ           Dataset {36}
 ```
 
-In contrast, the positions of the spheres did vary during one measurement. The corresponding positions have been recorded with the same sample rate as the frequency response symbols, resulting in $15,600$ positions. Since the trajectories of the spheres were similar for all measurements, the sphere position does not depend on $\delta$.
+In contrast, the positions of the spheres did vary during one measurement. The corresponding positions have been recorded with the same sample rate as the frequency response symbols, resulting in \(15,600\) positions. Since the trajectories of the spheres were similar for all measurements, the sphere position does not depend on \(\delta\).
 ```bash
 h5ls -r Location.h5
 /                        Group
@@ -170,7 +170,7 @@ h5ls -r Location.h5
 
 #### Result Files
 
-The result files store parameter estimation results from the measured frequency responses. In fact, we performed delay-Doppler estimation on non-overlapping frames of size $(100 \times 1024)$. This choice implies that one snapshots comprises $100$ frequency response symbols, resulting in $156$ frames for the complete dataset.
+The result files store parameter estimation results from the measured frequency responses. In fact, we performed delay-Doppler estimation on non-overlapping frames of size \((100 \times 1024)\). This choice implies that one snapshots comprises \(100\) frequency response symbols, resulting in \(156\) frames for the complete dataset.
 ```bash
 h5ls -r Results_delta0.h5
 /                        Group
@@ -192,7 +192,7 @@ The following sections provide several introductory code snippets that should de
 
 ### Loading Channel Data
 
-The complex channel frequency response is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts of the complex values, respectively. The following Python function loads the snapshots at the bistatic measurement angle `delta` within the interval `[start, stop)`.
+The complex channel frequency response is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts of the complex values, respectively. The following Python function loads the snapshots at one specific bistatic measurement angle within the interval `[start, stop)`.
 
 ```python
 import h5py
@@ -206,12 +206,12 @@ def load_complex_channel_data(file_path, sample_indices, bistatic_angle):
         sample_indices: Tuple[int, int]: A slice (start, stop) defining the
             slow-time (snapshot) samples to load from file.
         bistatic_angle: int: An integer in the range [0,35] defining the bistatic
-            measurement angle $\delta$ between transmitter and receiver.
+            measurement angle \delta between transmitter and receiver.
     Returns:
         complex_data: np.ndarray: 2-D array (slow-time, frequency)
         ts: np.ndarray: array of timestamps [s] corresponding to the loaded samples
         ff: np.ndarray: array of subcarrier frequency values [Hz]
-        aa: int: bistatic measurement angle $\delta$ [deg]
+        aa: int: bistatic measurement angle \delta [deg]
     """
     sample_indices_slice = slice(sample_indices[0], sample_indices[1])
     timestamp_path = "/FrequencyResponses/MetaData/Snapshot/TimeStamp"
@@ -257,7 +257,7 @@ def load_position(file_path, sample_indices=None, bistatic_angle=None)
         sample_indices: Tuple[int, int]: A slice (start, stop) defining the
             slow-time (snapshot) samples to load from file.
         bistatic_angle: int: An integer in the range [0,35] defining the bistatic
-            measurement angle $\delta$ between transmitter and receiver.
+            measurement angle \delta between transmitter and receiver.
     Returns:
         pos_arr: np.ndarray: 2-D array (slow_time, [x,y,z])
     """
