@@ -46,7 +46,7 @@ The [following article](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/
 
 ![](static/rhino_measurement_setup.png)
 
-By simultaneously recording channel frequency responses and the positions of TX, RX, and both spheres, it is possible to calculate the analytical delay-Doppler parameters of both spheres. These values serve as ground truth in the corresponding delay-Doppler spectra, with is shown by the following figure.
+By simultaneously recording channel frequency responses and the positions of TX, RX, and both spheres, it is possible to calculate the analytical delay-Doppler parameters of both spheres. These values serve as ground truth in the corresponding delay-Doppler spectra, whith is shown by the following figure.
 
 ![](static/rhino_dd_example.png)
 
@@ -195,7 +195,7 @@ The following sections provide several introductory code snippets that should de
 The complex channel frequency response is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts of the complex values, respectively. The following Python function loads the snapshots at one specific bistatic measurement angle within the interval `[start, stop)`.
 
 ```python
-import h5py
+import h5py as h5
 import numpy as np
 
 def load_complex_channel_data(file_path, sample_indices, bistatic_angle):
@@ -218,7 +218,7 @@ def load_complex_channel_data(file_path, sample_indices, bistatic_angle):
     frequencies_path = "/FrequencyResponses/MetaData/Frequency/Frequency"
     bistatic_angle_path = "FrequencyResponses/MetaData/Angle/BistaticAngle"
 
-    with h5py.File(file_path, "r") as f:
+    with h5.File(file_path, "r") as f:
         # Read timestamp, frequency axes and compound dataset
         ts = f[timestamp_path][sample_indices_slice]
         ts_unitscaler = f[timestamp_path].attrs["UnitScaler"]
@@ -229,7 +229,9 @@ def load_complex_channel_data(file_path, sample_indices, bistatic_angle):
         aa = f[bistatic_angle_path][bistatic_angle]
         aa_scaler = f[bistatic_angle_path].attrs["UnitScaler"]
 
-        data = f["/FrequencyResponses/Data"][sample_indices_slice,:,bistatic_angle]
+        data = f["/FrequencyResponses/Data"][
+            sample_indices_slice, :, bistatic_angle
+        ]
 
     complex_data = data["real"] + 1j * data["imag"]
 
@@ -249,7 +251,7 @@ The following snippet loads position information of TX, RX, or a sphere.
 import h5py as h5
 import numpy as np
 
-def load_position(file_path, sample_indices=None, bistatic_angle=None)
+def load_position_data(file_path, sample_indices=None, bistatic_angle=None):
     """
     Loads position information of TX, RX, or target.
     Arguments:
@@ -267,23 +269,27 @@ def load_position(file_path, sample_indices=None, bistatic_angle=None)
             x_pos = ff["PoseData/PosX"][:]
             y_pos = ff["PoseData/PosY"][:]
             z_pos = ff["PoseData/PosZ"][:]
+            pos_arr = np.array(
+                [x_pos, y_pos, z_pos], dtype=np.float64
+            ).reshape((1, 3))
         # no time given = RX Pos
         elif sample_indices is None:
             x_pos = ff["PoseData/PosX"][bistatic_angle]
             y_pos = ff["PoseData/PosY"][bistatic_angle]
             z_pos = ff["PoseData/PosZ"][bistatic_angle]
+            pos_arr = np.array(
+                [x_pos, y_pos, z_pos], dtype=np.float64
+            ).reshape((1, 3))
         # no angle given = Target Pos
         elif bistatic_angle is None:
             sample_indices_slice = slice(sample_indices[0], sample_indices[1])
-            x_pos = ff["PoseData/PosX"][bistatic_angle]
-            y_pos = ff["PoseData/PosY"][bistatic_angle]
-            z_pos = ff["PoseData/PosZ"][bistatic_angle]
+            x_pos = ff["PoseData/PosX"][sample_indices_slice]
+            y_pos = ff["PoseData/PosY"][sample_indices_slice]
+            z_pos = ff["PoseData/PosZ"][sample_indices_slice]
+            pos_arr = np.column_stack((x_pos, y_pos, z_pos))
         else:
             Exception("Unable to load position information!")
-    # combine into position array (slow_)
-    pos_arr = np.array([x_pos, y_pos, z_pos], dtype="np.float64").reshape((1, 3))
     return pos_arr
-
 ```
 
 ### Calculating Ground Truth Parameters
@@ -295,9 +301,9 @@ import h5py as h5
 import numpy as np
 import scipy as sc
 
-def position_vector(tx_pos, tar_pos, rx_pos):
+def calc_position_vector(tx_pos, tar_pos, rx_pos):
     """
-    Calculates the position vector between TX-target and target-RX.
+    Calculates the position vector between target-TX and target-RX.
     Arguments:
         tx_pos: np.ndarray: array of the TX position (fixed)
         tar_pos: np.ndarray: array of the target position
@@ -306,11 +312,12 @@ def position_vector(tx_pos, tar_pos, rx_pos):
         tx_vec: np.ndarray: array of the position vector TX-target
         rx_vec: np.ndarray: array of the position vector target-RX
     """
-    tx_vec = tar_pos - tx_pos
+    tx_vec = tx_pos - tar_pos
     rx_vec = rx_pos - tar_pos
     return tx_vec, rx_vec
 
-def get_delay(tx_vec, rx_vec):
+
+def calc_delay(tx_vec, rx_vec):
     """
     Calculates the bistatic delay given TX-target and target-RX vectors. Returns
     the delay in the middle of the frame.
@@ -320,12 +327,13 @@ def get_delay(tx_vec, rx_vec):
     Returns:
         delay: float: Bistatic ground truth delay of the target
     """
-    total_len = np.linalg.norm(tx_vec) + np.linalg.norm(rx_vec)
+    total_len = np.linalg.norm(tx_vec, axis=1) + np.linalg.norm(rx_vec, axis=1)
     delay = total_len / sc.constants.c
-    delay = delay[delay.shape[0]//2]
+    delay = delay[delay.shape[0] // 2]
     return delay
 
-def get_doppler(tar_pos, tx_vec, rx_vec):
+
+def calc_doppler(tar_pos, tx_vec, rx_vec, t_delta, lambda_c):
     """
     Calculates the bistatic Doppler given TX-target and target-RX vectors. Returns
     the Doppler in the middle of the frame.
@@ -340,9 +348,11 @@ def get_doppler(tar_pos, tx_vec, rx_vec):
     """
     # finite differences to approximate velocity in (x,y,z)
     d_tar_pos = np.diff(tar_pos, n=1, axis=0)
-    d_tar = d_tar_pos[d_tar_pos.shape[0]//2]
+    d_tar = d_tar_pos[d_tar_pos.shape[0] // 2]
     v_tar = d_tar / t_delta
     # normalize vectors for projection
+    tx_vec = tx_vec[tx_vec.shape[0] // 2]
+    rx_vec = rx_vec[rx_vec.shape[0] // 2]
     tx_vec_norm = tx_vec / np.linalg.norm(tx_vec)
     rx_vec_norm = rx_vec / np.linalg.norm(rx_vec)
     # project v_tar onto the tx-tar and tar-rx vectors
@@ -361,79 +371,104 @@ A common step in radar-like applications is the caluclation of the delay-Doppler
 
 ```python
 import matplotlib.pyplot as plt
-# bistatic angle
-delta = 6
-# frame time index
-frame_indices = (3600, 3700)
-# oversampling factor (zero padding for fft interpolation)
-osf=10
 
-# load one frame of 100 symbols [3600, 3700)
+##################### DEFINE PARAMETERS #########################
+# bistatic angle index
+bistatic_angle = 2
+# starting index
+start_idx = 2000
+# frame size in number of elements
+frame_size = 100
+# frame indices
+frame_indices = (start_idx, start_idx + frame_size)
+# oversampling factor (zero padding for fft interpolation)
+osf = 10
+
+###################### DELAY-DOPPLER SPECTRUM ##################
 # loaded complex_data has dims (slow-time, sub-carriers)
 complex_data, ts, ff, aa = load_complex_channel_data(
-    "Tx_0_to_Rx_0-350/Data/FrequencyResponses.h5",
+    "rhino/Tx_0_to_Rx_0-350/Data/FrequencyResponses.h5",
     frame_indices,
-    delta,
+    bistatic_angle,
 )
-
 ts_size = ts.shape[0]
 ff_size = ff.shape[0]
-
 # symbol duration
 t_delta = ts[1] - ts[0]
 # carrier wavelength
-f_c = ff[-1] - ff[0]
+f_c = ff[ff.shape[0] // 2]
 lambda_c = sc.constants.c / f_c
 
 # transform slow-time to Doppler frequency
-dd_map = np.fft.fftshift(np.fft.fft(complex_data, axis=0, n=osf*ts_size))
+dd_map = np.fft.fftshift(np.fft.fft(complex_data, axis=0, n=osf * ts_size))
 # trasnform sub-carriers to delay
-dd_map = np.fft.ifft(np.fft.ifftshift(dd_map, axes=1), axis=1, n=osf*ff_size)
+dd_map = np.fft.ifft(np.fft.ifftshift(dd_map, axes=1), axis=1, n=osf * ff_size)
+# transform to dB and normalize
+dd_map = np.abs(dd_map) ** 2
+dd_map = dd_map / np.max(dd_map)
+dd_map_db = 10 * np.log10(dd_map)
 # create axes for plotting
 doppler_axis = np.fft.fftshift(np.fft.fftfreq(len(ts), d=(ts[1] - ts[0])))
 delay_axis = np.fft.ifftshift(np.fft.fftfreq(len(ff), d=(ff[1] - ff[0])))
 delay_axis = delay_axis - delay_axis.min()
-# dd_map to abs^2
-dd_map = np.abs(dd_map)**2
-# normalize dd_map
-dd_map = dd_map / np.max(dd_map)
-# dd_map to dB
-dd_map_db = 10*np.log10(dd_map)
+doppler_axis += (doppler_axis[1] - doppler_axis[0]) / 2
 
+########################### GROUND TRUTH #######################
 # ground truth section
-tx_path = "Tx_0_to_Rx_0-350/Data/LocationTx.h5"
-rx_path = "Tx_0_to_Rx_0-350/Data/LocationRx.h5"
-tar1_path = "Sphere_1/Data/Location.h5"
-tar2_path = "Sphere_2/Data/Location.h5"
+tx_path = "rhino/Tx_0_to_Rx_0-350/Data/LocationTx.h5"
+rx_path = "rhino/Tx_0_to_Rx_0-350/Data/LocationRx.h5"
+tar1_path = "rhino/Sphere_1/Data/Location.h5"
+tar2_path = "rhino/Sphere_2/Data/Location.h5"
 
 # load tx and rx pos (same for both spheres!)
-tx_pos = load_position(tx_path)
-rx_pos = load_position(rx_path, bistatic_angle=delta)
+tx_pos = load_position_data(tx_path)
+rx_pos = load_position_data(rx_path, bistatic_angle=bistatic_angle)
 # sphere 1 ground truth
-tar1_pos = load_position(tar1_path, frame_indices)
-tx1_vec, rx1_vec = position_vector(tx_pos, tar1_pos, rx_pos)
-tar1_delay = get_delay(tx1_vec, rx1_vec)
-tar1_doppler = get_doppler(tar1_pos, tx1_vec, rx1_vec, t_delta, lambda_c)
+tar1_pos = load_position_data(tar1_path, frame_indices)
+tx1_vec, rx1_vec = calc_position_vector(tx_pos, tar1_pos, rx_pos)
+tar1_delay = calc_delay(tx1_vec, rx1_vec)
+tar1_doppler = calc_doppler(tar1_pos, tx1_vec, rx1_vec, t_delta, lambda_c)
 # sphere 1 ground truth
-tar2_pos = load_position(tar2_path, frame_indices)
-tx2_vec, rx2_vec = position_vector(tx_pos, tar2_pos, rx_pos)
-tar2_delay = get_delay(tx2_vec, rx2_vec)
-tar2_doppler = get_doppler(tar2_pos, tx2_vec, rx2_vec, t_delta, lambda_c)
+tar2_pos = load_position_data(tar2_path, frame_indices)
+tx2_vec, rx2_vec = calc_position_vector(tx_pos, tar2_pos, rx_pos)
+tar2_delay = calc_delay(tx2_vec, rx2_vec)
+tar2_doppler = calc_doppler(tar2_pos, tx2_vec, rx2_vec, t_delta, lambda_c)
 
-# plotting section
+############################## VISUALIZATION ##########################
 plt.figure(figsize=(8, 6))
 # plot dd spectrum
 plt.imshow(
-    dd_map_db.T, # .T so that Doppler is the horizontal axis
-    extent=[delay_axis[0], delay_axis[-1], doppler_axis[0], doppler_axis[-1]],
-    #aspect="auto",
+    dd_map_db.T,  # .T so that Doppler is the horizontal axis
+    # extent=[delay_axis[0], delay_axis[-1], doppler_axis[0], doppler_axis[-1]],
+    extent=[doppler_axis[0], doppler_axis[-1], delay_axis[0], delay_axis[-1]],
+    aspect="auto",
     vmax=0,
     vmin=-60,
     origin="lower",
 )
 # plot ground truth
-plt.scatter(tar1_delay, tar1_doppler)
-plt.scatter(tar2_delay, tar2_doppler)
+plt.scatter(
+    tar1_doppler,
+    tar1_delay,
+    marker="o",
+    facecolors="none",
+    edgecolors="red",
+    linewidths=3,
+    zorder=1,
+    s=100,
+    label="Sphere_1",
+)
+plt.scatter(
+    tar2_doppler,
+    tar2_delay,
+    marker="o",
+    facecolors="none",
+    edgecolors="black",
+    linewidths=3,
+    zorder=1,
+    s=100,
+    label="Sphere_2",
+)
 
 plt.xlabel("Delay (s)")
 plt.ylabel("Doppler Frequency (Hz)")
@@ -442,9 +477,13 @@ plt.colorbar(label="Normalized Power (dB)")
 # limit for better visibility
 plt.xlim([-2000, 2000])
 plt.ylim([0, 200e-9])
+plt.legend()
 
 plt.show()
 ```
+Executing the above snippet produces the following delay-Doppler spectrum.
+
+![](static/rhino_dd_snippet_result.png)
 
 ## External References
 
