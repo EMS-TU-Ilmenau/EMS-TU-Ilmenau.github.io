@@ -327,6 +327,7 @@ def calc_delay(tx_vec, rx_vec):
     Returns:
         delay: float: Bistatic ground truth delay of the target
     """
+    # use middle of the frame for ground truth
     total_len = np.linalg.norm(tx_vec, axis=1) + np.linalg.norm(rx_vec, axis=1)
     delay = total_len / sc.constants.c
     delay = delay[delay.shape[0] // 2]
@@ -350,9 +351,10 @@ def calc_doppler(tar_pos, tx_vec, rx_vec, t_delta, lambda_c):
     d_tar_pos = np.diff(tar_pos, n=1, axis=0)
     d_tar = d_tar_pos[d_tar_pos.shape[0] // 2]
     v_tar = d_tar / t_delta
-    # normalize vectors for projection
+    # use middle of the frame for ground truth
     tx_vec = tx_vec[tx_vec.shape[0] // 2]
     rx_vec = rx_vec[rx_vec.shape[0] // 2]
+    # normalize vectors for projection
     tx_vec_norm = tx_vec / np.linalg.norm(tx_vec)
     rx_vec_norm = rx_vec / np.linalg.norm(rx_vec)
     # project v_tar onto the tx-tar and tar-rx vectors
