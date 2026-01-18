@@ -446,6 +446,7 @@ plt.imshow(
     vmin=-60,
     origin="lower",
 )
+plt.colorbar(label="Normalized Power (dB)")
 # plot ground truth
 plt.scatter(
     tar1_doppler,
@@ -473,7 +474,6 @@ plt.scatter(
 plt.xlabel("Delay (s)")
 plt.ylabel("Doppler Frequency (Hz)")
 plt.title("Delay-Doppler Map")
-plt.colorbar(label="Normalized Power (dB)")
 # limit for better visibility
 plt.xlim([-2000, 2000])
 plt.ylim([0, 200e-9])
