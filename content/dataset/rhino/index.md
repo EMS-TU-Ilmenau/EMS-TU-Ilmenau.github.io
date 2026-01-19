@@ -111,12 +111,12 @@ Further information on the three algorithms and on how their results are used fo
 ### File Format
 
 We store the data within HDF5 files. 
-An abstract description of this file format can be found on our [website](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/){:target="_blank"}. 
+An abstract description of this file format can be found on our [website](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/).
 When working with HDF5 files, we found the `h5ls` command line tool extremly helpful. 
 This tool enables the generation of tree-like overviews of HDF5 files, presenting all relevant information, such as group and dataset names, dataset shapes, and available metadata. 
 Utilizing this information, it is easy to navigate the HDF5 file and load the desired data into memory.
 
-The `h5ls` tool is available on the official [HDF5 website](https://support.hdfgroup.org/documentation/hdf5/latest/_h5_t_o_o_l__l_s__u_g.html){:target="_blank" rel="noopener noreferrer"} and you can analyze an HDF5 file by invoking the following command.
+The `h5ls` tool is available on the official [HDF5 website](https://support.hdfgroup.org/documentation/hdf5/latest/_h5_t_o_o_l__l_s__u_g.html) and you can analyze an HDF5 file by invoking the following command.
 ```bash
 h5ls -r h5_file.h5
 ```
@@ -527,16 +527,16 @@ Executing the above snippet produces the following delay-Doppler spectrum.
 ### Dataset
 
 - [1] L. Mohr, M. Döbereiner, C. Andrich, A. Schwind, C. Schneider, and R. Thomä, “Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications,” Jan. 15, 2026. DOI:
-    - [available here](https://refodat.de/receive/refodat_mods_00000072){:target="_blank" rel="noopener noreferrer"}
+    - [available here](https://refodat.de/receive/refodat_mods_00000072)
 
 ### Related Publications
 
 - [2] A. Schwind, M. Döbereiner, C. Andrich, P. Wendland, G. Del Galdo, G. Schäfer, R. S. Thomä, and M. A. Hein, “Bi‑static delay‑Doppler reference for cooperative passive vehicle‑to‑X radar applications,” IET Microwaves, Antennas & Propagation, vol. 14, no. 14, pp. 1749–1757, 2020. DOI: 10.1049/iet‑map.2019.0991
-    - [available here](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991){:target="_blank" rel="noopener noreferrer"}
+    - [available here](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991)
 - [3] L. Mohr, “Measurement-Based Performance Analysis of RADAR Estimation Algorithms,” 2024. DOI: 10.22032/dbt.63482
-    - [available here](https://www.db-thueringen.de/receive/dbt_mods_00063482){:target="_blank" rel="noopener noreferrer"}
+    - [available here](https://www.db-thueringen.de/receive/dbt_mods_00063482)
 - [4] L. Mohr, M. Döbereiner, S. Schieler, J. Robert, C. Schneider, S. Semper, and R. S. Thomä, “Performance Comparison of Joint Delay‑Doppler Estimation Algorithms,” Oct. 2025. DOI: 10.48550/arXiv.2510.16200
-    - [available here](https://arxiv.org/abs/2510.16200){:target="_blank" rel="noopener noreferrer"}
+    - [available here](https://arxiv.org/abs/2510.16200)
 
 ## Citation
 
