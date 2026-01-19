@@ -111,7 +111,7 @@ Further information on the three algorithms and on how their results are used fo
 ### File Format
 
 We store the data within HDF5 files. 
-An abstract description of this file format can be found on our [website](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/){:target="_blank" rel="noopener noreferrer"}. 
+An abstract description of this file format can be found on our [website](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/){:target="_blank"}. 
 When working with HDF5 files, we found the `h5ls` command line tool extremly helpful. 
 This tool enables the generation of tree-like overviews of HDF5 files, presenting all relevant information, such as group and dataset names, dataset shapes, and available metadata. 
 Utilizing this information, it is easy to navigate the HDF5 file and load the desired data into memory.
