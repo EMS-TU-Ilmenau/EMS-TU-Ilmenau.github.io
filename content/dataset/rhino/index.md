@@ -479,7 +479,6 @@ plt.figure(figsize=(8, 6))
 # plot dd spectrum
 plt.imshow(
     dd_map_db.T,  # .T so that Doppler is the horizontal axis
-    # extent=[delay_axis[0], delay_axis[-1], doppler_axis[0], doppler_axis[-1]],
     extent=[doppler_axis[0], doppler_axis[-1], delay_axis[0], delay_axis[-1]],
     aspect="auto",
     vmax=0,
