@@ -46,21 +46,22 @@ This dataset has a number of possible applications, for example
 
 ## Getting Started
 
-The "Rhino" dataset is published and available for download [&#91;1&#93;](#dataset).
+The "Rhino" dataset is published and available for download [&#91;D1&#93;](#dataset-and-documentation).
+In addition, we provide a comprehensive documentation on our website [&#91;D2&#93;](#dataset-and-documentation).
 Once downloaded, use the Python snippets [provided below](#data-processing) to load and process the data.
 
 ## Measurement Setup
 
-In [&#91;2&#93;](#related-publications), Schwind presents a detailed description of the measurement setup and some initial delay-Doppler parameter estimation results.
+In [&#91;1&#93;](#related-publications), Schwind presents a detailed description of the measurement setup and some initial delay-Doppler parameter estimation results.
 In essence, two metallic spheres are mounted on a metal rod attached to a motor.
 The bistatic measurement angle \(\delta\) spans between the transmitter (TX), the motor, and the receiver (RX).
 In the dataset, this angle varies in ten-degree increments.
-As a result, the channel measurements include forward \((\delta \approx 180^\circ)\), backward \((\delta \approx 0^\circ)\), and bistatis scattering scenarios.
+As a result, the channel measurements include forward \((\delta \approx 180^\circ)\), backward \((\delta \approx 0^\circ)\), and bistatic scattering scenarios.
 Below you can find a schematic drawing of the setup.
 
 ![](static/rhino_measurement_setup.png)
 
-By simultaneously recording channel frequency responses and the positions of TX, RX, and both spheres, it is possible to calculate the analytical delay-Doppler parameters of both spheres.
+By simultaneously recording channel frequency responses and the positions of the TX, RX, and both spheres, it is possible to calculate the analytical delay-Doppler parameters of both spheres.
 These values serve as ground truth in the corresponding delay-Doppler spectra, as shown in the following figure.
 
 ![](static/rhino_dd_example.png)
@@ -100,18 +101,18 @@ rhino/
         ├── LocationRx.h5
         └── LocationTx.h5
 ```
-The subdirectory `Tx_0_to_Rx_0-350/` comprises the measured channel frequency responses `FrequencyResponses.h5` as well as the corresponding positions of TX `LocationTx.h5` and RX `LocationRx.h5`.
+The subdirectory `Tx_0_to_Rx_0-350/` comprises the measured channel frequency responses `FrequencyResponses.h5` as well as the corresponding positions of the TX `LocationTx.h5` and the RX `LocationRx.h5`.
 Furthermore, `Sphere_1/` and `Sphere_2/` store the location information of the two passive targets in the `Location.h5` files and some additional target-related meta information in the `Info.json` files.
 
-In addition to the measurements, we provide our delay-Doppler parameter estimation results of the data within the `results/` directory utilizing three different algorithms, namely PyMax, DeepEst, and CFAR.
+In addition to the measurements, we provide our delay-Doppler parameter estimation results of the data within the `results/` directory, utilizing three different algorithms, namely PyMax, DeepEst, and CFAR.
 Each algorithm-specific subdirectory contains one file, `Results_delta{delta}.h5`, for each bistatic measurement angle \(\delta\). 
 The results are part of a measurement-based performance comparison of delay-Doppler parameter estimation algorithms.
-Further information on the three algorithms and on how their results are used for comparison can be found in [&#91;3&#93;](#related-publications) and [&#91;4&#93;](#related-publications).
+Further information on the three algorithms and on how their results are used for comparison can be found in [&#91;2&#93;](#related-publications) and [&#91;3&#93;](#related-publications).
 
 ### File Format
 
 We store the data within HDF5 files. 
-An abstract description of this file format can be found on our [website](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/).
+An abstract description of this file format can be found on our website [&#91;D3&#93;](#dataset-and-documentation).
 When working with HDF5 files, we found the `h5ls` command line tool extremly helpful. 
 This tool enables the generation of tree-like overviews of HDF5 files, presenting all relevant information, such as group and dataset names, dataset shapes, and available metadata. 
 Utilizing this information, it is easy to navigate the HDF5 file and load the desired data into memory.
@@ -125,7 +126,7 @@ The following sections introduce the three types of HDF5 files present in the "R
 
 #### Frequency Response File
 
-The `FrequencyResponses.h5` file has the following structure
+The `FrequencyResponses.h5` file has the following structure.
 ```bash
 h5ls -r FrequencyResponses.h5
 /                        Group
@@ -146,9 +147,9 @@ In addition, the `MetaData` group contains the physical values associated with t
 
 #### Location Files
 
-The location files store the location of TX, RX, and both spheres.
+The location files store the location of the TX, RX, and both spheres.
 To this end, `LocationTx.h5` file contains the position and orientation of the TX, which remained constant throughout the entire measurement campaign. 
-Consequently, all datasets contain only a single element.
+Consequently, all corresponding datasets contain only a single element.
 ```bash
 h5ls -r LocationTx.h5
                         Group
@@ -332,7 +333,7 @@ def load_position_data(file_path, sample_indices=None, bistatic_angle=None):
 
 Calculating the bistatic delay and Doppler of a sphere requires the positions of the TX, RX, and the sphere. 
 The following Python scripts demonstrate one approach to perform this calculation. 
-Further information about the underlying formula can be found in [&#91;2&#93;](#related-publications).
+Further information about the underlying formulas can be found in [&#91;1&#93;](#related-publications).
 ```python
 import h5py as h5
 import numpy as np
@@ -356,7 +357,7 @@ def calc_position_vector(tx_pos, tar_pos, rx_pos):
 
 def calc_delay(tx_vec, rx_vec):
     """
-    Calculates the bistatic delay given TX-target and target-RX vectors. Returns
+    Calculates the bistatic delay given target-TX and target-RX vectors. Returns
     the delay in the middle of the frame.
     Arguments:
         tx_vec: np.ndarray: array of position vector TX-target
@@ -364,16 +365,16 @@ def calc_delay(tx_vec, rx_vec):
     Returns:
         delay: float: Bistatic ground truth delay of the target
     """
-    # use middle of the frame for ground truth
     total_len = np.linalg.norm(tx_vec, axis=1) + np.linalg.norm(rx_vec, axis=1)
     delay = total_len / sc.constants.c
+    # use middle of the frame for ground truth
     delay = delay[delay.shape[0] // 2]
     return delay
 
 
 def calc_doppler(tar_pos, tx_vec, rx_vec, t_delta, lambda_c):
     """
-    Calculates the bistatic Doppler given TX-target and target-RX vectors. Returns
+    Calculates the bistatic Doppler given target-TX and target-RX vectors. Returns
     the Doppler in the middle of the frame.
     Arguments:
         tar_pos: np.ndarray: array of target position
@@ -524,19 +525,24 @@ Executing the above snippet produces the following delay-Doppler spectrum.
 
 ## References
 
-### Dataset
+### Dataset and Documentation
 
-- [1] L. Mohr, M. Döbereiner, C. Andrich, A. Schwind, C. Schneider, and R. Thomä, “Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications,” Jan. 15, 2026. DOI:
+- [D1] L. Mohr, M. Döbereiner, C. Andrich, A. Schwind, C. Schneider, and R. Thomä, “Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications,” Jan. 15, 2026. DOI:
     - [available here](https://refodat.de/receive/refodat_mods_00000072)
+- [D2] "Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications," EMS TU Ilmenau. [Online]
+    - [available here](https://ems-tu-ilmenau.github.io/dataset/rhino/)
+- [D3] "Abstract Specification," EMS TU Ilmenau. [Online]
+    - [available here](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/)
 
 ### Related Publications
 
-- [2] A. Schwind, M. Döbereiner, C. Andrich, P. Wendland, G. Del Galdo, G. Schäfer, R. S. Thomä, and M. A. Hein, “Bi‑static delay‑Doppler reference for cooperative passive vehicle‑to‑X radar applications,” IET Microwaves, Antennas & Propagation, vol. 14, no. 14, pp. 1749–1757, 2020. DOI: 10.1049/iet‑map.2019.0991
+- [1] A. Schwind, M. Döbereiner, C. Andrich, P. Wendland, G. Del Galdo, G. Schäfer, R. S. Thomä, and M. A. Hein, “Bi‑static delay‑Doppler reference for cooperative passive vehicle‑to‑X radar applications,” IET Microwaves, Antennas & Propagation, vol. 14, no. 14, pp. 1749–1757, 2020. DOI: 10.1049/iet‑map.2019.0991
     - [available here](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991)
-- [3] L. Mohr, “Measurement-Based Performance Analysis of RADAR Estimation Algorithms,” 2024. DOI: 10.22032/dbt.63482
+- [2] L. Mohr, “Measurement-Based Performance Analysis of RADAR Estimation Algorithms,” 2024. DOI: 10.22032/dbt.63482
     - [available here](https://www.db-thueringen.de/receive/dbt_mods_00063482)
-- [4] L. Mohr, M. Döbereiner, S. Schieler, J. Robert, C. Schneider, S. Semper, and R. S. Thomä, “Performance Comparison of Joint Delay‑Doppler Estimation Algorithms,” Oct. 2025. DOI: 10.48550/arXiv.2510.16200
+- [3] L. Mohr, M. Döbereiner, S. Schieler, J. Robert, C. Schneider, S. Semper, and R. S. Thomä, “Performance Comparison of Joint Delay‑Doppler Estimation Algorithms,” Oct. 2025. DOI: 10.48550/arXiv.2510.16200
     - [available here](https://arxiv.org/abs/2510.16200)
+
 
 ## Citation
 
