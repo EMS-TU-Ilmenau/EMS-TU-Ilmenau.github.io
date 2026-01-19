@@ -164,7 +164,7 @@ h5ls -r LocationTx.h5
 /PoseData/RotZ           Dataset {1}
 ```
 The location of the RX did not change during a single measurement. 
-However, it varied between measurements to create different bistatic measuremnt angles \(\delta\). 
+However, it varied between measurements to create different bistatic measurement angles \(\delta\). 
 Consequently, all HDF5 datasets contain one entry for each angle.
 ```bash
 h5ls -r LocationRx.h5
