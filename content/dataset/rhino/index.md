@@ -9,7 +9,10 @@ featured_image = "static/rhino_peak.jpg"
     math=true
 +++
 
-The "Rhino" dataset comprises multiple bistatic radio channel measurements between one stationary transmitter and one stationary receiver recorded within a controlled environment. During the individual measurements, a target emulator rotates two metallic spheres, thereby creating two passive targets within the wireless channel. Since the position of transmitter, receiver, and both spheres have been recorded during the measurements, it is possible to calculate an analytical delay-Doppler ground truth for the multipath components of both spheres. Consequently, "Rhino" constitutes a benchmark for the objective and reproducible evaluation of delay-Doppler estimation algorithms.
+The "Rhino" dataset comprises multiple bistatic radio channel measurements between one stationary transmitter and one stationary receiver recorded within a controlled environment.
+During the individual measurements, a target emulator rotates two metallic spheres, thereby creating two passive targets within the wireless channel.
+Since the position of transmitter, receiver, and both spheres have been recorded during the measurements, it is possible to calculate an analytical delay-Doppler ground truth for the multipath components of both spheres.
+Consequently, "Rhino" constitutes a benchmark for the objective and reproducible evaluation of delay-Doppler parameter estimation algorithms.
 
 <!--more-->
 
@@ -28,34 +31,47 @@ The "Rhino" dataset comprises multiple bistatic radio channel measurements betwe
 
 ## Introduction
 
-"Rhino" is part of a measurement campaign that took place in Ilmenau, Germany in February 2019. The measurements have been conducted in a controlled environment within the virtual road simulation and test area (VISTA) which is part of the Thüringer Innovationszentrum Mobilität (ThIMo). The goal of the campaign was to provide metrolocically assessable SISO channel data which can be utilized to evaluate and benchmark delay-Doppler parameter estimation algorithms. Therefore, the measurement setup comprises two rotating spheres which result in two distinct propagation paths within the measured channel frequency responses. The "Rhino" datasets provides these channel frequency responses for a variety of bistatic measurement angles, covering forward, backward, and bistatic scattering scenarios. Consequently, the available data allows for the assessment of delay-Doppler parameter estimation algorithms under varying conditions, including changes in the ratio of Line-of-Sight (LoS) strength to target reflection strength, as well as the resolution of propagation paths that are below the Rayleigh limit.
+"Rhino" is part of a measurement campaign that took place in Ilmenau, Germany in February 2019.
+The measurements have been conducted in a controlled environment within the virtual road simulation and test area (VISTA) which is part of the Thüringer Innovationszentrum Mobilität (ThIMo).
+The goal of the campaign was to provide metrologically assessable SISO channel data that can be utilized to evaluate and benchmark delay-Doppler parameter estimation algorithms.
+Therefore, the measurement setup comprises two rotating spheres, resulting in two distinct propagation paths within the measured channel frequency responses.
+The "Rhino" datasets provides these channel frequency responses for a variety of bistatic measurement angles \(\delta\), covering forward, backward, and bistatic scattering scenarios.
+Consequently, the available data allows for the assessment of delay-Doppler parameter estimation algorithms under varying conditions, including changes in the ratio of Line-of-Sight (LoS) strength to target reflection strength, as well as the resolution of propagation paths that are below the Rayleigh limit.
 
 ## Applications
 This dataset has a number of possible applications, for example
-* the validation of radar algorithms in a controlled environment (passive target detection, tracking, and localization) or
-* the assessment of the high resolution capabilities of delay-Doppler estimation algorithms or
+* the validation of radar algorithms in a controlled environment (passive target detection, tracking, and localization),
+* the assessment of the high resolution capabilities of delay-Doppler estimation algorithms, or
 * the performance comparison of different parameter estimation algorithms.
 
 ## Getting Started
 
-This dataset is published and available for download at the [following data repository](https://refodat.de/receive/refodat_mods_00000072). Once downloaded, use the Python snippets [provided](#loading-channel-data) to load the data.
+The "Rhino" dataset is published and available for download [&#91;1&#93;](#dataset)
+Once downloaded, use the Python snippets [provided below](#data-processing) to load and process the data.
 
 ## Measurement Setup
 
-The [following article](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991) includes a detailed description of the measurement setup and some initial delay-Doppler parameter estimation results. Two metallic spheres are mounted on a metal rod attached to a motor. The bistatic measurement angle \(\delta\) spans between the transmitter (TX), the motor, and the receiver (RX). Within the data, this angle varies in steps of ten degrees. As a result, the channel measurements include forward \((\delta \approx 180^\circ)\), backward \((\delta \approx 0^\circ)\), and bistatis scattering scenarios. Below you can find a schematic drawing of the setup.
+In [&#91;2&#93;](#related-publications), Schwind presents a detailed description of the measurement setup and some initial delay-Doppler parameter estimation results.
+In essence, two metallic spheres are mounted on a metal rod attached to a motor.
+The bistatic measurement angle \(\delta\) spans between the transmitter (TX), the motor, and the receiver (RX).
+In the dataset, this angle varies in ten-degree increments.
+As a result, the channel measurements include forward \((\delta \approx 180^\circ)\), backward \((\delta \approx 0^\circ)\), and bistatis scattering scenarios.
+Below you can find a schematic drawing of the setup.
 
 ![](static/rhino_measurement_setup.png)
 
-By simultaneously recording channel frequency responses and the positions of TX, RX, and both spheres, it is possible to calculate the analytical delay-Doppler parameters of both spheres. These values serve as ground truth in the corresponding delay-Doppler spectra, whith is shown by the following figure.
+By simultaneously recording channel frequency responses and the positions of TX, RX, and both spheres, it is possible to calculate the analytical delay-Doppler parameters of both spheres.
+These values serve as ground truth in the corresponding delay-Doppler spectra, as shown in the following figure.
 
 ![](static/rhino_dd_example.png)
 
 ## Data Format
 
+The following sections describe the structure of the dataset directory and the associated files.
+
 ### Directory Structure
 
-The datasete has the following structure.
-
+The dataset has the following structure.
 ```
 rhino/
 ├── results
@@ -84,22 +100,32 @@ rhino/
         ├── LocationRx.h5
         └── LocationTx.h5
 ```
-The subdirectory 'Tx_0_to_Rx_0-350/' comprises the measured channel frequency responses 'FrequencyResponses.h5' and the corresponding positions of TX 'LocationTx.h5' and RX 'LocationRx.h5'.
-Furthermore, 'Sphere_1/' and 'Sphere_2/' store the location information of the two passive targets in within the 'Location.h5' files and some additional target-related meta information in the 'Info.json' files.
-In addition to the measurements, we provide our delay-Doppler parameter estimation results of the data within the 'results/' directory utilizing three different algorithms, namely PyMax, DeepEst, and CFAR. These results are part of a measurement-based performance comparison of delay-Doppler parameter estimation algorithms. More information about the three algorithms and the utilization of their results for comparison can be found [here](https://www.db-thueringen.de/receive/dbt_mods_00063482) and [here](https://arxiv.org/abs/2510.16200). The subdirectory for each algorithm comprises one file 'Results_delta{delta}.h5' for every bistatic measurement angle \(\delta\). 
+The subdirectory `Tx_0_to_Rx_0-350/` comprises the measured channel frequency responses `FrequencyResponses.h5` as well as the corresponding positions of TX `LocationTx.h5` and RX `LocationRx.h5`.
+Furthermore, `Sphere_1/` and `Sphere_2/` store the location information of the two passive targets in the `Location.h5` files and some additional target-related meta information in the `Info.json` files.
+
+In addition to the measurements, we provide our delay-Doppler parameter estimation results of the data within the `results/` directory utilizing three different algorithms, namely PyMax, DeepEst, and CFAR.
+Each algorithm-specific subdirectory contains one file, `Results_delta{delta}.h5`, for each bistatic measurement angle \(\delta\). 
+The results are part of a measurement-based performance comparison of delay-Doppler parameter estimation algorithms.
+Further information on the three algorithms and on how their results are used for comparison can be found in [&#91;3&#93;](#related-publications) and [&#91;4&#93;](#related-publications).
 
 ### File Format
 
-We store the data within HDF5 files. An abstract description of this file format can be found [here](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/). When working with HDF5 files, we found the 'h5ls' command line tool extremly helpful. This tool enables us to generate tree-like overviews of HDF5 files, thereby presenting all relevant information, for example group and dataset names, dataset shapes, and available meta data. Utilizing this information, it is simple to navigate the HDF5 file and load the desired data into memory.
-The 'h5ls' tool is available on the official [HDF5 website](https://support.hdfgroup.org/documentation/hdf5/latest/_h5_t_o_o_l__l_s__u_g.html) and you can analyze an HDF5 file by invoking the following command.
+We store the data within HDF5 files. 
+An abstract description of this file format can be found on our [website](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/). 
+When working with HDF5 files, we found the `h5ls` command line tool extremly helpful. 
+This tool enables the generation of tree-like overviews of HDF5 files, presenting all relevant information, such as group and dataset names, dataset shapes, and available metadata. 
+Utilizing this information, it is easy to navigate the HDF5 file and load the desired data into memory.
+
+The `h5ls` tool is available on the official [HDF5 website](https://support.hdfgroup.org/documentation/hdf5/latest/_h5_t_o_o_l__l_s__u_g.html) and you can analyze an HDF5 file by invoking the following command.
 ```bash
 h5ls -r h5_file.h5
 ```
-The following sections introduce the three different HDF5 files that are present within the "Rhino" dataset.
+
+The following sections introduce the three types of HDF5 files present in the "Rhino" dataset.
 
 #### Frequency Response File
 
-The 'FrequencyResponses.h5' file has the following structure
+The `FrequencyResponses.h5` file has the following structure
 ```bash
 h5ls -r FrequencyResponses.h5
 /                        Group
@@ -114,12 +140,15 @@ h5ls -r FrequencyResponses.h5
 /FrequencyResponses/MetaData/Snapshot/Index Dataset {15600}
 /FrequencyResponses/MetaData/Snapshot/TimeStamp Dataset {15600}
 ```
-The 'FrequencyResponses' group comprises the actual channel frequency responses within the dataset 'Data'. This data is of shape \((15600 \times 1024 \times 36)\), that is \(\text{Symbol Timestamp} \times \text{Subcarrier Frequency} \times \text{Bistatic Measurement Angle}\). In addition, the 'MetaData' group comprises the actual physical values of these measurement dimensions.
+The `FrequencyResponses` group comprises the channel frequency responses stored in the dataset `Data`. 
+This dataset has the shape \((15600 \times 1024 \times 36)\), corresponding to \((\text{Symbol Timestamp} \times \text{Subcarrier Frequency} \times \text{Bistatic Measurement Angle})\). 
+In addition, the `MetaData` group contains the physical values associated with these measurement dimensions.
 
 #### Location Files
 
-The individual location files store the location of transmitter, receiver, and both spheres.
-The 'LocationTx.h5' file contains the position and orientation information of the TX, which did not change during the complete measurement campaign. Hence, all the datasets include only one element.
+The location files store the location of TX, RX, and both spheres.
+To this end, `LocationTx.h5` file contains the position and orientation of the TX, which remained constant throughout the entire measurement campaign. 
+Consequently, all datasets contain only a single element.
 ```bash
 h5ls -r LocationTx.h5
                         Group
@@ -134,8 +163,9 @@ h5ls -r LocationTx.h5
 /PoseData/RotY           Dataset {1}
 /PoseData/RotZ           Dataset {1}
 ```
-
-The location of the RX did not change during one measurement. However, it was varies between the measurement to create different bistatic measuremnt angles \(\delta\). Consequently, all HDF5 datasets have one entry for each \(\delta\).
+The location of the RX did not change during a single measurement. 
+However, it varied between measurements to create different bistatic measuremnt angles \(\delta\). 
+Consequently, all HDF5 datasets contain one entry for each angle.
 ```bash
 h5ls -r LocationRx.h5
 /                        Group
@@ -151,7 +181,9 @@ h5ls -r LocationRx.h5
 /PoseData/RotZ           Dataset {36}
 ```
 
-In contrast, the positions of the spheres did vary during one measurement. The corresponding positions have been recorded with the same sample rate as the frequency response symbols, resulting in \(15,600\) positions. Since the trajectories of the spheres were similar for all measurements, the sphere position does not depend on \(\delta\).
+In contrast, the positions of the spheres vary during a single measurement. 
+The corresponding positions were recorded at the same sample rate as the frequency response symbols, resulting in \(15600\) positions. 
+Since the trajectories of the spheres are similar across all measurements, the sphere positions do not depend on \(\delta\).
 ```bash
 h5ls -r Location.h5
 /                        Group
@@ -170,7 +202,9 @@ h5ls -r Location.h5
 
 #### Result Files
 
-The result files store parameter estimation results from the measured frequency responses. In fact, we performed delay-Doppler estimation on non-overlapping frames of size \((100 \times 1024)\). This choice implies that one snapshots comprises \(100\) frequency response symbols, resulting in \(156\) frames for the complete dataset.
+The result files store parameter estimation results derived from the measured frequency responses.
+In particular, we performed delay-Doppler estimation on non-overlapping frames of size \((100 \times 1024)\). 
+Each frame thus comprises \(100\) frequency response symbols, resulting in \(156\) frames for the complete dataset.
 ```bash
 h5ls -r Results_delta0.h5
 /                        Group
@@ -184,16 +218,19 @@ h5ls -r Results_delta0.h5
 /Results/PowGamma        Dataset {156}
 /Results/dBGamma         Dataset {156}
 ```
-The `Snapshot` group includes the index and timestamp of the first snapshot of each frame. For each frame, the results include a varying number of propagation paths, where each path has a propagation delay, doppler shift, and path power. Loading one of these parameters yields a nested `np.ndarray` of one-dimensional `np.ndarray`'s.
+The `Snapshot` group contains the index and timestamp of the first symbol of each frame. 
+For each frame, the results include a variable number of propagation paths, with each path characterized by a propagation delay, Doppler shift, and path power. 
+Loading any of these parameters returns a nested `np.ndarray` of one-dimensional `np.ndarray`'s.
 
 ## Data Processing
 
-The following sections provide several introductory code snippets that should demonstrate the interaction with the dataset.
+The following sections provide several introductory code snippets that demonstrate how to interact with the dataset.
 
 ### Loading Channel Data
 
-The complex channel frequency response is stored as a compound datatype in an HDF5 dataset located at the path `/FrequencyResponses/Data`. The fields named "real" and "imag" are used to represent the real and imaginary parts of the complex values, respectively. The following Python function loads the snapshots at one specific bistatic measurement angle within the interval `[start, stop)`.
-
+The complex channel frequency response is stored as a compound datatype in the HDF5 dataset at `/FrequencyResponses/Data`. 
+Specifically, the fields `real` and `imag` represent the real and imaginary parts of the complex values, respectively. 
+The following Python function loads the snapshots for a specific bistatic measurement angle within the interval \([\text{start}, \text{stop})\).
 ```python
 import h5py as h5
 import numpy as np
@@ -245,8 +282,7 @@ def load_complex_channel_data(file_path, sample_indices, bistatic_angle):
 
 ### Loading Position Data
 
-The following snippet loads position information of TX, RX, or a sphere.
-
+The following snippet loads the position information of the TX, RX, or a sphere.
 ```python
 import h5py as h5
 import numpy as np
@@ -255,7 +291,7 @@ def load_position_data(file_path, sample_indices=None, bistatic_angle=None):
     """
     Loads position information of TX, RX, or target.
     Arguments:
-        file_path: str: Path to the *.h5 file
+        file_path: str: Path to the *.h5 location file
         sample_indices: Tuple[int, int]: A slice (start, stop) defining the
             slow-time (snapshot) samples to load from file.
         bistatic_angle: int: An integer in the range [0,35] defining the bistatic
@@ -294,8 +330,9 @@ def load_position_data(file_path, sample_indices=None, bistatic_angle=None):
 
 ### Calculating Ground Truth Parameters
 
-Calculating the bistatic delay and Doppler of a sphere requires the position of TX, RX, and the sphere. The following Python scripts demonstrates one approach to carry out this calculation. Information about the underlying formula can be found here [here](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991).
-
+Calculating the bistatic delay and Doppler of a sphere requires the positions of the TX, RX, and the sphere. 
+The following Python scripts demonstrate one approach to perform this calculation. 
+Further information about the underlying formula can be found in [&#91;2&#93;](#related-publications).
 ```python
 import h5py as h5
 import numpy as np
@@ -307,7 +344,7 @@ def calc_position_vector(tx_pos, tar_pos, rx_pos):
     Arguments:
         tx_pos: np.ndarray: array of the TX position (fixed)
         tar_pos: np.ndarray: array of the target position
-        rx_pos: np.ndarray: array of the RX position
+        rx_pos: np.ndarray: array of the RX position (fixed)
     Returns:
         tx_vec: np.ndarray: array of the position vector TX-target
         rx_vec: np.ndarray: array of the position vector target-RX
@@ -342,8 +379,8 @@ def calc_doppler(tar_pos, tx_vec, rx_vec, t_delta, lambda_c):
         tar_pos: np.ndarray: array of target position
         tx_vec: np.ndarray: array of position vector TX-target
         rx_vec: np.ndarray: array of position vector target-RX
-        t_delta: symbol duration [s]
-        lambda_c: carrier wavelength [m]
+        t_delta: float: symbol duration [s]
+        lambda_c: float: carrier wavelength [m]
     Returns:
         doppler: float: Bistatic ground truth Doppler of the target
     """
@@ -369,8 +406,8 @@ def calc_doppler(tar_pos, tx_vec, rx_vec, t_delta, lambda_c):
 
 ### Plotting Delay-Doppler Spectra
 
-A common step in radar-like applications is the caluclation of the delay-Doppler spectra. The following Python script plots the magnitude of the delay-Doppler spectra in dB and overlays ground truth delay-Doppler parameters of both spheres.
-
+A common step in radar-like applications is the calculation of delay-Doppler spectra. 
+The following Python script plots the magnitude of the delay-Doppler spectrum in dB and overlays ground truth delay-Doppler parameters of both spheres.
 ```python
 import matplotlib.pyplot as plt
 
@@ -472,30 +509,52 @@ plt.scatter(
     s=100,
     label="Sphere_2",
 )
-
 plt.xlabel("Delay (s)")
 plt.ylabel("Doppler Frequency (Hz)")
-plt.title("Delay-Doppler Map")
+plt.title("Delay-Doppler Spectrum")
 # limit for better visibility
 plt.xlim([-2000, 2000])
 plt.ylim([0, 200e-9])
 plt.legend()
-
 plt.show()
 ```
 Executing the above snippet produces the following delay-Doppler spectrum.
 
 ![](static/rhino_dd_snippet_result.png)
 
-## External References
+## References
 
-- [REFODAT]()
-- [doi](https://www.doi.org/doi)
+### Dataset
+
+- [1] [Rhino on REFODAT](https://refodat.de/receive/refodat_mods_00000072)
+
+### Related Publications
+
+- [2] A. Schwind, M. Döbereiner, C. Andrich, P. Wendland, G. Del Galdo, G. Schäfer, R. S. Thomä, and M. A. Hein, “Bi‑static delay‑Doppler reference for cooperative passive vehicle‑to‑X radar applications,” IET Microwaves, Antennas & Propagation, vol. 14, no. 14, pp. 1749–1757, 2020, DOI: 10.1049/iet‑map.2019.0991
+    - [available here](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991)
+- [3] L. Mohr, “Measurement-Based Performance Analysis of RADAR Estimation Algorithms,” 2024. DOI: 10.22032/dbt.63482
+    - [available here](https://www.db-thueringen.de/receive/dbt_mods_00063482)
+- [4] L. Mohr, M. Döbereiner, S. Schieler, J. Robert, C. Schneider, S. Semper, and R. S. Thomä, “Performance Comparison of Joint Delay‑Doppler Estimation Algorithms,” arXiv preprint arXiv:2510.16200, Oct. 2025. DOI: 10.48550/arXiv.2510.16200
+    - [available here](https://arxiv.org/abs/2510.16200)
 
 ## Citation
 
+If you use this dataset, please cite the following data record.
 ```
-@dataset{
-    
+@dataset{refodat_mods_00000072,
+  author = 	{Mohr, Lorenz
+		and D{\"o}bereiner, Michael
+		and Andrich, Carsten
+		and Schwind, Andreas
+		and Schneider, Christian
+		and Thom{\"a}, Reiner},
+  title = 	{{Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications}},
+  year = 	{2026},
+  month = 	{Jan},
+  day = 	{15},
+  keywords = 	{Wireless Communication; Passive Radar; Channel Sounding; Delay-Doppler Estimation; Reference Dataset; Benchmark; sub-6-GHz measurements},
+  doi =     {TBC},
+  url = 	{https://refodat.de/receive/refodat_mods_00000072},
+  language = 	{en}
 }
 ```
