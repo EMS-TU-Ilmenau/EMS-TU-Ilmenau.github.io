@@ -526,7 +526,7 @@ Executing the above snippet produces the following delay-Doppler spectrum.
 
 ### Dataset and Documentation
 
-- [D1] L. Mohr, M. Döbereiner, C. Andrich, A. Schwind, C. Schneider, and R. Thomä, “Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications,” Jan. 15, 2026. DOI:
+- [D1] L. Mohr, M. Döbereiner, C. Andrich, A. Schwind, C. Schneider, and R. Thomä, “Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications,” Jan. 15, 2026. DOI:10.71758/refodat.72.
     - [available here](https://refodat.de/receive/refodat_mods_00000072)
 - [D2] "Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications," EMS TU Ilmenau. [Online]
     - [available here](https://ems-tu-ilmenau.github.io/dataset/rhino/)
