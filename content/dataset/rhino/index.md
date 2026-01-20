@@ -559,7 +559,7 @@ If you use this dataset, please cite the following data record.
   month = 	{Jan},
   day =     {15},
   keywords = 	{Wireless Communication; Passive Radar; Channel Sounding; Delay-Doppler Estimation; Reference Dataset; Benchmark; sub-6-GHz measurements},
-  doi =     {TBC},
+  doi =     {10.71758/refodat.72},
   url = 	{https://refodat.de/receive/refodat_mods_00000072},
   language = 	{en}
 }
