@@ -526,21 +526,15 @@ Executing the above snippet produces the following delay-Doppler spectrum.
 
 ### Dataset and Documentation
 
-- [D1] L. Mohr, M. Döbereiner, C. Andrich, A. Schwind, C. Schneider, and R. Thomä, “Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications,” Jan. 15, 2026. DOI:10.71758/refodat.72.
-    - [available here](https://refodat.de/receive/refodat_mods_00000072)
-- [D2] "Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications," EMS TU Ilmenau. [Online]
-    - [available here](https://ems-tu-ilmenau.github.io/dataset/rhino/)
-- [D3] "Abstract Specification," EMS TU Ilmenau. [Online]
-    - [available here](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/)
+- [D1] L. Mohr, M. Döbereiner, C. Andrich, A. Schwind, C. Schneider, and R. Thomä, “Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications,” Jan. 15, 2026. [DOI:10.71758/refodat.72.](https://refodat.de/receive/refodat_mods_00000072)
+- [D2] "Rhino: Bistatic Delay-Doppler Reference for Passive Radar Applications," EMS TU Ilmenau. [[Online]](https://ems-tu-ilmenau.github.io/dataset/rhino/)
+- [D3] "Abstract Specification," EMS TU Ilmenau. [[Online]](https://ems-tu-ilmenau.github.io/docu/basicdataspecs/)
 
 ### Related Publications
 
-- [1] A. Schwind, M. Döbereiner, C. Andrich, P. Wendland, G. Del Galdo, G. Schäfer, R. S. Thomä, and M. A. Hein, “Bi‑static delay‑Doppler reference for cooperative passive vehicle‑to‑X radar applications,” IET Microwaves, Antennas & Propagation, vol. 14, no. 14, pp. 1749–1757, 2020. DOI: 10.1049/iet‑map.2019.0991
-    - [available here](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991)
-- [2] L. Mohr, “Measurement-Based Performance Analysis of RADAR Estimation Algorithms,” 2024. DOI: 10.22032/dbt.63482
-    - [available here](https://www.db-thueringen.de/receive/dbt_mods_00063482)
-- [3] L. Mohr, M. Döbereiner, S. Schieler, J. Robert, C. Schneider, S. Semper, and R. S. Thomä, “Performance Comparison of Joint Delay‑Doppler Estimation Algorithms,” Oct. 2025. DOI: 10.48550/arXiv.2510.16200
-    - [available here](https://arxiv.org/abs/2510.16200)
+- [1] A. Schwind, M. Döbereiner, C. Andrich, P. Wendland, G. Del Galdo, G. Schäfer, R. S. Thomä, and M. A. Hein, “Bi‑static delay‑Doppler reference for cooperative passive vehicle‑to‑X radar applications,” IET Microwaves, Antennas & Propagation, vol. 14, no. 14, pp. 1749–1757, 2020. DOI: [10.1049/iet‑map.2019.0991](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/iet-map.2019.0991)
+- [2] L. Mohr, “Measurement-Based Performance Analysis of RADAR Estimation Algorithms,” 2024. DOI: [10.22032/dbt.63482](https://www.db-thueringen.de/receive/dbt_mods_00063482)
+- [3] L. Mohr, M. Döbereiner, S. Schieler, J. Robert, C. Schneider, S. Semper, and R. S. Thomä, “Performance Comparison of Joint Delay‑Doppler Estimation Algorithms,” Oct. 2025. DOI: [10.48550/arXiv.2510.16200](https://arxiv.org/abs/2510.16200)
 
 
 ## Citation
